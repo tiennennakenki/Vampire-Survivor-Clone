@@ -5,9 +5,22 @@ using UnityEngine;
 public class EnemyMovement : SaiMonoBehaviour
 {
     [Header("Enemy Movement")]
+    public EnemySO enemyData;
     [SerializeField] protected Transform player;
-    [SerializeField] protected float speed = 1f;
 
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadBatEnemySO();
+    }
+
+    protected virtual void LoadBatEnemySO()
+    {
+        if (this.enemyData != null) return;
+        string resPath = "Enemy/" + transform.name;
+        this.enemyData = Resources.Load<EnemySO>(resPath);
+        Debug.LogWarning(transform.name + ": LoadBatEnemySO", gameObject);
+    }
     protected override void Start()
     {
         base.Start();
@@ -22,8 +35,6 @@ public class EnemyMovement : SaiMonoBehaviour
 
     protected virtual void MovingFollowTarget()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, this.speed * Time.deltaTime);  
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, this.enemyData.MoveSpeed * Time.deltaTime);  
     }
-
-
 }

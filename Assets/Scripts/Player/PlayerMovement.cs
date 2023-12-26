@@ -51,7 +51,7 @@ public class PlayerMovement : SaiMonoBehaviour
     protected virtual void LoadAnimate()
     {
         if (this.animate != null) return;
-        this.animate = this.playerCtrl.Animation;
+        this.animate = this.playerCtrl.AnimationPlayer;
         Debug.LogWarning(transform.name + ": LoadAnimate", gameObject);
     }
 

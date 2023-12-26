@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class KnifeBehaviour : ProjectileWeaponBehaviour
 {
-    public KnifeCtrl knifeCtrl;
-
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadKnifeSO();
+    }
+    protected virtual void LoadKnifeSO()
+    {
+        if (this.weaponData != null) return;
+        string resPath = "Weapon/" + transform.name;
+        this.weaponData = Resources.Load<WeaponSO>(resPath);
+        Debug.Log(resPath);
+        Debug.LogWarning(transform.name + ": LoadKnifeSO", gameObject);
+    }
     protected override void Start()
     {
         base.Start();
-        knifeCtrl = FindObjectOfType<KnifeCtrl>();
     }
 
     protected override void Update()
@@ -20,6 +30,8 @@ public class KnifeBehaviour : ProjectileWeaponBehaviour
 
     protected virtual void SpawnKnife()
     {
-        transform.position += direction * knifeCtrl.speed * Time.deltaTime;
+        transform.position += direction * this.weaponData.speed * Time.deltaTime;
     }
+
+    
 }

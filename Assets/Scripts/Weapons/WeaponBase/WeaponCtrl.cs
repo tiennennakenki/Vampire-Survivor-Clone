@@ -5,18 +5,14 @@ using UnityEngine;
 public class WeaponCtrl : SaiMonoBehaviour
 {
     [Header("Weapon Ctrl")]
-    [SerializeField] protected GameObject prefabs;
-    [SerializeField] protected int damage;
-    [SerializeField] public float speed = 10;
-    [SerializeField] protected float coolDownDuration = 3;
+    public WeaponSO weaponData;
     [SerializeField] protected float currentCoolDown = 0;
     [SerializeField] protected PlayerMovement playerMovement;
-    [SerializeField] protected float pierce;
 
     protected override void Start()
     {
         base.Start();
-        this.currentCoolDown = this.coolDownDuration;
+        this.currentCoolDown = this.weaponData.CoolDownDuration;
         this.playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
@@ -37,6 +33,6 @@ public class WeaponCtrl : SaiMonoBehaviour
 
     protected virtual void Attack()
     {
-        this.currentCoolDown = this.coolDownDuration;
+        this.currentCoolDown = this.weaponData.CoolDownDuration;
     }
 }

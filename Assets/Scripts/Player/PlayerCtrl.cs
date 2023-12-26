@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class PlayerCtrl : SaiMonoBehaviour
 {
+    [Header("Player Ctrl")]
     [SerializeField] protected GameObject model;
     public GameObject Model =>  model;
 
     [SerializeField] protected PlayerHP playerHPBar;
     public PlayerHP PlayerHPBar => playerHPBar;
-    [SerializeField] protected Animation animation;
-    public Animation Animation => animation;
+    [SerializeField] protected Animation animationPlayer;
+    public Animation AnimationPlayer => animationPlayer;
     [SerializeField] protected Canvas canvas;
     public Canvas Canvas => canvas;
 
@@ -34,9 +35,9 @@ public class PlayerCtrl : SaiMonoBehaviour
 
     protected virtual void LoadAnimation()
     {
-        if (this.animation != null) return;
+        if (this.animationPlayer != null) return;
         //this.animation = transform.Find("Animation").gameObject;
-        this.animation = gameObject.GetComponentInChildren<Animation>();
+        this.animationPlayer = gameObject.GetComponentInChildren<Animation>();
         Debug.LogWarning(transform.name + ": LoadAnimation", gameObject);
     }
 

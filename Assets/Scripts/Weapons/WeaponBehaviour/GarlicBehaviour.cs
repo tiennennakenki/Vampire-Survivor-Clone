@@ -4,16 +4,35 @@ using UnityEngine;
 
 public class GarlicBehaviour : MeleeWeaponBehaviour
 {
-    public GarlicCtrl garlicCtrl;
+    protected List<GameObject> markedEnemies; 
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadGarlicSO();
+    }
+    protected virtual void LoadGarlicSO()
+    {
+        if (this.weaponData != null) return;
+        string resPath = "Weapon/" + transform.name;
+        this.weaponData = Resources.Load<WeaponSO>(resPath);
+        Debug.Log(resPath);
+        Debug.LogWarning(transform.name + ": LoadGarlicSO", gameObject);
+    }
 
     protected override void Start()
     {
         base.Start();
-        garlicCtrl = FindObjectOfType<GarlicCtrl>();
+        this.markedEnemies = new List<GameObject>();
     }
 
-    protected override void Update()
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        base.Update();
+        if(collision.CompareTag("Enemy") && !this.markedEnemies.Contains(collision.gameObject))
+        {
+            EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
+            enemyStats.TakeDamage(currentDamage);
+
+            this.markedEnemies.Add(collision.gameObject);
+        }
     }
 }

@@ -7,16 +7,18 @@ public class GarlicCtrl : WeaponCtrl
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadGarlicPrefab();
+        this.LoadWeaponSO();
     }
 
-    protected virtual void LoadGarlicPrefab()
+    protected virtual void LoadWeaponSO()
     {
-        if (this.prefabs != null) return;
-        this.prefabs = transform.Find("GarlicWeapon").gameObject;
-        Debug.LogWarning(transform.name + ": LoadGarlicPrefab", gameObject);
+        if (this.weaponData != null) return;
+        string resPath = "Weapon/GarlicWeapon";
+        this.weaponData = Resources.Load<WeaponSO>(resPath);
+        Debug.Log(resPath);
+        Debug.LogWarning(transform.name + ": LoadWeaponSO", gameObject);
     }
-    
+
     protected override void Start()
     {
         base.Start();
@@ -25,7 +27,7 @@ public class GarlicCtrl : WeaponCtrl
     protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedGarlic = Instantiate(prefabs);
+        GameObject spawnedGarlic = Instantiate(this.weaponData.prefabs);
         spawnedGarlic.transform.position = transform.position; //Assign position as the same as object which is parented to the player
         spawnedGarlic.transform.parent = transform;
         spawnedGarlic.SetActive(true);
