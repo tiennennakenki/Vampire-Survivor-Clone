@@ -81,7 +81,6 @@ public class MapSpawner : SaiMonoBehaviour
     {
         if (!currentChunk)
         {
-            Debug.Log("Current Chunk = null");
             return;
         }
 

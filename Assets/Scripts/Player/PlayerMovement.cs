@@ -17,11 +17,13 @@ public class PlayerMovement : SaiMonoBehaviour
     [SerializeField] protected bool isMoving = false; // Biến để theo dõi trạng thái di chuyển
     [SerializeField] protected float previousHorizontal = 0f;
     [SerializeField] protected float previousVertical = 0f;
+    public Vector2 lastMovedVector;
 
     protected override void Awake()
     {
         base.Awake();
         direction = new Vector3();
+        this.lastMovedVector = new Vector2(1, 0f); //If we start the game and player don't move then the lastMovedVector default is right
     }
 
     protected override void LoadComponents()
@@ -73,6 +75,7 @@ public class PlayerMovement : SaiMonoBehaviour
                 // Chuyển đổi animation tại đây
                 animate.horizontal = direction.x;
                 animate.vertical = direction.y;
+                lastMovedVector = new Vector2(direction.x, direction.y);
             }
 
             isMoving = true;
@@ -87,6 +90,7 @@ public class PlayerMovement : SaiMonoBehaviour
         previousVertical = direction.y;
 
         transform.parent.Translate(direction * moveSpeed * Time.deltaTime);
+        //lastMovedVector = new Vector2(previousHorizontal, previousVertical);
 
         //direction *= moveSpeed;
         //rpg2d.velocity = direction;
