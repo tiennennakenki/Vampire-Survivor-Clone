@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "ScriptableObjects/Weapon")]
 public class WeaponSO : ScriptableObject
 {
-    [SerializeField] public GameObject prefabs;
+    [SerializeField] public Transform prefabs;
     [SerializeField] protected float damage;
     public float Damage => damage;
     [SerializeField] public float speed;

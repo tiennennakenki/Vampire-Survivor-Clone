@@ -2,8 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeCtrl : WeaponCtrl
+public class KnifeSpawner : WeaponSpawner
 {
+    private static KnifeSpawner instance;
+    public static KnifeSpawner Instance { get => instance; }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (KnifeSpawner.instance != null) Debug.LogError("Only 1 KnifeSpawner allow to exit");
+        KnifeSpawner.instance = this;
+    }
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -27,10 +36,11 @@ public class KnifeCtrl : WeaponCtrl
     protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedKnife = Instantiate(this.weaponData.prefabs);
+        Transform spawnedKnife = this.GetObjectFromPool(this.weaponData.prefabs);
+        //Transform spawnedKnife = Instantiate(this.weaponData.prefabs);
+        spawnedKnife.gameObject.SetActive(true);
         spawnedKnife.transform.position = transform.position; //Assign the position to be the same as this object which is parented to the player
-        spawnedKnife.SetActive(true);
-        spawnedKnife.transform.parent = transform;
+        spawnedKnife.transform.parent = this.holder;
         spawnedKnife.GetComponent<KnifeBehaviour>().DirectionChecker(playerMovement.lastMovedVector);
     }
 }

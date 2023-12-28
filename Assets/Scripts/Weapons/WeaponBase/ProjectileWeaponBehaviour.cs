@@ -6,7 +6,6 @@ public class MeleeWeaponBehaviour : SaiMonoBehaviour
 {
     public WeaponSO weaponData;
     [SerializeField] protected Vector3 direction;
-    [SerializeField] protected float destroyAfterSeconds = 1;
 
     //Current stats
     [SerializeField] protected float currentDamage;
@@ -26,7 +25,6 @@ public class MeleeWeaponBehaviour : SaiMonoBehaviour
     protected override void Start()
     {
         base.Start();
-        Destroy(gameObject, this.destroyAfterSeconds);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)

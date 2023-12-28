@@ -8,7 +8,6 @@ public class ProjectileWeaponBehaviour : SaiMonoBehaviour
     [Header("Projectile Weapon Behaviour")]
     public WeaponSO weaponData;
     [SerializeField] protected Vector3 direction;
-    [SerializeField] protected float destroyAfterSeconds = 3;
 
     //Current stats
     [SerializeField] protected float currentDamage;
@@ -28,7 +27,6 @@ public class ProjectileWeaponBehaviour : SaiMonoBehaviour
     protected override void Start()
     {
         base.Start();
-        Destroy(gameObject, this.destroyAfterSeconds);
     }
 
     public virtual void DirectionChecker(Vector3 dir)
@@ -43,16 +41,19 @@ public class ProjectileWeaponBehaviour : SaiMonoBehaviour
 
         if(dirX < 0 && dirY == 0) //left
         {
-            scale.x = scale.x * -1;
-            scale.y = scale.y * -1;
+            rotation.z = 135f;
+        }
+        else if (dirX > 0 && dirY == 0) //right
+        {
+            rotation.z = -45f;
         }
         else if(dirX == 0 && dirY < 0) //down
         {
-            scale.y = scale.y * -1; 
+            rotation.z = -135f;
         }
         else if (dirX == 0 && dirY > 0) //up
         {
-            scale.x = scale.x * -1;
+            rotation.z = 45f;
         }
         else if (dirX > 0 && dirY > 0) //right up
         {

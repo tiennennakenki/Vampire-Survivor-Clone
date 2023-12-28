@@ -2,8 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GarlicCtrl : WeaponCtrl
+public class GarlicSpawner : WeaponSpawner
 {
+    private static GarlicSpawner instance;
+    public static GarlicSpawner Instance { get => instance; }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (GarlicSpawner.instance != null) Debug.LogError("Only 1 GarlicSpawner allow to exit");
+        GarlicSpawner.instance = this;
+    }
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -27,9 +36,10 @@ public class GarlicCtrl : WeaponCtrl
     protected override void Attack()
     {
         base.Attack();
-        GameObject spawnedGarlic = Instantiate(this.weaponData.prefabs);
+        Transform spawnedGarlic = this.GetObjectFromPool(this.weaponData.prefabs);
         spawnedGarlic.transform.position = transform.position; //Assign position as the same as object which is parented to the player
-        spawnedGarlic.transform.parent = transform;
-        spawnedGarlic.SetActive(true);
+        spawnedGarlic.transform.parent = this.holder;
+        spawnedGarlic.transform.localScale = new Vector3(2, 2, 2);
+        spawnedGarlic.gameObject.SetActive(true);
     }
 }
