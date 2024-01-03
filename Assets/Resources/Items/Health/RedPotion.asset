@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d93ae8c3a6dec344e98d20bf287a740b, type: 3}
-  m_Name: KnightCharacter
+  m_Script: {fileID: 11500000, guid: 68723701d17e31f459c9ec25baab7b28, type: 3}
+  m_Name: RedPotion
   m_EditorClassIdentifier: 
-  startingWeapon: {fileID: 0}
-  maxHealth: 100
-  recovery: 0
-  might: 0
-  moveSpeed: 5
-  projectileSpeed: 0
+  itemCode: 2
+  itemName: Red Potion

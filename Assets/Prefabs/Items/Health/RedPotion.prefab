@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8539329360832949521
+--- !u!1 &119672080248787074
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4048591577383249445}
-  - component: {fileID: 2467506449068573497}
-  - component: {fileID: -2932262436890772068}
-  - component: {fileID: -8746576036219819857}
+  - component: {fileID: 3784217190173059018}
+  - component: {fileID: 6131673581822707779}
+  - component: {fileID: -7525683032435797484}
+  - component: {fileID: -5883249232461085216}
   m_Layer: 0
-  m_Name: BlueGem
+  m_Name: RedPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4048591577383249445
+--- !u!4 &3784217190173059018
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8539329360832949521}
+  m_GameObject: {fileID: 119672080248787074}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -34,13 +34,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2467506449068573497
+--- !u!212 &6131673581822707779
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8539329360832949521}
+  m_GameObject: {fileID: 119672080248787074}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,37 +75,37 @@ SpriteRenderer:
   m_SortingLayerID: -1359997361
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1466726824, guid: 0594cc358af45c246a6d9f8c75490326, type: 3}
+  m_Sprite: {fileID: 445086883, guid: 32cf785e773366e408f7d65a1864bbc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.328125, y: 0.328125}
+  m_Size: {x: 0.1015625, y: 0.1484375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-2932262436890772068
+--- !u!114 &-7525683032435797484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8539329360832949521}
+  m_GameObject: {fileID: 119672080248787074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f8cc08e1a52d7643ad864755fe4b753, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a86b015e5c796241a327f692ff3edc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceGranted: 10
---- !u!58 &-8746576036219819857
-CircleCollider2D:
+  healthToRestore: 50
+--- !u!61 &-5883249232461085216
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8539329360832949521}
+  m_GameObject: {fileID: 119672080248787074}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -128,9 +128,19 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.203125, y: 0.296875}
+    newSize: {x: 0.1015625, y: 0.1484375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.08203125
+  m_Size: {x: 0.203125, y: 0.296875}
+  m_EdgeRadius: 0

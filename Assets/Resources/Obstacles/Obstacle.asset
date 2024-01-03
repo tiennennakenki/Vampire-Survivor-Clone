@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d93ae8c3a6dec344e98d20bf287a740b, type: 3}
-  m_Name: KnightCharacter
+  m_Script: {fileID: 11500000, guid: a6556a5754a0eb04dbc5a04ef4000396, type: 3}
+  m_Name: Obstacle
   m_EditorClassIdentifier: 
-  startingWeapon: {fileID: 0}
-  maxHealth: 100
-  recovery: 0
-  might: 0
-  moveSpeed: 5
-  projectileSpeed: 0
+  dropList:
+  - itemSO: {fileID: 11400000, guid: d892453b90e64ad448eb53bb5aa7ba24, type: 2}
+    dropRate: 100000
+    minDropRate: 0
+    maxDropRate: 0

@@ -9,11 +9,11 @@ public class PlayerStats : SaiMonoBehaviour
     public CharacterSO characterData;
 
     //Current stats
-    [SerializeField] protected float currentMaxHealth;
-    [SerializeField] protected float currentRecovery;
-    [SerializeField] protected float currentMight;
-    [SerializeField] protected float currentMoveSpeed;
-    [SerializeField] protected float currentProjectileSpeed;
+    [SerializeField] public float currentHealth;
+    [SerializeField] public float currentRecovery;
+    [SerializeField] public float currentMight;
+    [SerializeField] public float currentMoveSpeed;
+    [SerializeField] public float currentProjectileSpeed;
 
     //Experience and level of the player
     [Header("Experience/Level")]
@@ -23,11 +23,16 @@ public class PlayerStats : SaiMonoBehaviour
 
     public List<LevelRange> levelRanges;
 
+    //I-frame
+    protected float invincibilityDuration = .5f;
+    protected float invincibilityTimer;
+    protected bool isInvincible;
+
     protected override void Awake()
     {
         base.Awake();
         //Assign the variables
-        this.currentMaxHealth = this.characterData.MaxHealth;
+        this.currentHealth = this.characterData.MaxHealth;
         this.currentRecovery = this.characterData.Recovery;
         this.currentMight = this.characterData.Might;
         this.currentMoveSpeed = this.characterData.MoveSpeed;
@@ -39,6 +44,12 @@ public class PlayerStats : SaiMonoBehaviour
         base.Start();
         //Initialize the experience cap as the first experience cap increase
         experienceCap = levelRanges[0].experienceCapIncrease;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        this.ResetInvinciblility();
     }
 
     public virtual void IncreaseExperience(int amount)
@@ -81,5 +92,50 @@ public class PlayerStats : SaiMonoBehaviour
         this.characterData = Resources.Load<CharacterSO>(resPath);
         Debug.Log(resPath);
         Debug.LogWarning(transform.name + ": LoadCharacterSO", gameObject);
+    }
+
+    public virtual void TakeDamage(float amount)
+    {
+        //If the player is not currently invincible, reduce health and start invincibility 
+        if (!isInvincible)
+        {
+            this.currentHealth -= amount;
+
+            this.invincibilityTimer = this.invincibilityDuration;
+            this.isInvincible= true;
+
+            if (this.currentHealth <= 0)
+            {
+                this.Kill();
+            }
+        }
+        
+    }
+
+    protected virtual void ResetInvinciblility()
+    {
+        if(this.invincibilityTimer > 0)
+        {
+            this.invincibilityTimer -= Time.deltaTime;
+        }
+        else
+        {
+            this.isInvincible = false;
+        }
+    }
+
+    protected virtual void Kill()
+    {
+        Debug.LogWarning("Player is DEAD");
+    }
+
+    public virtual void RestoreHealth(float health)
+    {
+        if (this.currentHealth >= this.characterData.MaxHealth) return;
+        this.currentHealth += health;
+        if(this.currentHealth > this.characterData.MaxHealth)
+        {
+            this.currentHealth = this.characterData.MaxHealth;
+        }
     }
 }

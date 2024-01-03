@@ -7,4 +7,5 @@ public enum ItemCode
     NoItem = 0,
 
     BlueGem = 1,
+    RedPotion = 2,
 }

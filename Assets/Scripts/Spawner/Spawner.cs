@@ -30,7 +30,7 @@ public abstract class Spawner : SaiMonoBehaviour
 
         //this.HidePrefabs();
 
-        //Debug.Log(transform.name + ": LoadPrefabs", gameObject);
+        Debug.Log(transform.name + ": LoadPrefabs", gameObject);
     }
 
     protected virtual void HidePrefabs()

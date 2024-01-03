@@ -43,4 +43,13 @@ public class EnemyStats : SaiMonoBehaviour
     {
         //For override
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
+            player.TakeDamage(currentDamage);
+        }
+    }
 }
