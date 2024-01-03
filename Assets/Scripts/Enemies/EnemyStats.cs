@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyStats : SaiMonoBehaviour
 {
+    [Header("Enemy Stats")]
     public EnemySO enemyData;
 
     public float currentMoveSpeed;
@@ -21,15 +22,12 @@ public class EnemyStats : SaiMonoBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadBatEnemySO();
+        this.LoadEnemySO();
     }
 
-    protected virtual void LoadBatEnemySO()
+    protected virtual void LoadEnemySO()
     {
-        if (this.enemyData != null) return;
-        string resPath = "Enemy/" + transform.name;
-        this.enemyData = Resources.Load<EnemySO>(resPath);
-        Debug.LogWarning(transform.name + ": LoadBatEnemySO", gameObject);
+        //For override
     }
 
     public virtual void TakeDamage(float damage)
@@ -37,12 +35,12 @@ public class EnemyStats : SaiMonoBehaviour
         this.currentHealth -= damage;
         if(this.currentHealth <= 0 )
         {
-            this.Kill();
+            this.OnDead();
         }
     }
 
-    protected virtual void Kill()
+    protected virtual void OnDead()
     {
-        Destroy(gameObject);
+        //For override
     }
 }

@@ -17,7 +17,7 @@ public class EnemyMovement : SaiMonoBehaviour
     protected virtual void LoadBatEnemySO()
     {
         if (this.enemyData != null) return;
-        string resPath = "Enemy/" + transform.name;
+        string resPath = "Enemies/" + transform.name;
         this.enemyData = Resources.Load<EnemySO>(resPath);
         Debug.LogWarning(transform.name + ": LoadBatEnemySO", gameObject);
     }

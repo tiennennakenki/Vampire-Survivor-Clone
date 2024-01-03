@@ -6,12 +6,7 @@ public class PlayerMovement : SaiMonoBehaviour
 {
     [SerializeField] protected PlayerCtrl playerCtrl;
     public PlayerCtrl PlayerCtrl => playerCtrl;
-    [SerializeField] protected Rigidbody2D rpg2d;
-    public Rigidbody2D Rpg2d => rpg2d;
     [SerializeField] public Vector3 direction;
-
-    [SerializeField] float moveSpeed = 3f;
-    public float MoveSpeed => moveSpeed;
 
     [SerializeField] protected Animation animate;
     [SerializeField] protected bool isMoving = false; // Biến để theo dõi trạng thái di chuyển
@@ -19,6 +14,10 @@ public class PlayerMovement : SaiMonoBehaviour
     [SerializeField] protected float previousVertical = 0f;
     public Vector2 lastMovedVector;
 
+    //Reference
+    [SerializeField] protected Rigidbody2D rpg2d;
+    public Rigidbody2D Rpg2d => rpg2d;
+    public CharacterSO characterData;
     protected override void Awake()
     {
         base.Awake();
@@ -32,6 +31,16 @@ public class PlayerMovement : SaiMonoBehaviour
         this.LoadPlayerCtrl();
         this.LoadRigidbody2D();
         this.LoadAnimate();
+        this.LoadCharacterSO();
+    }
+
+    protected virtual void LoadCharacterSO()
+    {
+        if (this.characterData != null) return;
+        string resPath = "Characters/KnightCharacter";
+        this.characterData = Resources.Load<CharacterSO>(resPath);
+        Debug.Log(resPath);
+        Debug.LogWarning(transform.name + ": LoadCharacterSO", gameObject);
     }
 
     protected virtual void LoadPlayerCtrl()
@@ -89,7 +98,7 @@ public class PlayerMovement : SaiMonoBehaviour
         previousHorizontal = direction.x;
         previousVertical = direction.y;
 
-        transform.parent.Translate(direction * moveSpeed * Time.deltaTime);
+        transform.parent.Translate(direction * characterData.MoveSpeed * Time.deltaTime);
         //lastMovedVector = new Vector2(previousHorizontal, previousVertical);
 
         //direction *= moveSpeed;

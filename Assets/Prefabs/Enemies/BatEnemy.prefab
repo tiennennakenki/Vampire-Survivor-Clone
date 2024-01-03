@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1255259394144956951}
   - component: {fileID: 6676486624684700621}
   - component: {fileID: 3093065113964521280}
-  - component: {fileID: 1723571231707427809}
   - component: {fileID: 1122042520610690351}
+  - component: {fileID: 5566761888282558008}
   m_Layer: 0
   m_Name: BatEnemy
   m_TagString: Enemy
@@ -123,22 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: a5db9676b5f8d924f8c98deb108d6b8c, type: 2}
   player: {fileID: 0}
---- !u!114 &1723571231707427809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882553968920670764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72764457119db2b458b8e88984708376, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: a5db9676b5f8d924f8c98deb108d6b8c, type: 2}
-  currentMoveSpeed: 0
-  currentHealth: 0
-  currentDamage: 0
 --- !u!61 &1122042520610690351
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,3 +168,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2607497, y: 0.2763452}
   m_EdgeRadius: 0
+--- !u!114 &5566761888282558008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882553968920670764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7675a9f6bf3034d8c049f9283f6f14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: a5db9676b5f8d924f8c98deb108d6b8c, type: 2}
+  currentMoveSpeed: 0
+  currentHealth: 0
+  currentDamage: 0

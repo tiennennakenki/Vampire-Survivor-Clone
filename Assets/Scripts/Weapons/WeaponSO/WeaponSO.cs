@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponSO", menuName = "ScriptableObjects/Weapon")]
+[CreateAssetMenu(fileName = "WeaponSO", menuName = "SO/Weapon")]
 public class WeaponSO : ScriptableObject
 {
     [SerializeField] public Transform prefabs;
