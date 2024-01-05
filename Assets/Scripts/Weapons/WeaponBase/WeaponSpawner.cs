@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponSpawner : Spawner
 {
-    [Header("Weapon Ctrl")]
+    [Header("Weapon Spawner")]
     public WeaponSO weaponData;
     [SerializeField] protected PlayerMovement playerMovement;
     [SerializeField] protected Transform player;

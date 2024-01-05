@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Profiling;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIHPBar : SaiMonoBehaviour
 {
+    [SerializeField] protected PlayerStats player;
     [SerializeField] protected Transform hpBarData;
     public Transform HpBarData => hpBarData;
     [SerializeField] protected Slider slider;
@@ -12,6 +14,12 @@ public class UIHPBar : SaiMonoBehaviour
 
     [SerializeField] protected PlayerCtrl playerCtrl;
     public PlayerCtrl PlayerCtrl => playerCtrl;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        this.player = FindObjectOfType<PlayerStats>();
+    }
 
     protected override void LoadComponents()
     {
@@ -48,11 +56,12 @@ public class UIHPBar : SaiMonoBehaviour
         this.UpdateHpBar();
     }
 
-    protected virtual void UpdateHpBar()
+    public virtual void UpdateHpBar()
     {
         if (this.slider == null) return;
         IHPBarInterface hPBarInterface = this.hpBarData.GetComponent<IHPBarInterface>();
         if (hpBarData == null) return;
-        this.slider.value = hPBarInterface.HP();
+        //this.slider.value = hPBarInterface.HP();
+        this.slider.value = this.player.currentHealth;
     }
 }

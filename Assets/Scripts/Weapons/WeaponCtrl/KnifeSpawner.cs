@@ -22,7 +22,7 @@ public class KnifeSpawner : WeaponSpawner
     protected virtual void LoadWeaponSO()
     {
         if (this.weaponData != null) return;
-        string resPath = "Weapon/KnifeWeapon";
+        string resPath = "Weapons/KnifeWeapon";
         this.weaponData = Resources.Load<WeaponSO>(resPath);
         Debug.Log(resPath);
         Debug.LogWarning(transform.name + ": LoadWeaponSO", gameObject);

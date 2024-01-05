@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ExperienceGem : SaiMonoBehaviour, ICollectable
+public class ExperienceGem : PickUp, ICollectable
 {
     [SerializeField] protected int experienceGranted = 10;
     public int ExperienceGranted => experienceGranted;
@@ -10,6 +11,6 @@ public class ExperienceGem : SaiMonoBehaviour, ICollectable
     {
         PlayerStats playerStats = FindObjectOfType<PlayerStats>();
         playerStats.IncreaseExperience(experienceGranted);
-        ItemsDropSpawner.Instance.Despawn(gameObject.transform);
+        //ItemsDropSpawner.Instance.Despawn(gameObject.transform);
     }
 }

@@ -17,7 +17,7 @@ public class PlayerMovement : SaiMonoBehaviour
     //Reference
     [SerializeField] protected Rigidbody2D rpg2d;
     public Rigidbody2D Rpg2d => rpg2d;
-    public CharacterSO characterData;
+    public PlayerStats player;
     protected override void Awake()
     {
         base.Awake();
@@ -25,22 +25,19 @@ public class PlayerMovement : SaiMonoBehaviour
         this.lastMovedVector = new Vector2(1, 0f); //If we start the game and player don't move then the lastMovedVector default is right
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        this.player = FindObjectOfType<PlayerStats>();
+    }
+
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadPlayerCtrl();
         this.LoadRigidbody2D();
         this.LoadAnimate();
-        this.LoadCharacterSO();
-    }
-
-    protected virtual void LoadCharacterSO()
-    {
-        if (this.characterData != null) return;
-        string resPath = "Characters/KnightCharacter";
-        this.characterData = Resources.Load<CharacterSO>(resPath);
-        Debug.Log(resPath);
-        Debug.LogWarning(transform.name + ": LoadCharacterSO", gameObject);
     }
 
     protected virtual void LoadPlayerCtrl()
@@ -98,7 +95,7 @@ public class PlayerMovement : SaiMonoBehaviour
         previousHorizontal = direction.x;
         previousVertical = direction.y;
 
-        transform.parent.Translate(direction * characterData.MoveSpeed * Time.deltaTime);
+        transform.parent.Translate(direction * this.player.currentMoveSpeed * Time.deltaTime);
         //lastMovedVector = new Vector2(previousHorizontal, previousVertical);
 
         //direction *= moveSpeed;

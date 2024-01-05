@@ -17,4 +17,6 @@ public class CharacterSO : ScriptableObject
     public float MoveSpeed => moveSpeed;
     [SerializeField] protected float projectileSpeed;
     public float ProjectileSpeed => projectileSpeed;
+    [SerializeField] protected float magnet;
+    public float Magnet => magnet;
 }

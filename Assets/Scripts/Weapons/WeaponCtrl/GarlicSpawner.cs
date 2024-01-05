@@ -22,7 +22,7 @@ public class GarlicSpawner : WeaponSpawner
     protected virtual void LoadWeaponSO()
     {
         if (this.weaponData != null) return;
-        string resPath = "Weapon/GarlicWeapon";
+        string resPath = "Weapons/GarlicWeapon";
         this.weaponData = Resources.Load<WeaponSO>(resPath);
         Debug.Log(resPath);
         Debug.LogWarning(transform.name + ": LoadWeaponSO", gameObject);

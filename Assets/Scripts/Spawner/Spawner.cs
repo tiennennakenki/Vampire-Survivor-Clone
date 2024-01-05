@@ -28,7 +28,7 @@ public abstract class Spawner : SaiMonoBehaviour
             this.prefabs.Add(prefab);
         }
 
-        //this.HidePrefabs();
+        this.HidePrefabs();
 
         Debug.Log(transform.name + ": LoadPrefabs", gameObject);
     }

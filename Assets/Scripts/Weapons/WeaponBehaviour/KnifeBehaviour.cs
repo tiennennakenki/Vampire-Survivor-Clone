@@ -30,7 +30,7 @@ public class KnifeBehaviour : ProjectileWeaponBehaviour
 
     protected virtual void SpawnKnife()
     {
-        transform.position += direction * this.weaponData.speed * Time.deltaTime;
+        transform.position += direction * currentSpeed * Time.deltaTime;
     }
 
     
