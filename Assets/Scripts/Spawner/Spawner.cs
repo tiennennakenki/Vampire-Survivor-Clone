@@ -53,7 +53,7 @@ public abstract class Spawner : SaiMonoBehaviour
         this.currentCoolDown -= Time.deltaTime;
         if (this.currentCoolDown <= 0)
         {
-            this.Attack();
+            this.Spawn();
         }
     }
 
@@ -85,7 +85,7 @@ public abstract class Spawner : SaiMonoBehaviour
         obj.gameObject.SetActive(false);
     }
 
-    protected virtual void Attack()
+    protected virtual void Spawn()
     {
         //For overried
     }

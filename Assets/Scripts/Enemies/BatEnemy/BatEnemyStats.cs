@@ -15,7 +15,7 @@ public class BatEnemyStats : EnemyStats
     protected override void OnDead()
     {
         this.OnDeadDrop();
-        BatEnemySpawner.Instance.Despawn(transform.parent);
+        EnemiesSpawner.Instance.Despawn(transform);
     }
 
     protected virtual void OnDeadDrop()

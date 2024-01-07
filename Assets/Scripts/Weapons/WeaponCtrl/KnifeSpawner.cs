@@ -33,9 +33,9 @@ public class KnifeSpawner : WeaponSpawner
         base.Start();
     }
 
-    protected override void Attack()
+    protected override void Spawn()
     {
-        base.Attack();
+        base.Spawn();
         Transform spawnedKnife = this.GetObjectFromPool(this.weaponData.prefabs);
         //Transform spawnedKnife = Instantiate(this.weaponData.prefabs);
         spawnedKnife.gameObject.SetActive(true);

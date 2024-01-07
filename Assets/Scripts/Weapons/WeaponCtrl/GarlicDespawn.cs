@@ -7,6 +7,5 @@ public class GarlicDespawn : DespawnByTime
     public override void DespawnObj()
     {
         GarlicSpawner.Instance.Despawn(transform.parent);
-        Debug.Log(transform.parent);
     }
 }

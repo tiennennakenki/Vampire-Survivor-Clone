@@ -33,9 +33,9 @@ public class GarlicSpawner : WeaponSpawner
         base.Start();
     }
 
-    protected override void Attack()
+    protected override void Spawn()
     {
-        base.Attack();
+        base.Spawn();
         Transform spawnedGarlic = this.GetObjectFromPool(this.weaponData.prefabs);
         spawnedGarlic.transform.position = transform.position; //Assign position as the same as object which is parented to the player
         spawnedGarlic.transform.parent = this.holder;

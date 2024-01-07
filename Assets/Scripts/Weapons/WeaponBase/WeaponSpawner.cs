@@ -24,7 +24,7 @@ public class WeaponSpawner : Spawner
         this.FollowPlayer();
     }
 
-    protected override void Attack()
+    protected override void Spawn()
     {
         this.currentCoolDown = this.weaponData.CoolDownDuration;
     }
