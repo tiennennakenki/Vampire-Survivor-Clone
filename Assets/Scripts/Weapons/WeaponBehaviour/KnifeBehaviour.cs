@@ -12,7 +12,7 @@ public class KnifeBehaviour : ProjectileWeaponBehaviour
     protected virtual void LoadKnifeSO()
     {
         if (this.weaponData != null) return;
-        string resPath = "Weapon/" + transform.name;
+        string resPath = "Weapons/Knife Weapon/" + transform.name;
         this.weaponData = Resources.Load<WeaponSO>(resPath);
         Debug.Log(resPath);
         Debug.LogWarning(transform.name + ": LoadKnifeSO", gameObject);

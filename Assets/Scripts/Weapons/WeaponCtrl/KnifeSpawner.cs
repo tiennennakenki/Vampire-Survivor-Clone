@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class KnifeSpawner : WeaponSpawner
 {
+    [Header("Knife KnifeSpawnerSpawner")]
     private static KnifeSpawner instance;
     public static KnifeSpawner Instance { get => instance; }
+
 
     protected override void Awake()
     {
         base.Awake();
-        if (KnifeSpawner.instance != null) Debug.LogError("Only 1 KnifeSpawner allow to exit");
+        if (KnifeSpawner.instance != null) Debug.Log("Only 1 KnifeSpawner allow to exit");
         KnifeSpawner.instance = this;
     }
     protected override void LoadComponents()
@@ -22,7 +24,7 @@ public class KnifeSpawner : WeaponSpawner
     protected virtual void LoadWeaponSO()
     {
         if (this.weaponData != null) return;
-        string resPath = "Weapons/KnifeWeapon";
+        string resPath = "Weapons/Knife Weapon/" + transform.name;
         this.weaponData = Resources.Load<WeaponSO>(resPath);
         Debug.Log(resPath);
         Debug.LogWarning(transform.name + ": LoadWeaponSO", gameObject);
@@ -36,6 +38,7 @@ public class KnifeSpawner : WeaponSpawner
     protected override void Spawn()
     {
         base.Spawn();
+
         Transform spawnedKnife = this.GetObjectFromPool(this.weaponData.prefabs);
         //Transform spawnedKnife = Instantiate(this.weaponData.prefabs);
         spawnedKnife.gameObject.SetActive(true);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 867696759372652138}
   - component: {fileID: 4745099737500308184}
   m_Layer: 0
-  m_Name: KnifeSpawner
+  m_Name: Knife Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,10 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 7581309776631048776}
-  prefabs: []
+  prefabs:
+  - {fileID: 8503387764648699570}
   poolObjs: []
   currentCoolDown: 0
-  weaponData: {fileID: 11400000, guid: 01ffec41841197f40bc242075e6e1677, type: 2}
+  weaponData: {fileID: 11400000, guid: 645dee4cda366d04a907cb8b522dfb47, type: 2}
   playerMovement: {fileID: 0}
   player: {fileID: 0}
 --- !u!1 &2214425828124742873

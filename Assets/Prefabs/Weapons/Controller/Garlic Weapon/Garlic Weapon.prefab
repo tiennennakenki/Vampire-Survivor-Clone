@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 276877087307623798}
   - component: {fileID: 1274354236149761259}
   m_Layer: 0
-  m_Name: GarlicSpawner
+  m_Name: Garlic Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,10 +110,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 1115584469758744162}
-  prefabs: []
+  prefabs:
+  - {fileID: 4024245714287360130}
   poolObjs: []
   currentCoolDown: 0
-  weaponData: {fileID: 11400000, guid: 1dce71d8984f71046aea4f5c34e97087, type: 2}
+  weaponData: {fileID: 11400000, guid: 9dc6923dce3d1354f971244aee9bd176, type: 2}
   playerMovement: {fileID: 0}
   player: {fileID: 0}
 --- !u!1001 &7678255774870067724
@@ -167,6 +168,10 @@ PrefabInstance:
     - target: {fileID: 7499275425388407930, guid: 2dd21b72e30677d41a56cba218b9f79f, type: 3}
       propertyPath: m_Name
       value: GarlicWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7499275425388407930, guid: 2dd21b72e30677d41a56cba218b9f79f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

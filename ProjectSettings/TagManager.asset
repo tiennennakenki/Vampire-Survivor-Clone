@@ -49,9 +49,6 @@ TagManager:
   - name: Obstacle
     uniqueID: 670161239
     locked: 0
-  - name: Enemy
-    uniqueID: 3906958551
-    locked: 0
   - name: Weapon
     uniqueID: 304137387
     locked: 0
@@ -60,4 +57,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 173400951
+    locked: 0
+  - name: Enemy
+    uniqueID: 3906958551
     locked: 0

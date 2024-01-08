@@ -13,7 +13,7 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
     protected virtual void LoadGarlicSO()
     {
         if (this.weaponData != null) return;
-        string resPath = "Weapon/" + transform.name;
+        string resPath = "Weapons/Garlic Weapon/" + transform.name;
         this.weaponData = Resources.Load<WeaponSO>(resPath);
         Debug.Log(resPath);
         Debug.LogWarning(transform.name + ": LoadGarlicSO", gameObject);
@@ -30,7 +30,7 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
         if(collision.CompareTag("Enemy") && !this.markedEnemies.Contains(collision.gameObject))
         {
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
-            enemyStats.TakeDamage(currentDamage);
+            enemyStats.TakeDamage(GetCurrentDamage());
 
             this.markedEnemies.Add(collision.gameObject);
         }
@@ -38,7 +38,7 @@ public class GarlicBehaviour : MeleeWeaponBehaviour
         {
             if (collision.gameObject.TryGetComponent(out BreakableProps breakableProps) && !this.markedEnemies.Contains(collision.gameObject))
             {
-                breakableProps.TakeDamage(currentDamage);
+                breakableProps.TakeDamage(GetCurrentDamage());
                 this.markedEnemies.Add(collision.gameObject);
             }
         }

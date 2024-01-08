@@ -29,6 +29,11 @@ public class ProjectileWeaponBehaviour : SaiMonoBehaviour
         base.Start();
     }
 
+    public virtual float GetCurrentDamage()
+    {
+        return currentDamage *= FindObjectOfType<PlayerStats>().currentMight;
+    }
+
     public virtual void DirectionChecker(Vector3 dir)
     {
         this.direction = dir;
@@ -85,14 +90,14 @@ public class ProjectileWeaponBehaviour : SaiMonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
-            enemyStats.TakeDamage(currentDamage);
+            enemyStats.TakeDamage(GetCurrentDamage());
             ReducePierce();
         }
         else if(collision.gameObject.CompareTag("Prop"))
         {
             if(collision.gameObject.TryGetComponent(out BreakableProps breakableProps))
             {
-                breakableProps.TakeDamage(currentDamage);
+                breakableProps.TakeDamage(GetCurrentDamage());
                 ReducePierce();
             }
         }

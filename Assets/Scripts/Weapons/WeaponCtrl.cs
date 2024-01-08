@@ -8,6 +8,7 @@ public class WeaponCtrl : SaiMonoBehaviour
     public static WeaponCtrl Instance => instance;
 
     [SerializeField] public List<GameObject> listSkills = new List<GameObject>();
+    [SerializeField] public List<GameObject> passiveItems = new List<GameObject>();
 
     protected override void Awake()
     {
@@ -20,16 +21,18 @@ public class WeaponCtrl : SaiMonoBehaviour
     {
         base.LoadComponents();
         this.LoadListSkills();
+        this.LoadPassiveItems();
     }
 
     protected virtual void LoadListSkills()
     {
-        if (this.listSkills != null) return;
-        int childCount = transform.childCount;
+        if (this.listSkills.Count > 0) return;
+        Transform listSkill = transform.Find("Skills");
+        int childCount = listSkill.childCount;
 
         for (int i = 0; i < childCount; i++)
         {
-            Transform childTransform = transform.GetChild(i);
+            Transform childTransform = listSkill.GetChild(i);
 
             GameObject childGameObject = childTransform.gameObject;
             this.listSkills.Add(childGameObject);
@@ -37,4 +40,19 @@ public class WeaponCtrl : SaiMonoBehaviour
         Debug.LogWarning(transform.name + ": LoadListSkills", gameObject);
     }
 
+    protected virtual void LoadPassiveItems()
+    {
+        if (this.passiveItems.Count > 0) return;
+        Transform passiveItems = transform.Find("Passive Items");
+        int childCount = passiveItems.childCount;
+
+        for (int i = 0; i < childCount; i++)
+        {
+            Transform childTransform = passiveItems.GetChild(i);
+
+            GameObject childGameObject = childTransform.gameObject;
+            this.passiveItems.Add(childGameObject);
+        }
+        Debug.LogWarning(transform.name + ": LoadPassiveItems", gameObject);
+    }
 }

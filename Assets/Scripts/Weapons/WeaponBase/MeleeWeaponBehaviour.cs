@@ -27,18 +27,23 @@ public class MeleeWeaponBehaviour : SaiMonoBehaviour
         base.Start();
     }
 
+    public virtual float GetCurrentDamage()
+    {
+        return currentDamage *= FindObjectOfType<PlayerStats>().currentMight;
+    }
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
-            enemyStats.TakeDamage(currentDamage);
+            enemyStats.TakeDamage(GetCurrentDamage());
         }
         else if (collision.gameObject.CompareTag("Prop"))
         {
             if (collision.gameObject.TryGetComponent(out BreakableProps breakableProps))
             {
-                breakableProps.TakeDamage(currentDamage);
+                breakableProps.TakeDamage(GetCurrentDamage());
             }
         }
     }

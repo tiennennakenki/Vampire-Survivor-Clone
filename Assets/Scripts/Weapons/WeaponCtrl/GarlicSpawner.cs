@@ -10,7 +10,7 @@ public class GarlicSpawner : WeaponSpawner
     protected override void Awake()
     {
         base.Awake();
-        if (GarlicSpawner.instance != null) Debug.LogError("Only 1 GarlicSpawner allow to exit");
+        if (GarlicSpawner.instance != null) Debug.Log("Only 1 GarlicSpawner allow to exit");
         GarlicSpawner.instance = this;
     }
     protected override void LoadComponents()
@@ -22,7 +22,7 @@ public class GarlicSpawner : WeaponSpawner
     protected virtual void LoadWeaponSO()
     {
         if (this.weaponData != null) return;
-        string resPath = "Weapons/GarlicWeapon";
+        string resPath = "Weapons/Garlic Weapon/" + transform.name;
         this.weaponData = Resources.Load<WeaponSO>(resPath);
         Debug.Log(resPath);
         Debug.LogWarning(transform.name + ": LoadWeaponSO", gameObject);

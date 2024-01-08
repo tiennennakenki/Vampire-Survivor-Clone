@@ -30,6 +30,14 @@ public class PlayerStats : SaiMonoBehaviour
     protected float invincibilityTimer;
     protected bool isInvincible;
 
+    //Inventory
+    [SerializeField] protected InventoryManager inventory;
+    [SerializeField] protected int weaponIndex;
+    [SerializeField] protected int passiveItemIndex;
+
+    public GameObject passiveItemTest1, passiveItemTest2;
+    public GameObject weaponTest2;
+
     protected override void Awake()
     {
         base.Awake();
@@ -44,6 +52,9 @@ public class PlayerStats : SaiMonoBehaviour
         this.currentMoveSpeed = this.characterData.MoveSpeed;
         this.currentProjectileSpeed = this.characterData.ProjectileSpeed;
         this.currentMagnet = this.characterData.Magnet;
+
+        //Inventory
+        this.inventory = FindObjectOfType<InventoryManager>();
     }
 
     protected override void Start()
@@ -51,7 +62,10 @@ public class PlayerStats : SaiMonoBehaviour
         base.Start();
         //Initialize the experience cap as the first experience cap increase
         experienceCap = levelRanges[0].experienceCapIncrease;
-        this.LoadStartingWeapon();
+        this.SpawnWeapon(this.currentStartingWeapon);
+        this.SpawnWeapon(this.weaponTest2);
+        this.SpawnPassiveItem(this.passiveItemTest1);
+        this.SpawnPassiveItem(this.passiveItemTest2);
     }
 
     protected override void Update()
@@ -145,14 +159,43 @@ public class PlayerStats : SaiMonoBehaviour
         }
     }
 
-    protected virtual void LoadStartingWeapon()
+    protected virtual void SpawnWeapon(GameObject weapon)
     {
-        foreach(GameObject skill in WeaponCtrl.Instance.listSkills)
+        if (this.weaponIndex >= this.inventory.weaponSlots.Count - 1)
         {
-            if(this.currentStartingWeapon.ToString() == skill.ToString())
+            Debug.LogError("Weapon slots already full");
+            return;
+        }
+
+        foreach (GameObject skill in WeaponCtrl.Instance.listSkills)
+        {
+            if(weapon.ToString() == skill.ToString())
             {
                 Debug.Log("Checked");
                 skill.gameObject.SetActive(true);
+
+                inventory.AddWeapon(weaponIndex, skill.GetComponent<WeaponSpawner>());
+                weaponIndex++;
+            }
+        }
+    }
+
+    protected virtual void SpawnPassiveItem(GameObject passiveItem)
+    {
+        if (this.passiveItemIndex >= this.inventory.passiveItemSlots.Count - 1)
+        {
+            Debug.LogError("Passive Item slots already full");
+            return;
+        }
+
+        foreach (GameObject item in WeaponCtrl.Instance.passiveItems)
+        {
+            if (passiveItem.ToString() == item.ToString())
+            {
+                item.gameObject.SetActive(true);
+
+                inventory.AddPassiveItem(passiveItemIndex, item.GetComponent<PassiveItem>());
+                passiveItemIndex++;
             }
         }
     }

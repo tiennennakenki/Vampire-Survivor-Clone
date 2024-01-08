@@ -14,4 +14,10 @@ public class WeaponSO : ScriptableObject
     public float CoolDownDuration => coolDownDuration;
     [SerializeField] protected float pierce;
     public float Pierce => pierce;
+    [SerializeField] protected int level;
+    public int Level => level;
+    [SerializeField] protected GameObject nextLevelPrefab;
+    public GameObject NextLevelPrefab => nextLevelPrefab;
+    [SerializeField] protected Sprite icon;
+    public Sprite Icon => icon;
 }
