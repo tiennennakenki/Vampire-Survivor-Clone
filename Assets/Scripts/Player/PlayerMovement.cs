@@ -69,6 +69,7 @@ public class PlayerMovement : SaiMonoBehaviour
 
     protected virtual void Moving()
     {
+        if (GameManager.Instance.isGameOver) return;
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
 
@@ -95,7 +96,7 @@ public class PlayerMovement : SaiMonoBehaviour
         previousHorizontal = direction.x;
         previousVertical = direction.y;
 
-        transform.parent.Translate(direction * this.player.currentMoveSpeed * Time.deltaTime);
+        transform.parent.Translate(direction * this.player.CurrentMoveSpeed * Time.deltaTime);
         //lastMovedVector = new Vector2(previousHorizontal, previousVertical);
 
         //direction *= moveSpeed;

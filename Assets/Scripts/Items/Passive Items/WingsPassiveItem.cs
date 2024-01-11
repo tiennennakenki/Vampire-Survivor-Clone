@@ -21,6 +21,6 @@ public class WingsPassiveItem : PassiveItem
     protected override void ApplyModifier()
     {
         base.ApplyModifier();
-        this.player.currentMoveSpeed *= 1 + this.passiveItemData.Multipler/100f;
+        this.player.CurrentMoveSpeed *= 1 + this.passiveItemData.Multipler/100f;
     }
 }

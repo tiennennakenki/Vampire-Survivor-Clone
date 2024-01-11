@@ -8,5 +8,6 @@ public class SceneController : SaiMonoBehaviour
     public virtual void SceneChange(string name)
     {
         SceneManager.LoadScene(name);
+        Time.timeScale = 1f;
     }
 }

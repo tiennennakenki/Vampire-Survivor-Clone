@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Character", menuName ="SO/Character")]
 public class CharacterSO : ScriptableObject
 {
+    [SerializeField] protected Sprite icon;
+    public Sprite Icon => icon;
+    [SerializeField] protected string name;
+    public string Name => name;
     [SerializeField] protected GameObject startingWeapon;
     public GameObject StartingWeapon => startingWeapon;
     [SerializeField] protected float maxHealth;

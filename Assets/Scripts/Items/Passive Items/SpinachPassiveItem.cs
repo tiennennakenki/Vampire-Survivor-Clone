@@ -21,6 +21,6 @@ public class SpinachPassiveItem : PassiveItem
     protected override void ApplyModifier()
     {
         base.ApplyModifier();
-        this.player.currentMight *= 1 +  this.passiveItemData.Multipler / 100f;
+        this.player.CurrentMight *= 1 +  this.passiveItemData.Multipler / 100f;
     }
 }

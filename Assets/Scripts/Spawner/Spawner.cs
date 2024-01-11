@@ -73,7 +73,7 @@ public abstract class Spawner : SaiMonoBehaviour
 
         Transform newPrefab = Instantiate(prefab);
         newPrefab.name = prefab.name;
-        Debug.Log(newPrefab.name);
+        //Debug.Log(newPrefab.name);
         return newPrefab;
     }
 

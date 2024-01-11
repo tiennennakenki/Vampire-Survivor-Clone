@@ -29,7 +29,7 @@ public class MeleeWeaponBehaviour : SaiMonoBehaviour
 
     public virtual float GetCurrentDamage()
     {
-        return currentDamage *= FindObjectOfType<PlayerStats>().currentMight;
+        return currentDamage *= FindObjectOfType<PlayerStats>().CurrentMight;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
