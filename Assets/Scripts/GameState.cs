@@ -7,4 +7,5 @@ public enum GameState
     GamePlay = 0,
     Pause = 1,
     GameOver = 2,
+    LevelUp = 3,
 }

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlayerStats : SaiMonoBehaviour
 {
@@ -37,6 +39,11 @@ public class PlayerStats : SaiMonoBehaviour
 
     public GameObject passiveItemTest1, passiveItemTest2;
     public GameObject weaponTest2;
+
+    //UI
+    [Header("UI")]
+    [SerializeField] protected Image expBar;
+    [SerializeField] protected TextMeshProUGUI levelText;
 
     #region Current Stats Properties
     public float CurrentHealth
@@ -138,7 +145,7 @@ public class PlayerStats : SaiMonoBehaviour
         experienceCap = levelRanges[0].experienceCapIncrease;
         this.SpawnWeapon(this.currentStartingWeapon);
         //this.SpawnWeapon(this.weaponTest2);
-        this.SpawnPassiveItem(this.passiveItemTest1);
+        //this.SpawnPassiveItem(this.passiveItemTest1);
         this.SpawnPassiveItem(this.passiveItemTest2);
 
         //Set the current stats display
@@ -150,6 +157,9 @@ public class PlayerStats : SaiMonoBehaviour
         GameManager.Instance.currentMagnetDisplay.text = "Magnet: " + this.currentMagnet;
 
         GameManager.Instance.AssignCharacterDataUI(this.characterData);
+
+        this.UpdateExpBar();
+        this.UpdateLevelText();
     }
 
     protected override void Update()
@@ -163,6 +173,7 @@ public class PlayerStats : SaiMonoBehaviour
         this.experience += amount;
 
         this.LevelUpChecker();
+        this.UpdateExpBar();
     }
 
     protected virtual void LevelUpChecker()
@@ -182,6 +193,9 @@ public class PlayerStats : SaiMonoBehaviour
                 }
             }
             this.experienceCap += experienceCapIncrease;
+            this.UpdateLevelText();
+
+            GameManager.Instance.StartLevelUP();
         }
     }
 
@@ -246,7 +260,7 @@ public class PlayerStats : SaiMonoBehaviour
         }
     }
 
-    protected virtual void SpawnWeapon(GameObject weapon)
+    public virtual void SpawnWeapon(GameObject weapon)
     {
         if (this.weaponIndex >= this.inventory.weaponSlots.Count - 1)
         {
@@ -267,7 +281,7 @@ public class PlayerStats : SaiMonoBehaviour
         }
     }
 
-    protected virtual void SpawnPassiveItem(GameObject passiveItem)
+    public virtual void SpawnPassiveItem(GameObject passiveItem)
     {
         if (this.passiveItemIndex >= this.inventory.passiveItemSlots.Count - 1)
         {
@@ -285,5 +299,16 @@ public class PlayerStats : SaiMonoBehaviour
                 passiveItemIndex++;
             }
         }
+    }
+
+    protected virtual void UpdateExpBar()
+    {
+        //Update exp bar fill amount
+        this.expBar.fillAmount = (float)this.experience / this.experienceCap;
+    }
+
+    protected virtual void UpdateLevelText()
+    {
+        this.levelText.text = "LV: " + level.ToString();
     }
 }

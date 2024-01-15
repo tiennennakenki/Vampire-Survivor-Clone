@@ -15,4 +15,6 @@ MonoBehaviour:
   multipler: 100
   level: 2
   nextLevelPrefab: {fileID: 0}
+  name: Wings Level 2
+  description: Increase Movement Speed by 75%
   icon: {fileID: -609159099, guid: 6fef1deedeb6418428a2f0945b0148ca, type: 3}

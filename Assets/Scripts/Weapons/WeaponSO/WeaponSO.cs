@@ -18,6 +18,11 @@ public class WeaponSO : ScriptableObject
     public int Level => level;
     [SerializeField] protected GameObject nextLevelPrefab;
     public GameObject NextLevelPrefab => nextLevelPrefab;
+    [SerializeField] protected new string name;
+    public string Name => name;
+    [SerializeField] protected string description;
+    public string Description => description;
+
     [SerializeField] protected Sprite icon;
     public Sprite Icon => icon;
 }

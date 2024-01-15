@@ -16,6 +16,7 @@ public class GameManager : SaiMonoBehaviour
     [Header("Screens")]
     [SerializeField] protected GameObject pauseScreen;
     [SerializeField] protected GameObject resultsScreen;
+    [SerializeField] protected GameObject levelUpScreen;
 
     //Current Stat Display
     [Header("Current Stat Displays")]
@@ -31,10 +32,25 @@ public class GameManager : SaiMonoBehaviour
     [SerializeField] protected Image chosenCharacterImage;
     [SerializeField] protected TextMeshProUGUI chosenCharacterName;
     [SerializeField] protected TextMeshProUGUI levelReachedDisplay;
+    [SerializeField] protected TextMeshProUGUI timeSurvied;
     [SerializeField] protected List<Image> chosenWeaponsUI = new List<Image>(6);
     [SerializeField] protected List<Image> chosenPassiveItemsUI = new List<Image>(6);
+
     //Flag to check if the game is over
     public bool isGameOver = false;
+
+    //Flag to check if the player is choosing their upgrades
+    public bool choosingUpgrade;
+
+    //Reference to the player's game object
+    public InventoryManager playerObj;
+
+    //Stopwatch UI
+    [Header("Stopwatch")]
+    [SerializeField] protected float timeLimit = 15f; //The time limit in seconds
+    [SerializeField] protected float stopwatchTime; //The current time eslaped since the stopwatch started
+    [SerializeField] protected TextMeshProUGUI stopwatchDisplay;
+
 
     protected override void Awake()
     {
@@ -42,6 +58,7 @@ public class GameManager : SaiMonoBehaviour
         if (instance != null) Debug.LogError("Only 1 GameManager allow to exits");
         instance = this;
         this.DisableScreen();
+        this.playerObj = FindObjectOfType<InventoryManager>();
     }
 
     #region LoadComponents
@@ -59,6 +76,11 @@ public class GameManager : SaiMonoBehaviour
         this.LoadChosenCharacterImage();
         this.LoadChosenCharacterName();
         this.LoadLevelReachedDisplay();
+        this.LoadListChosenWeaponsUI();
+        this.LoadListChosenPassiveItemsUI();
+        this.LoadTimeSurvivedDisplay();
+        this.LoadStopwatchDisplay();
+        this.LoadLevelUpScreen();
     }
 
     protected virtual void LoadPauseScreen()
@@ -177,6 +199,81 @@ public class GameManager : SaiMonoBehaviour
         this.levelReachedDisplay = levelReachedHolder.transform.Find("Level Reached Display").GetComponent<TextMeshProUGUI>();
         Debug.LogWarning(transform.name + ": LoadLevelReachedDisplay", gameObject);
     }
+
+    protected virtual void LoadListChosenWeaponsUI()
+    {
+        if (this.chosenWeaponsUI.Count > 0) return;
+
+        Canvas canvas = FindObjectOfType<Canvas>();
+        Transform screens = canvas.transform.Find("Screens");
+        Transform weaponAndPassiveItemChosen = screens.transform.Find("Weapon and Passive Item Chosen");
+        Transform slotsWeapon = weaponAndPassiveItemChosen.transform.Find("Slots Weapon");
+
+        foreach (Transform slot in slotsWeapon)
+        {
+            Image image = slot.GetComponent<Image>();
+            if (image != null)
+            {
+                this.chosenWeaponsUI.Add(image);
+            }
+        }
+
+        Debug.LogWarning(transform.name + ": LoadListChosenWeaponsUI", gameObject);
+    }
+
+    protected virtual void LoadListChosenPassiveItemsUI()
+    {
+        if (this.chosenPassiveItemsUI.Count > 0) return;
+
+        Canvas canvas = FindObjectOfType<Canvas>();
+        Transform screens = canvas.transform.Find("Screens");
+        Transform weaponAndPassiveItemChosen = screens.transform.Find("Weapon and Passive Item Chosen");
+        Transform slotsWeapon = weaponAndPassiveItemChosen.transform.Find("Slots Passive Item");
+
+        foreach (Transform slot in slotsWeapon)
+        {
+            Image image = slot.GetComponent<Image>();
+            if (image != null)
+            {
+                this.chosenPassiveItemsUI.Add(image);
+            }
+        }
+
+        Debug.LogWarning(transform.name + ": LoadListChosenPassiveItemsUI", gameObject);
+    }
+
+    protected virtual void LoadTimeSurvivedDisplay()
+    {
+        if (this.timeSurvied != null) return;
+
+        Canvas canvas = FindObjectOfType<Canvas>();
+        Transform screens = canvas.transform.Find("Screens");
+        Transform resultsScreen = screens.transform.Find("Results Screen");
+        Transform timeSurvivedHolder = resultsScreen.transform.Find("Time Survived Holder");
+        this.timeSurvied = timeSurvivedHolder.transform.Find("Time Survived Display").GetComponent<TextMeshProUGUI>();
+
+        Debug.LogWarning(transform.name + ": LoadTimeSurvivedDisplay", gameObject);
+    }
+
+    protected virtual void LoadStopwatchDisplay()
+    {
+        if (this.stopwatchDisplay != null) return;
+
+        Canvas canvas = FindObjectOfType<Canvas>();
+        this.stopwatchDisplay = canvas.transform.Find("Stopwatch Display").GetComponent<TextMeshProUGUI>();
+
+        Debug.LogWarning(transform.name + ": LoadStopwatchDisplay", gameObject);
+    }
+    protected virtual void LoadLevelUpScreen()
+    {
+        if (this.levelUpScreen != null) return;
+
+        Canvas canvas = FindObjectOfType<Canvas>();
+        Transform screens = canvas.transform.Find("Screens");
+        this.levelUpScreen = screens.transform.Find("Level Up Screen").gameObject;
+
+        Debug.LogWarning(transform.name + ": LoadLevelUpScreen", gameObject);
+    }
     #endregion
 
     protected override void Update()
@@ -191,6 +288,7 @@ public class GameManager : SaiMonoBehaviour
         {
             case GameState.GamePlay:
                 this.CheckForPauseAndResume();
+                this.UpdateStopwatch();
                 break;
             case GameState.Pause:
                 this.CheckForPauseAndResume();
@@ -203,6 +301,15 @@ public class GameManager : SaiMonoBehaviour
                     Debug.Log("Game is over");
                     this.DisplayResults();
                 }                
+                break;
+            case GameState.LevelUp:
+                if (!choosingUpgrade)
+                {
+                    this.choosingUpgrade = true;
+                    Time.timeScale = 0f; //Pause the game for now
+                    Debug.Log("Upgrade shown");
+                    this.levelUpScreen.SetActive(true);
+                }
                 break;
             default:
                 break;
@@ -252,11 +359,13 @@ public class GameManager : SaiMonoBehaviour
     {
         this.pauseScreen.SetActive(false);
         this.resultsScreen.SetActive(false);
+        this.levelUpScreen.SetActive(false);
     }
 
     public virtual void GameOver()
     {
         this.ChangeState(GameState.GameOver);
+        this.timeSurvied.text = this.stopwatchDisplay.text;
     }
 
     protected virtual void DisplayResults()
@@ -316,5 +425,40 @@ public class GameManager : SaiMonoBehaviour
                 chosenPassiveItemsUI[i].enabled = false;
             }
         }
+    }
+
+    protected virtual void UpdateStopwatch()
+    {
+        this.stopwatchTime += Time.deltaTime;
+        this.UpdateStopwatchDisplay();
+
+        if(this.stopwatchTime >= this.timeLimit)
+        {
+            this.GameOver();
+        }
+    }
+
+    protected virtual void UpdateStopwatchDisplay()
+    {
+        //Calculator the number mintues and seconds that have eslaped
+        int minutes = Mathf.FloorToInt(this.stopwatchTime / 60);
+        int seconds = Mathf.FloorToInt(this.stopwatchTime % 60);
+
+        //Update the stopwatchDisplay text to display the eslaped time
+        this.stopwatchDisplay.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public virtual void StartLevelUP()
+    {
+        this.ChangeState(GameState.LevelUp);
+        this.playerObj.SendMessage("RemoveAndApplyUpgrades");
+    }
+
+    public virtual void EndLevelUP()
+    {
+        this.choosingUpgrade = false;
+        Time.timeScale = 1f; //Resume the game for now
+        this.levelUpScreen.SetActive(false);
+        this.ChangeState(GameState.GamePlay);
     }
 }

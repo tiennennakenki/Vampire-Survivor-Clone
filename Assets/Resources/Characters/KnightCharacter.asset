@@ -15,7 +15,7 @@ MonoBehaviour:
   icon: {fileID: 2076625244, guid: a21b1bfbb09a23f479a318bb375bc313, type: 3}
   name: Knight Character
   startingWeapon: {fileID: 2041471684915383644, guid: 7f4657893d2caf94a822482853bab141, type: 3}
-  maxHealth: 100
+  maxHealth: 90
   recovery: 1
   might: 1
   moveSpeed: 5
