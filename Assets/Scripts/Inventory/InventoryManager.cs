@@ -19,7 +19,7 @@ public class InventoryManager : SaiMonoBehaviour
     public List<PassiveItemUpgrade> passiveItemUpgradeOptions = new List<PassiveItemUpgrade>(); //List of upgrade options for passiveItems
     public List<UpgradeUI> upgradeUIOptions = new List<UpgradeUI>(); //List of upgrade options for upgradeUI
 
-    [SerializeField] protected PlayerStats player;
+    public PlayerStats player;
 
     protected override void Start()
     {

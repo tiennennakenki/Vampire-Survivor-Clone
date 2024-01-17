@@ -205,7 +205,6 @@ public class PlayerStats : SaiMonoBehaviour
         if (!isInvincible)
         {
             this.CurrentHealth -= amount;
-            //UIHPBar.Instance.UpdateHpBar();
 
             this.invincibilityTimer = this.invincibilityDuration;
             this.isInvincible= true;
@@ -232,7 +231,7 @@ public class PlayerStats : SaiMonoBehaviour
         this.Recover();
     }
 
-    protected virtual void Kill()
+    public virtual void Kill()
     {
         if (GameManager.Instance.isGameOver) return;
         GameManager.Instance.AssignLevelReachedUI(this.level);

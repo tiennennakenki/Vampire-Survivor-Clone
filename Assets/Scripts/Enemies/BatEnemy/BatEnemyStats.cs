@@ -14,14 +14,13 @@ public class BatEnemyStats : EnemyStats
 
     protected override void OnDead()
     {
-        this.OnDeadDrop();
-        EnemiesSpawner.Instance.Despawn(transform);
+        base.OnDead();
     }
 
-    protected virtual void OnDeadDrop()
-    {
-        Vector3 dropPos = transform.position;
-        Quaternion dropRot = transform.rotation;
-        ItemsDropSpawner.Instance.Drop(this.enemyData.dropList, dropPos, dropRot);
-    }
+    //protected virtual void OnDeadDrop()
+    //{
+    //    Vector3 dropPos = transform.position;
+    //    Quaternion dropRot = transform.rotation;
+    //    ItemsDropSpawner.Instance.Drop(this.enemyData.dropList, dropPos, dropRot);
+    //}
 }

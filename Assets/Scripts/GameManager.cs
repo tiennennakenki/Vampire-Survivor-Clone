@@ -434,7 +434,7 @@ public class GameManager : SaiMonoBehaviour
 
         if(this.stopwatchTime >= this.timeLimit)
         {
-            this.GameOver();
+            this.playerObj.player.SendMessage("Kill");
         }
     }
 

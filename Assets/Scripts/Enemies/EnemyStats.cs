@@ -42,14 +42,14 @@ public class EnemyStats : SaiMonoBehaviour
     protected virtual void OnDead()
     {
         this.OnDeadDrop();
-        EnemiesSpawner.Instance.OnEnemyKilled();
         EnemiesSpawner.Instance.Despawn(transform);
+        EnemiesSpawner.Instance.OnEnemyKilled();
     }
 
     protected virtual void OnDeadDrop()
     {
-        Vector3 dropPos = transform.position;
-        Quaternion dropRot = transform.rotation;
+        Vector3 dropPos = this.transform.position;
+        Quaternion dropRot = this.transform.rotation;
         ItemsDropSpawner.Instance.Drop(this.enemyData.dropList, dropPos, dropRot);
     }
 
@@ -60,5 +60,10 @@ public class EnemyStats : SaiMonoBehaviour
             PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
             player.TakeDamage(currentDamage);
         }
+    }
+
+    public virtual void ResetCurrentHealth()
+    {
+        this.currentHealth = this.enemyData.MaxHealth;
     }
 }

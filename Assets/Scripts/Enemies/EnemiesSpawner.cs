@@ -13,10 +13,11 @@ public class EnemiesSpawner : Spawner
 
     [Header("Spawner Attributes")]
     [SerializeField] protected float spawnTimer; //Timer use to determine when to spawn next enemy
-    [SerializeField] protected int enemiesAlive;
+    [SerializeField] protected int enemiesAlive = 0;
     [SerializeField] protected int maxEnemiesAllowed = 4; //The maximum number of enemies allowed on the map at once
     [SerializeField] protected bool maxEnemiesReached; //A flag indicating if the maximum number of enemies had been reached
-    [SerializeField] protected float waveInterval; //The Interval bettwen each wave
+    [SerializeField] protected float waveInterval = 5; //The Interval bettwen each wave
+    [SerializeField] protected bool isWaveActive = false;
 
     [Header("Spawn Point")]
     [SerializeField] protected List<Transform> spawnPoints;
@@ -56,7 +57,7 @@ public class EnemiesSpawner : Spawner
     protected override void Update()
     {
         base.Update();
-        if(this.currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0)
+        if(this.currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0 && !isWaveActive)
         {
             StartCoroutine(BeginNextWave());
         }
@@ -65,13 +66,16 @@ public class EnemiesSpawner : Spawner
 
     IEnumerator BeginNextWave()
     {
+        isWaveActive = true;
+
         //Wave for 'waveInterval' seconds before the starting next wave
         yield return new WaitForSeconds(this.waveInterval);
 
         //If there are more wave to start after the current wave, move on to the next wave
         if (currentWaveCount < waves.Count - 1)
         {
-            currentWaveCount++;
+            isWaveActive = false;
+            this.currentWaveCount++;
             this.CaculatorWaveQuote();
         }
     }
@@ -79,7 +83,7 @@ public class EnemiesSpawner : Spawner
     protected virtual void CaculatorWaveQuote()
     {
         int currentWaveQuote = 0;
-        foreach(var enemy in waves[currentWaveCount].enemyGroups)
+        foreach(EnemyGroup enemy in waves[currentWaveCount].enemyGroups)
         {
             currentWaveQuote += enemy.enemyCount;
         }
@@ -92,7 +96,7 @@ public class EnemiesSpawner : Spawner
         base.Spawn();
         if (waves[currentWaveCount].spawnCount < waves[currentWaveCount].waveQuote && !this.maxEnemiesReached)
         {
-            foreach (var enemy in waves[currentWaveCount].enemyGroups)
+            foreach (EnemyGroup enemy in waves[currentWaveCount].enemyGroups)
             {
                 if (enemy.spawnCount < enemy.enemyCount)
                 {
@@ -109,16 +113,15 @@ public class EnemiesSpawner : Spawner
                     newEnemy.transform.SetParent(this.holder);
                     newEnemy.gameObject.SetActive(true);
 
+                    //Reset maxHealth for enemy that it was spawn
+                    EnemyStats newEnemyStat = newEnemy.GetComponent<EnemyStats>();
+                    newEnemyStat.ResetCurrentHealth();
+
                     enemy.spawnCount++;
                     this.waves[currentWaveCount].spawnCount++;
                     this.enemiesAlive++;
                 }
             }
-        }
-        //Reset the maxEnemiesAllowed flag if the number of enemies alive has dropped bellow the maximum amount
-        if (this.enemiesAlive < this.maxEnemiesAllowed)
-        {
-            this.maxEnemiesReached = false;
         }
     }
 
@@ -136,5 +139,11 @@ public class EnemiesSpawner : Spawner
     public virtual void OnEnemyKilled()
     {
         this.enemiesAlive--;
+
+        //Reset the maxEnemiesAllowed flag if the number of enemies alive has dropped bellow the maximum amount
+        if (this.enemiesAlive < this.maxEnemiesAllowed)
+        {
+            this.maxEnemiesReached = false;
+        }
     }
 }
