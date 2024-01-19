@@ -8,7 +8,7 @@ public class HealthPotion : PickUp
     public float HealthToRestore => healthToRestore;
     public override void Collect()
     {
-        if (this.hasCollected) return;
+        if (this.hasBeenCollected) return;
         base.Collect();
         PlayerStats player = FindObjectOfType<PlayerStats>();
         player.RestoreHealth(this.healthToRestore);

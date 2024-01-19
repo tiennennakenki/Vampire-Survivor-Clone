@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class BatEnemyStats : EnemyStats
 {
+    protected override void Start()
+    {
+        base.Start();
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.originalColor = spriteRenderer.color;
+        this.enemyMovement = GetComponent<EnemyMovement>();
+    }
+
     protected override void LoadEnemySO()
     {
         if (this.enemyData != null) return;

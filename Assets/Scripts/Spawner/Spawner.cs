@@ -63,10 +63,10 @@ public abstract class Spawner : SaiMonoBehaviour
         {
             if (poolObj.name == prefab.name)
             {
-                poolObj.position = new Vector3(0,0,0);
+                poolObj.position = new Vector3(0, 0, 0);
                 poolObj.rotation = Quaternion.identity;
                 poolObj.localScale = Vector3.one;
-                this.poolObjs.Remove(poolObj);
+                poolObjs.Remove(poolObj);
                 return poolObj;
             }
         }

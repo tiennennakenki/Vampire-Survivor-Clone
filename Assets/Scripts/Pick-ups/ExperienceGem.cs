@@ -9,7 +9,7 @@ public class ExperienceGem : PickUp
     public int ExperienceGranted => experienceGranted;
     public override void Collect()
     {
-        if(this.hasCollected) return;
+        if(this.hasBeenCollected) return;
         base.Collect();
         PlayerStats playerStats = FindObjectOfType<PlayerStats>();
         playerStats.IncreaseExperience(experienceGranted);

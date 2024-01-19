@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PickUp : SaiMonoBehaviour, ICollectable
 {
-    protected bool hasCollected = false;
+    public bool hasBeenCollected = false;
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        this.hasCollected = false;
+        this.hasBeenCollected = false;
     }
     public virtual void Collect()
     {
-        this.hasCollected = true;
+        this.hasBeenCollected = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

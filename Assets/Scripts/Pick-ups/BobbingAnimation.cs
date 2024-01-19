@@ -8,6 +8,13 @@ public class BobbingAnimation : SaiMonoBehaviour
     [SerializeField] protected float magnitude = 0.1f; //Range of movement
     [SerializeField] protected Vector3  direction = new Vector3(0,1,0); //Direction of movement
     [SerializeField] protected Vector3 initalPosition;
+    [SerializeField] protected PickUp pickUp;
+
+    protected override void Start()
+    {
+        base.Start();
+        this.pickUp = GetComponent<PickUp>();
+    }
 
     protected override void OnEnable()
     {
@@ -17,7 +24,10 @@ public class BobbingAnimation : SaiMonoBehaviour
 
     protected override void Update()
     {
-        base.Update();
-        transform.position = this.initalPosition + this.direction * Mathf.Sin(Time.time * frequency) * this.magnitude;
+        if(this.pickUp && !this.pickUp.hasBeenCollected)
+        {
+            base.Update();
+            transform.position = this.initalPosition + this.direction * Mathf.Sin(Time.time * frequency) * this.magnitude;
+        }
     }
 }

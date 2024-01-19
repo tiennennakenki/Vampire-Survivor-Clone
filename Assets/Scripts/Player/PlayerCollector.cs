@@ -35,7 +35,7 @@ public class PlayerCollector : SaiMonoBehaviour
             //Gets the Rigidbody2D component in the item
             Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
             //Vector2 pointing from the item to the player
-            Vector2 forceDirection = (transform.position - collision.transform.position).normalized;
+            Vector2 forceDirection = (transform.parent.position - collision.transform.position).normalized;
             //Applies force to the item in the forceDirection with pullSpeed
             rb.AddForce(forceDirection * this.pullSpeed);
 

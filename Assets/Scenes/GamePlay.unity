@@ -7940,6 +7940,10 @@ MonoBehaviour:
   - {fileID: 1586317588}
   - {fileID: 785780613}
   - {fileID: 1404156845}
+  damageTextCanvas: {fileID: 235522466}
+  textFontsize: 20
+  textFont: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  referenceCamera: {fileID: 0}
   isGameOver: 0
   choosingUpgrade: 0
   playerObj: {fileID: 0}

@@ -125,7 +125,6 @@ public class PlayerStats : SaiMonoBehaviour
         //Assign the variables
         this.characterData = CharacterCollector.Instance.GetData();
         CharacterCollector.Instance.DestroySingleton();
-
         this.currentStartingWeapon = this.characterData.StartingWeapon;
         this.CurrentHealth = this.characterData.MaxHealth;
         this.CurrentRecovery = this.characterData.Recovery;
@@ -146,7 +145,7 @@ public class PlayerStats : SaiMonoBehaviour
         this.SpawnWeapon(this.currentStartingWeapon);
         //this.SpawnWeapon(this.weaponTest2);
         //this.SpawnPassiveItem(this.passiveItemTest1);
-        this.SpawnPassiveItem(this.passiveItemTest2);
+        //this.SpawnPassiveItem(this.passiveItemTest2);
 
         //Set the current stats display
         GameManager.Instance.currentHealthDisplay.text = "Health: " + this.currentHealth;

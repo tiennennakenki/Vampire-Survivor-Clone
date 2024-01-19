@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -35,6 +36,12 @@ public class GameManager : SaiMonoBehaviour
     [SerializeField] protected TextMeshProUGUI timeSurvied;
     [SerializeField] protected List<Image> chosenWeaponsUI = new List<Image>(6);
     [SerializeField] protected List<Image> chosenPassiveItemsUI = new List<Image>(6);
+
+    [Header("Damage Text Setting")]
+    public Canvas damageTextCanvas;
+    public float textFontsize = 20f;
+    public TMP_FontAsset textFont;
+    public Camera referenceCamera;
 
     //Flag to check if the game is over
     public bool isGameOver = false;
@@ -460,5 +467,46 @@ public class GameManager : SaiMonoBehaviour
         Time.timeScale = 1f; //Resume the game for now
         this.levelUpScreen.SetActive(false);
         this.ChangeState(GameState.GamePlay);
+    }
+
+    public void GenerateFloatingText(string text, Transform target, float duration = 1f, float speed = 1f)
+    {
+        if (!instance.damageTextCanvas) return;
+
+        if(!instance.referenceCamera) instance.referenceCamera = Camera.main;
+
+        instance.StartCoroutine(instance.GenerateFloatingTextCoroutine(text, target, duration, speed));
+    }
+
+    IEnumerator GenerateFloatingTextCoroutine(string text, Transform target, float duration = 1f, float speed = 50f)
+    {
+        GameObject textObj = new GameObject("Damage Floating Text");
+        RectTransform rectTransform = textObj.AddComponent<RectTransform>();
+        TextMeshProUGUI textMesh = textObj.AddComponent<TextMeshProUGUI>();
+        textMesh.text = text;
+        textMesh.horizontalAlignment = HorizontalAlignmentOptions.Center;
+        textMesh.verticalAlignment = VerticalAlignmentOptions.Middle;
+        textMesh.fontSize = textFontsize;
+
+        if (textFont) textMesh.font = textFont;
+        rectTransform.position = referenceCamera.WorldToScreenPoint(target.position);
+
+        Destroy(textObj, duration);
+
+        textObj.transform.SetParent(instance.damageTextCanvas.transform);
+
+        WaitForEndOfFrame w = new WaitForEndOfFrame();
+        float t = 0;
+        float yOffset = 0;
+        while (t < duration)
+        {
+            yield return w;
+            t += Time.deltaTime;
+
+            textMesh.color = new Color(textMesh.color.r, textMesh.color.g, textMesh.color.b, 1 - t / duration);
+
+            yOffset += speed * Time.deltaTime;
+            //rectTransform.position = referenceCamera.WorldToScreenPoint(target.position + new Vector3(0,yOffset));
+        }
     }
 }

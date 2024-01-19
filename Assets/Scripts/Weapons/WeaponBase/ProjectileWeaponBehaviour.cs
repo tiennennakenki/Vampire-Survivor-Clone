@@ -90,7 +90,7 @@ public class ProjectileWeaponBehaviour : SaiMonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
-            enemyStats.TakeDamage(GetCurrentDamage());
+            enemyStats.TakeDamage(GetCurrentDamage(), transform.position);
             ReducePierce();
         }
         else if(collision.gameObject.CompareTag("Prop"))
