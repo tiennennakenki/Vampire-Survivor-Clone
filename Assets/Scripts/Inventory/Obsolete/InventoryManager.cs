@@ -36,7 +36,7 @@ public class InventoryManager : SaiMonoBehaviour
 
         if(GameManager.Instance != null  && GameManager.Instance.choosingUpgrade)
         {
-            GameManager.Instance.EndLevelUP();
+            GameManager.Instance.EndLevelUp();
         }
     }
 
@@ -49,7 +49,7 @@ public class InventoryManager : SaiMonoBehaviour
 
         if (GameManager.Instance != null && GameManager.Instance.choosingUpgrade)
         {
-            GameManager.Instance.EndLevelUP();
+            GameManager.Instance.EndLevelUp();
         }
     }
 
@@ -74,7 +74,7 @@ public class InventoryManager : SaiMonoBehaviour
 
         if (GameManager.Instance != null && GameManager.Instance.choosingUpgrade)
         {
-            GameManager.Instance.EndLevelUP();
+            GameManager.Instance.EndLevelUp();
         }
     }
 
@@ -98,7 +98,7 @@ public class InventoryManager : SaiMonoBehaviour
 
         if (GameManager.Instance != null && GameManager.Instance.choosingUpgrade)
         {
-            GameManager.Instance.EndLevelUP();
+            GameManager.Instance.EndLevelUp();
         }
     }
 

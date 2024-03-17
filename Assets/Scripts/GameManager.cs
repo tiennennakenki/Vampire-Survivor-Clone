@@ -25,7 +25,7 @@ public class GameManager : SaiMonoBehaviour
     public TextMeshProUGUI currentRecoveryDisplay;
     public TextMeshProUGUI currentMoveSpeedDisplay;
     public TextMeshProUGUI currentMightDisplay;
-    public TextMeshProUGUI currentProjectilesSpeedDisplay;
+    public TextMeshProUGUI currentProjectileSpeedDisplay;
     public TextMeshProUGUI currentMagnetDisplay;
 
     //Current Stat Display
@@ -50,7 +50,8 @@ public class GameManager : SaiMonoBehaviour
     public bool choosingUpgrade;
 
     //Reference to the player's game object
-    public InventoryManager playerObj;
+    public PlayerInventory playerInventory;
+    public PlayerStats playerStats;
 
     //Stopwatch UI
     [Header("Stopwatch")]
@@ -65,7 +66,8 @@ public class GameManager : SaiMonoBehaviour
         if (instance != null) Debug.LogError("Only 1 GameManager allow to exits");
         instance = this;
         this.DisableScreen();
-        this.playerObj = FindObjectOfType<InventoryManager>();
+        this.playerInventory = FindObjectOfType<PlayerInventory>();
+        this.playerStats = FindObjectOfType<PlayerStats>();
     }
 
     #region LoadComponents
@@ -154,12 +156,12 @@ public class GameManager : SaiMonoBehaviour
 
     protected virtual void LoadCurrentProjectilesSpeedDisplay()
     {
-        if (this.currentProjectilesSpeedDisplay != null) return;
+        if (this.currentProjectileSpeedDisplay != null) return;
         Canvas canvas = FindObjectOfType<Canvas>();
         GameObject screens = canvas.transform.Find("Screens").gameObject;
         GameObject pauseScreen = screens.transform.Find("Pause Screen").gameObject;
         GameObject currentStatsDisplay = pauseScreen.transform.Find("Current Stats Display").gameObject;
-        this.currentProjectilesSpeedDisplay = currentStatsDisplay.transform.Find("Current Projectiles Speed Display").GetComponent<TextMeshProUGUI>();
+        this.currentProjectileSpeedDisplay = currentStatsDisplay.transform.Find("Current Projectiles Speed Display").GetComponent<TextMeshProUGUI>();
         Debug.LogWarning(transform.name + ": LoadCurrentProjectilesDisplay", gameObject);
     }
 
@@ -380,7 +382,7 @@ public class GameManager : SaiMonoBehaviour
         this.resultsScreen.SetActive(true);
     }
 
-    public virtual void AssignCharacterDataUI(CharacterSO characterSO)
+    public virtual void AssignCharacterDataUI(CharacterData characterSO)
     {
         this.chosenCharacterImage.sprite = characterSO.Icon;
         this.chosenCharacterName.text = characterSO.Name;
@@ -391,7 +393,7 @@ public class GameManager : SaiMonoBehaviour
         this.levelReachedDisplay.text = level.ToString();
     }
 
-    public virtual void AssignWeaponAndPassiveItemUI(List<Image> chosenWeaponsData, List<Image> chosenPassiveItemsData)
+    public virtual void AssignWeaponAndPassiveItemUI(List<PlayerInventory.Slot> chosenWeaponsData, List<PlayerInventory.Slot> chosenPassiveItemsData)
     {
         if(chosenWeaponsData.Count != chosenWeaponsUI.Count || chosenPassiveItemsData.Count != chosenPassiveItemsUI.Count)
         {
@@ -403,11 +405,11 @@ public class GameManager : SaiMonoBehaviour
         for(int i = 0; i<chosenWeaponsUI.Count; i++)
         {
             //Check that the sprite of the corresponding element in chosenWeaponsData is not null
-            if (chosenWeaponsData[i].sprite)
+            if (chosenWeaponsData[i].image.sprite)
             {
                 //Enable the corresonding element in the chosenWeaponsUI and set its sprite to the corresponding sprite in chosenWeaponsData
                 chosenWeaponsUI[i].enabled = true;
-                chosenWeaponsUI[i].sprite = chosenWeaponsData[i].sprite;
+                chosenWeaponsUI[i].sprite = chosenWeaponsData[i].image.sprite;
             }
             else
             {
@@ -420,11 +422,11 @@ public class GameManager : SaiMonoBehaviour
         for (int i = 0; i < chosenPassiveItemsUI.Count; i++)
         {
             //Check that the sprite of the corresponding element in chosenPassiveItemsData is not null
-            if (chosenPassiveItemsData[i].sprite)
+            if (chosenPassiveItemsData[i].image.sprite)
             {
                 //Enable the corresonding element in the chosenPassiveItemsUI and set its sprite to the corresponding sprite in chosenPassiveItemsData
                 chosenPassiveItemsUI[i].enabled = true;
-                chosenPassiveItemsUI[i].sprite = chosenPassiveItemsData[i].sprite;
+                chosenPassiveItemsUI[i].sprite = chosenPassiveItemsData[i].image.sprite;
             }
             else
             {
@@ -441,7 +443,7 @@ public class GameManager : SaiMonoBehaviour
 
         if(this.stopwatchTime >= this.timeLimit)
         {
-            this.playerObj.player.SendMessage("Kill");
+            this.playerStats.SendMessage("Kill");
         }
     }
 
@@ -455,13 +457,13 @@ public class GameManager : SaiMonoBehaviour
         this.stopwatchDisplay.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    public virtual void StartLevelUP()
+    public virtual void StartLevelUI()
     {
         this.ChangeState(GameState.LevelUp);
-        this.playerObj.SendMessage("RemoveAndApplyUpgrades");
+        this.playerInventory.SendMessage("RemoveAndApplyUpgrades");
     }
 
-    public virtual void EndLevelUP()
+    public virtual void EndLevelUp()
     {
         this.choosingUpgrade = false;
         Time.timeScale = 1f; //Resume the game for now
@@ -494,19 +496,25 @@ public class GameManager : SaiMonoBehaviour
         Destroy(textObj, duration);
 
         textObj.transform.SetParent(instance.damageTextCanvas.transform);
+        textObj.transform.SetSiblingIndex(0);
 
         WaitForEndOfFrame w = new WaitForEndOfFrame();
         float t = 0;
         float yOffset = 0;
+        Vector3 lastKnownPosition = target.position;
         while (t < duration)
         {
-            yield return w;
-            t += Time.deltaTime;
+            // If the RectTransform is missing for whatever reason, end this loop.
+            if (!rectTransform) break;
 
             textMesh.color = new Color(textMesh.color.r, textMesh.color.g, textMesh.color.b, 1 - t / duration);
 
             yOffset += speed * Time.deltaTime;
-            //rectTransform.position = referenceCamera.WorldToScreenPoint(target.position + new Vector3(0,yOffset));
+            rectTransform.position = referenceCamera.WorldToScreenPoint(lastKnownPosition + new Vector3(0,yOffset));
+
+            // Wait for a frame and update the time.
+            yield return w;
+            t += Time.deltaTime;
         }
     }
 }

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b366585ba6eb52488ccb711c57b0bc7, type: 3}
+  m_Name: Pummarola
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  maxLevel: 5
+  evolutionData:
+  - name: Soul Eater
+    condition: 1
+    consumes: 2
+    evolutionLevel: 1
+    catalysts:
+    - itemType: {fileID: 11400000, guid: b378c613325a4134ea7a70efb2d8a540, type: 2}
+      level: 2
+    outcome:
+      itemType: {fileID: 11400000, guid: f37f91d4dac71a6499d3d01a6b42440f, type: 2}
+      level: 1
+  baseStats:
+    name: Pummarola
+    description: Character recovers 0.2 HP per second.
+    boosts:
+      maxHealth: 0
+      recovery: 1
+      moveSpeed: 0
+      might: 0
+      speed: 0
+      magnet: 1
+  growth:
+  - name: Level 2
+    description: Health recovery increases by 0.2 HP per second.
+    boosts:
+      maxHealth: 0
+      recovery: 0.2
+      moveSpeed: 0
+      might: 0
+      speed: 0
+      magnet: 0

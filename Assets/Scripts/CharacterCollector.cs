@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class CharacterCollector : SaiMonoBehaviour
 {
     private static CharacterCollector instance;
     public static CharacterCollector Instance => instance;
-    [SerializeField] protected CharacterSO characterData;
+    public CharacterData characterData;
 
     protected override void Awake()
     {
@@ -24,12 +25,55 @@ public class CharacterCollector : SaiMonoBehaviour
         }
     }
 
-    public CharacterSO GetData()
+    //public CharacterData GetData()
+    //{
+    //    return instance.characterData;
+    //}
+    public CharacterData GetData()
     {
-        return instance.characterData;
+        if (instance && instance.characterData)
+        {
+            Debug.LogWarning("1");
+            return instance.characterData;
+        }
+        else
+        {
+            // Randomly pick a character if we are playing from the Editor.
+            #if UNITY_EDITOR
+            string[] allAssetPaths = AssetDatabase.GetAllAssetPaths();
+            List<CharacterData> characters = new List<CharacterData>();
+            foreach (string assetPath in allAssetPaths)
+            {
+                if (assetPath.EndsWith(".asset"))
+                {
+                    CharacterData characterData = AssetDatabase.LoadAssetAtPath<CharacterData>(assetPath);
+                    if (characterData != null)
+                    {
+                        characters.Add(characterData);
+                    }
+                }
+            }
+
+            // Pick a random character if we have found any characters.
+            if (characters.Count > 0)
+            {
+                Debug.LogWarning($"{characters.Count} characters");
+                return characters[Random.Range(0, characters.Count)];
+            }
+            #endif
+
+            //// If no character data is assigned, we randomly pick one.
+            //CharacterData[] characters = Resources.FindObjectsOfTypeAll<CharacterData>();
+            //if (characters.Length > 0)
+            //{
+            //    return characters[Random.Range(0, characters.Length)];
+            //}
+        }
+        Debug.LogWarning("null");
+        return null;
     }
 
-    public virtual void SelectCharacter(CharacterSO character)
+    public virtual void SelectCharacter(CharacterData character)
     {
         this.characterData = character;
     }

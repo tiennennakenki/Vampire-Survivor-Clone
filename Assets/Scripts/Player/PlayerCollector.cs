@@ -23,7 +23,8 @@ public class PlayerCollector : SaiMonoBehaviour
 
     protected virtual void LoadPlayerCollector()
     {
-        this.playerCollector.radius = this.player.CurrentMagnet;
+        //this.playerCollector.radius = this.player.CurrentMagnet;
+        this.playerCollector.radius = 1.5f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

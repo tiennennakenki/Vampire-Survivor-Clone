@@ -61,6 +61,6 @@ public class UIHPBar : SaiMonoBehaviour
         IHPBarInterface hPBarInterface = this.hpBarData.GetComponent<IHPBarInterface>();
         if (hpBarData == null) return;
         //this.slider.value = hPBarInterface.HP();
-        this.slider.value = this.player.currentHealth / this.player.characterData.MaxHealth;
+        this.slider.value = this.player.CurrentHealth / this.player.characterData.stats.maxHealth;
     }
 }

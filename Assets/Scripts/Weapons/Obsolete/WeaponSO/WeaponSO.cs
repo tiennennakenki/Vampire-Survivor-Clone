@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Obsolete("This is will be replaced by the WeaponData class")]
 [CreateAssetMenu(fileName = "WeaponSO", menuName = "SO/Weapon")]
 public class WeaponSO : ScriptableObject
 {

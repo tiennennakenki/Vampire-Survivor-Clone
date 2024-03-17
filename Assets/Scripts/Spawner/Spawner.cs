@@ -80,6 +80,7 @@ public abstract class Spawner : SaiMonoBehaviour
     {
         if (this.poolObjs.Contains(obj)) return;
 
+
         this.poolObjs.Add(obj);
         obj.gameObject.SetActive(false);
     }

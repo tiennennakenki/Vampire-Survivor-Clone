@@ -9,7 +9,10 @@ public class EnemiesSpawner : Spawner
     public static EnemiesSpawner Instance => instance;
     public List<Wave> waves = new List<Wave>();
     public int currentWaveCount = 0;
-    [SerializeField] protected PlayerStats player;
+    [SerializeField] protected PlayerStats playerStats;
+
+    [SerializeField] protected Transform player;
+    public Transform Player => player;
 
     [Header("Spawner Attributes")]
     [SerializeField] protected float spawnTimer; //Timer use to determine when to spawn next enemy
@@ -27,13 +30,13 @@ public class EnemiesSpawner : Spawner
         base.Awake();
         if (EnemiesSpawner.instance != null) Debug.Log("Only 1 EnemiesSpawner allow to exits");
         EnemiesSpawner.instance = this;
-        player = FindObjectOfType<PlayerStats>();
+        playerStats = FindObjectOfType<PlayerStats>();
     }
 
     protected override void Start()
     {
         base.Start();
-        player= FindObjectOfType<PlayerStats>();
+        playerStats= FindObjectOfType<PlayerStats>();
         this.CaculatorWaveQuote();
     }
 
@@ -57,11 +60,13 @@ public class EnemiesSpawner : Spawner
     protected override void Update()
     {
         base.Update();
-        if(this.currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0 && !isWaveActive)
+        this.SpawnPointsFollowPlayer();
+        if (this.currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0 && !isWaveActive)
         {
             StartCoroutine(BeginNextWave());
         }
         this.SpawnEnemy();
+        
     }
 
     IEnumerator BeginNextWave()
@@ -106,7 +111,7 @@ public class EnemiesSpawner : Spawner
                         return;
                     }
 
-                    Vector2 spawnPosition = this.player.transform.position + spawnPoints[Random.Range(0, spawnPoints.Count)].position;
+                    Vector2 spawnPosition = this.playerStats.transform.parent.position + spawnPoints[Random.Range(0, spawnPoints.Count)].transform.position;
                     Transform newEnemy = this.GetObjectFromPool(enemy.enemyPrefabs.transform); //Create enemy
 
                     newEnemy.transform.position = spawnPosition; // Set position for the enemy
@@ -144,6 +149,23 @@ public class EnemiesSpawner : Spawner
         if (this.enemiesAlive < this.maxEnemiesAllowed)
         {
             this.maxEnemiesReached = false;
+        }
+    }
+
+    protected virtual void SpawnPointsFollowPlayer()
+    {
+        if (player != null)
+        {
+            Transform listSpawnPoint = transform.Find("SpawnPoints");
+            Vector3 playerPosition = player.position;
+
+            listSpawnPoint.position = playerPosition;
+
+            //for (int i = 0; i < spawnPoints.Count; i++)
+            //{
+            //    Vector3 offset = spawnPoints[i].transform.position;
+            //    spawnPoints[i].position = playerPosition + offset;
+            //}
         }
     }
 }
