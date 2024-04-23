@@ -22,12 +22,12 @@ public class BobbingAnimation : SaiMonoBehaviour
         this.initalPosition = transform.position;
     }
 
-    protected override void Update()
-    {
-        if(this.pickUp && !this.pickUp.hasBeenCollected)
-        {
-            base.Update();
-            transform.position = this.initalPosition + this.direction * Mathf.Sin(Time.time * frequency) * this.magnitude;
-        }
-    }
+    //protected override void Update()
+    //{
+    //    if(this.pickUp && !this.pickUp.hasBeenCollected)
+    //    {
+    //        base.Update();
+    //        transform.position = this.initalPosition + this.direction * Mathf.Sin(Time.time * frequency) * this.magnitude;
+    //    }
+    //}
 }

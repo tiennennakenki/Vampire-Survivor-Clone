@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : SaiMonoBehaviour
 {
     [Header("Enemy Movement")]
-    [SerializeField] protected EnemyStats enemy;
+    [SerializeField] protected EnemyStats enemyStats;
     [SerializeField] protected Transform player;
 
     [SerializeField] protected Vector2 knockbackVelocity;
@@ -14,23 +14,23 @@ public class EnemyMovement : SaiMonoBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        //this.LoadBatEnemySO();
+        this.LoadEnemyStats();
     }
 
-    //protected virtual void LoadBatEnemySO()
-    //{
-    //    if (this.enemyData != null) return;
-    //    string resPath = "Enemies/" + transform.name;
-    //    this.enemyData = Resources.Load<EnemySO>(resPath);
-    //    Debug.LogWarning(transform.name + ": LoadBatEnemySO", gameObject);
-    //}
     protected override void Start()
     {
         base.Start();
-        this.player = FindObjectOfType<PlayerMovement>().transform;
-        this.enemy = GetComponent<EnemyStats>();
+        //this.player = FindObjectOfType<PlayerMovement>().transform;
+        this.player = PlayerCtrl.Instance.PlayerMovement.transform;
+        //this.enemyStats = GetComponent<EnemyStats>();
     }
 
+    protected virtual void LoadEnemyStats()
+    {
+        if (this.enemyStats != null) return;
+
+        this.enemyStats = this.GetComponent<EnemyStats>();
+    }
     protected override void Update()
     {
         base.Update();
@@ -40,7 +40,26 @@ public class EnemyMovement : SaiMonoBehaviour
 
     protected virtual void MovingFollowTarget()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, this.enemy.currentMoveSpeed * Time.deltaTime);  
+        Vector3 previousTransform = transform.position;
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, this.enemyStats.currentMoveSpeed * Time.deltaTime);
+
+        //transform.LookAt(player.transform);
+        if(transform.position.x > previousTransform.x)
+        {
+            transform.localScale = new Vector3(
+               Mathf.Abs(transform.localScale.x),
+               transform.localScale.y,
+               transform.localScale.z
+           );
+        }
+        else
+        {
+            transform.localScale = new Vector3(
+              -Mathf.Abs(transform.localScale.x),
+               transform.localScale.y,
+               transform.localScale.z
+            );
+        }
     }
 
     public virtual void Knockback(Vector2 velocity, float duration)
@@ -61,7 +80,7 @@ public class EnemyMovement : SaiMonoBehaviour
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, enemy.currentMoveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, enemyStats.currentMoveSpeed * Time.deltaTime);
         }
     }
 }

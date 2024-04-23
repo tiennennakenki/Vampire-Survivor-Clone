@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Playables;
 
 /// <summary>
 /// Component to be attached to all Weapon prefabs. The Weapon prefab works together with the WeaponData
@@ -59,7 +60,9 @@ public abstract class Weapon : Item
 
     protected float currentCooldown;
 
-    protected PlayerMovement movement; // Reference to the player's movement.
+    protected PlayerMovement movement; // Reference to the player's movement...
+
+    //protected PlayerStats playerStats;
 
     // For dynamically created weapons, call initialise to set everything up.
     public virtual void Initialise(WeaponData data)
@@ -69,22 +72,8 @@ public abstract class Weapon : Item
         this.data = data;
         currentStats = data.baseStats;
         movement = FindObjectOfType<PlayerMovement>();
-        currentCooldown = currentStats.cooldown;
-    }
-
-    protected override void Awake()
-    {
-        // Assign the stats early, as it will be used by other scripts later on.
-        if (data) currentStats = data.baseStats;
-    }
-
-    protected override void Start()
-    {
-        // Don't initialise the weapon if the weapon data is not assigned.
-        if (data)
-        {
-            Initialise(data);
-        }
+        //currentCooldown = currentStats.cooldown;
+        ActivateCooldown();
     }
 
     protected override void Update()
@@ -92,7 +81,8 @@ public abstract class Weapon : Item
         currentCooldown -= Time.deltaTime;
         if (currentCooldown <= 0f) //Once the cooldown becomes 0, attack
         {
-            Attack(currentStats.number);
+            Attack(currentStats.number + owner.Stats.amount);
+            //Debug.Log(currentStats.number + owner.Stats.amount);
         }
     }
 
@@ -125,7 +115,8 @@ public abstract class Weapon : Item
     {
         if (CanAttack())
         {
-            currentCooldown += currentStats.cooldown;
+            ActivateCooldown();
+            //currentCooldown += currentStats.cooldown;
             return true;
         }
         return false;
@@ -136,9 +127,34 @@ public abstract class Weapon : Item
     // as well as the character's Might stat.
     public virtual float GetDamage()
     {
-        return currentStats.GetDamage() * owner.CurrentMight;
+        return currentStats.GetDamage() * owner.Stats.might;
+    }
+
+    // Get the area, including modifications from the player's stats.
+    public virtual float GetArea()
+    {
+        return currentStats.area + owner.Stats.area;
     }
 
     // For retrieving the weapon's stats.
     public virtual Stats GetStats() { return currentStats; }
+
+    // Refreshes the cooldown of the weapon.
+    // If <strict> is true, refreshes only when currentCooldown < 0.
+    public virtual bool ActivateCooldown(bool strict = false)
+    {
+        // When <strict> is enabled and the cooldown is not yet finished,
+        // do not refresh the cooldown.
+        if (strict && currentCooldown > 0) return false;
+
+        // Calculate what the cooldown is going to be, factoring in the cooldown
+        // reduction stat in the player character.
+        float actualCooldown = currentStats.cooldown * Owner.Stats.cooldown;
+
+        // Limit the maximum cooldown to the actual cooldown, so we cannot increase
+        // the cooldown above the cooldown stat if we accidentally call this function
+        // multiple times.
+        currentCooldown = Mathf.Min(actualCooldown, currentCooldown + actualCooldown);
+        return true;
+    }
 }

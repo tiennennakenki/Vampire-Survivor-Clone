@@ -26,6 +26,7 @@ public class Passive : Item
 
     public virtual CharacterData.Stats GetBoosts()
     {
+        Debug.Log(this.currentBoosts.maxHealth);
         return currentBoosts;
     }
 

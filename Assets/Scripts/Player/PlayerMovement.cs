@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : SaiMonoBehaviour
 {
+    //public const float DEFAULT_MOVESPEED = 2f;
+
     [SerializeField] protected PlayerCtrl playerCtrl;
     public PlayerCtrl PlayerCtrl => playerCtrl;
     [SerializeField] public Vector3 direction;
@@ -13,11 +15,14 @@ public class PlayerMovement : SaiMonoBehaviour
     [SerializeField] protected float previousHorizontal = 0f;
     [SerializeField] protected float previousVertical = 0f;
     public Vector2 lastMovedVector;
+    [SerializeField] protected bool isFacingRight = true;
+    [SerializeField] protected float moveSpeed;
+
 
     //Reference
     [SerializeField] protected Rigidbody2D rpg2d;
     public Rigidbody2D Rpg2d => rpg2d;
-    public PlayerStats player;
+    public PlayerStats playerStats;
     protected override void Awake()
     {
         base.Awake();
@@ -28,7 +33,8 @@ public class PlayerMovement : SaiMonoBehaviour
     protected override void Start()
     {
         base.Start();
-        this.player = FindObjectOfType<PlayerStats>();
+        //this.playerStats = FindObjectOfType<PlayerStats>();
+        moveSpeed = playerCtrl.Model.characterData.stats.moveSpeed;
     }
 
 
@@ -38,6 +44,7 @@ public class PlayerMovement : SaiMonoBehaviour
         this.LoadPlayerCtrl();
         this.LoadRigidbody2D();
         this.LoadAnimate();
+        this.LoadPlayerStats();
     }
 
     protected virtual void LoadPlayerCtrl()
@@ -61,6 +68,13 @@ public class PlayerMovement : SaiMonoBehaviour
         Debug.LogWarning(transform.name + ": LoadAnimate", gameObject);
     }
 
+    protected virtual void LoadPlayerStats()
+    {
+        if (this.playerStats != null) return;
+        this.playerStats = this.playerCtrl.Model;
+        Debug.LogWarning(transform.name + ": LoadPlayerStats", gameObject);
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -79,9 +93,17 @@ public class PlayerMovement : SaiMonoBehaviour
             // Kiểm tra xem hướng mới có khác với hướng trước đó hay không
             if (direction.x != previousHorizontal || direction.y != previousVertical)
             {
+                if(isFacingRight && direction.x < 0 || !isFacingRight && direction.x >0)
+                {
+                    isFacingRight = !isFacingRight;
+
+                    Vector3 scale = playerCtrl.Model.transform.localScale;
+                    scale.x = playerCtrl.Model.transform.localScale.x * -1;
+                    playerCtrl.Model.transform.localScale = scale;
+                }
                 // Chuyển đổi animation tại đây
-                animate.horizontal = direction.x;
-                animate.vertical = direction.y;
+                animate.horizontal = Mathf.Abs(direction.x);
+                animate.vertical = Mathf.Abs(direction.y);
                 lastMovedVector = new Vector2(direction.x, direction.y);
             }
 
@@ -96,7 +118,7 @@ public class PlayerMovement : SaiMonoBehaviour
         previousHorizontal = direction.x;
         previousVertical = direction.y;
 
-        transform.parent.Translate(direction * this.player.CurrentMoveSpeed * Time.deltaTime);
+        transform.parent.Translate(direction * this.moveSpeed * Time.deltaTime);
         //lastMovedVector = new Vector2(previousHorizontal, previousVertical);
 
         //direction *= moveSpeed;

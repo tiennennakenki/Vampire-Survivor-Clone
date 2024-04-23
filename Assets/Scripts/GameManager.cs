@@ -10,6 +10,8 @@ public class GameManager : SaiMonoBehaviour
     private static GameManager instance;
     public static GameManager Instance => instance;
 
+    [SerializeField] protected Canvas canvas;
+
     [SerializeField] protected GameState currentState;
     [SerializeField] protected GameState previousState;
 
@@ -18,15 +20,8 @@ public class GameManager : SaiMonoBehaviour
     [SerializeField] protected GameObject pauseScreen;
     [SerializeField] protected GameObject resultsScreen;
     [SerializeField] protected GameObject levelUpScreen;
-
-    //Current Stat Display
-    [Header("Current Stat Displays")]
-    public TextMeshProUGUI currentHealthDisplay;
-    public TextMeshProUGUI currentRecoveryDisplay;
-    public TextMeshProUGUI currentMoveSpeedDisplay;
-    public TextMeshProUGUI currentMightDisplay;
-    public TextMeshProUGUI currentProjectileSpeedDisplay;
-    public TextMeshProUGUI currentMagnetDisplay;
+    [SerializeField] protected GameObject treasureChestScreen;
+    [SerializeField] protected GameObject gameOverScreen;
 
     //Current Stat Display
     [Header("Results Screen Displays")]
@@ -38,7 +33,7 @@ public class GameManager : SaiMonoBehaviour
     [SerializeField] protected List<Image> chosenPassiveItemsUI = new List<Image>(6);
 
     [Header("Damage Text Setting")]
-    public Canvas damageTextCanvas;
+    //public Canvas damageTextCanvas;
     public float textFontsize = 20f;
     public TMP_FontAsset textFont;
     public Camera referenceCamera;
@@ -55,9 +50,15 @@ public class GameManager : SaiMonoBehaviour
 
     //Stopwatch UI
     [Header("Stopwatch")]
-    [SerializeField] protected float timeLimit = 15f; //The time limit in seconds
+    //[SerializeField] protected float timeLimit; //The time limit in seconds
     [SerializeField] protected float stopwatchTime; //The current time eslaped since the stopwatch started
     [SerializeField] protected TextMeshProUGUI stopwatchDisplay;
+
+    [Header("Coin/Enemies")]
+    public float coin = 0;
+    public int enemiesDead = 0;
+    [SerializeField] public TextMeshProUGUI coinText;
+    [SerializeField] public TextMeshProUGUI enemiesDeadText;
 
 
     protected override void Awake()
@@ -66,120 +67,141 @@ public class GameManager : SaiMonoBehaviour
         if (instance != null) Debug.LogError("Only 1 GameManager allow to exits");
         instance = this;
         this.DisableScreen();
-        this.playerInventory = FindObjectOfType<PlayerInventory>();
-        this.playerStats = FindObjectOfType<PlayerStats>();
+    }
+
+    protected override void OnEnable()
+    {
+        PlayerSelection.CharacterSetEvent += LoadPlayer;
+    }
+
+    protected override void OnDisable()
+    {
+        PlayerSelection.CharacterSetEvent -= LoadPlayer;
+    }
+
+    protected virtual void LoadPlayer()
+    {
+        this.playerInventory = PlayerCtrl.Instance.Model.GetComponent<PlayerInventory>();
+        this.playerStats = PlayerCtrl.Instance.Model.GetComponent<PlayerStats>();
     }
 
     #region LoadComponents
     protected override void LoadComponents()
     {
         base.LoadComponents();
+        this.LoadCanvas();
         this.LoadPauseScreen();
         this.LoadResultsScreen();
-        this.LoadCurrentHealthDisplay();
-        this.LoadCurrentRecoveryDisplay();
-        this.LoadCurrentMoveSpeedDisplay();
-        this.LoadCurrentMightDisplay();
-        this.LoadCurrentProjectilesSpeedDisplay();
-        this.LoadCurrentMagnetDisplay();
+        this.LoadLevelUpScreen();
+        this.LoadTreasureChestScreen();
+        this.LoadGameOverScreen();
         this.LoadChosenCharacterImage();
         this.LoadChosenCharacterName();
         this.LoadLevelReachedDisplay();
+        this.LoadTimeSurvivedDisplay();
         this.LoadListChosenWeaponsUI();
         this.LoadListChosenPassiveItemsUI();
-        this.LoadTimeSurvivedDisplay();
         this.LoadStopwatchDisplay();
-        this.LoadLevelUpScreen();
+        this.LoadCoinText();
+        this.LoadEnemiesDeadText();
+        this.LoadreferenceCamera();
+    }
+
+    protected virtual void LoadCanvas()
+    {
+        Canvas[] allCanvas = FindObjectsOfType<Canvas>();
+        foreach (Canvas canvas in allCanvas)
+        {
+            if (canvas.CompareTag("UIGame"))
+            {
+                this.canvas = canvas;
+                return;
+            }
+        }
+
+        if (canvas == null)
+        {
+            Debug.LogError("Canvas not found");
+        }
     }
 
     protected virtual void LoadPauseScreen()
     {
         if (this.pauseScreen != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
+        if (this.canvas == null) return;
         Transform screens = canvas.transform.Find("Screens");
         this.pauseScreen = screens.transform.Find("Pause Screen").gameObject;
         Debug.LogWarning(transform.name + ": LoadPauseScreen", gameObject);
     }
 
+    protected virtual void LoadCoinText()
+    {
+        if (this.coinText != null) return;
+        if (this.canvas == null) return;
+        Transform coinDisplay = canvas.transform.Find("Coin Display");
+        this.coinText = coinDisplay.transform.Find("Total Coin").GetComponent<TextMeshProUGUI>();
+        Debug.LogWarning(transform.name + ": LoadCoinText", gameObject);
+    }
+
+    protected virtual void LoadreferenceCamera()
+    {
+        if (this.referenceCamera != null) return;
+
+        this.referenceCamera = FindObjectOfType<Camera>();
+        Debug.LogWarning(transform.name + ": LoadCoinText", gameObject);
+    }
+
+    protected virtual void LoadEnemiesDeadText()
+    {
+        if (this.enemiesDeadText != null) return;
+        if (this.canvas == null) return;
+        Transform enemiesDeadDisplay = canvas.transform.Find("Enemies Dead Display");
+        this.enemiesDeadText = enemiesDeadDisplay.transform.Find("Total Enemies Dead").GetComponent<TextMeshProUGUI>();
+        Debug.LogWarning(transform.name + ": LoadEnemiesDeadText", gameObject);
+    }
+
     protected virtual void LoadResultsScreen()
     {
         if (this.resultsScreen != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
+        if (this.canvas == null) return;
         Transform screens = canvas.transform.Find("Screens");
         this.resultsScreen = screens.transform.Find("Results Screen").gameObject;
         Debug.LogWarning(transform.name + ": LoadPauseScreen", gameObject);
     }
 
-    protected virtual void LoadCurrentHealthDisplay()
+    protected virtual void LoadLevelUpScreen()
     {
-        if(this.currentHealthDisplay != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
-        GameObject screens = canvas.transform.Find("Screens").gameObject;
-        GameObject pauseScreen = screens.transform.Find("Pause Screen").gameObject;
-        GameObject currentStatsDisplay = pauseScreen.transform.Find("Current Stats Display").gameObject;
-        this.currentHealthDisplay = currentStatsDisplay.transform.Find("Current Health Display").GetComponent<TextMeshProUGUI>();
-        Debug.LogWarning(transform.name + ": LoadCurrentHealthDisplay", gameObject);
+        if (this.levelUpScreen != null) return;
+
+        if (this.canvas == null) return;
+        Transform screens = canvas.transform.Find("Screens");
+        this.levelUpScreen = screens.transform.Find("Level Up Screen").gameObject;
+
+        Debug.LogWarning(transform.name + ": LoadLevelUpScreen", gameObject);
     }
 
-    protected virtual void LoadCurrentRecoveryDisplay()
+    protected virtual void LoadTreasureChestScreen()
     {
-        if (this.currentRecoveryDisplay != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
-        GameObject screens = canvas.transform.Find("Screens").gameObject;
-        GameObject pauseScreen = screens.transform.Find("Pause Screen").gameObject;
-        GameObject currentStatsDisplay = pauseScreen.transform.Find("Current Stats Display").gameObject;
-        this.currentRecoveryDisplay = currentStatsDisplay.transform.Find("Current Recovery Display").GetComponent<TextMeshProUGUI>();
-        Debug.LogWarning(transform.name + ": LoadCurrentRecoveryDisplay", gameObject);
+        if (this.treasureChestScreen != null) return;
+        if (this.canvas == null) return;
+        Transform screens = canvas.transform.Find("Screens");
+        this.treasureChestScreen = screens.transform.Find("Treasure Chest Screen").gameObject;
+        Debug.LogWarning(transform.name + ": LoadTreasureChestScreen", gameObject);
     }
 
-    protected virtual void LoadCurrentMightDisplay()
+    protected virtual void LoadGameOverScreen()
     {
-        if (this.currentMightDisplay != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
-        GameObject screens = canvas.transform.Find("Screens").gameObject;
-        GameObject pauseScreen = screens.transform.Find("Pause Screen").gameObject;
-        GameObject currentStatsDisplay = pauseScreen.transform.Find("Current Stats Display").gameObject;
-        this.currentMightDisplay = currentStatsDisplay.transform.Find("Current Might Display").GetComponent<TextMeshProUGUI>();
-        Debug.LogWarning(transform.name + ": LoadCurrentMightDisplay", gameObject);
-    }
-
-    protected virtual void LoadCurrentMoveSpeedDisplay()
-    {
-        if (this.currentMoveSpeedDisplay != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
-        GameObject screens = canvas.transform.Find("Screens").gameObject;
-        GameObject pauseScreen = screens.transform.Find("Pause Screen").gameObject;
-        GameObject currentStatsDisplay = pauseScreen.transform.Find("Current Stats Display").gameObject;
-        this.currentMoveSpeedDisplay = currentStatsDisplay.transform.Find("Current Move Speed Display").GetComponent<TextMeshProUGUI>();
-        Debug.LogWarning(transform.name + ": LoadCurrentMoveSpeedDisplay", gameObject);
-    }
-
-    protected virtual void LoadCurrentProjectilesSpeedDisplay()
-    {
-        if (this.currentProjectileSpeedDisplay != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
-        GameObject screens = canvas.transform.Find("Screens").gameObject;
-        GameObject pauseScreen = screens.transform.Find("Pause Screen").gameObject;
-        GameObject currentStatsDisplay = pauseScreen.transform.Find("Current Stats Display").gameObject;
-        this.currentProjectileSpeedDisplay = currentStatsDisplay.transform.Find("Current Projectiles Speed Display").GetComponent<TextMeshProUGUI>();
-        Debug.LogWarning(transform.name + ": LoadCurrentProjectilesDisplay", gameObject);
-    }
-
-    protected virtual void LoadCurrentMagnetDisplay()
-    {
-        if (this.currentMagnetDisplay != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
-        GameObject screens = canvas.transform.Find("Screens").gameObject;
-        GameObject pauseScreen = screens.transform.Find("Pause Screen").gameObject;
-        GameObject currentStatsDisplay = pauseScreen.transform.Find("Current Stats Display").gameObject;
-        this.currentMagnetDisplay = currentStatsDisplay.transform.Find("Current Magnet Display").GetComponent<TextMeshProUGUI>();
-        Debug.LogWarning(transform.name + ": LoadCurrentMagnetDisplay", gameObject);
+        if (this.gameOverScreen != null) return;
+        if (this.canvas == null) return;
+        Transform screens = canvas.transform.Find("Screens");
+        this.gameOverScreen = screens.transform.Find("Game Over Screen").gameObject;
+        Debug.LogWarning(transform.name + ": LoadGameOverScreen", gameObject);
     }
 
     protected virtual void LoadChosenCharacterImage()
     {
         if (this.chosenCharacterImage != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
+        if (this.canvas == null) return;
         GameObject screens = canvas.transform.Find("Screens").gameObject;
         GameObject resultsScreen = screens.transform.Find("Results Screen").gameObject;
         GameObject chosenCharacterHolder = resultsScreen.transform.Find("Chosen Character Holder").gameObject;
@@ -190,7 +212,7 @@ public class GameManager : SaiMonoBehaviour
     protected virtual void LoadChosenCharacterName()
     {
         if (this.chosenCharacterName != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
+        if (this.canvas == null) return;
         GameObject screens = canvas.transform.Find("Screens").gameObject;
         GameObject resultsScreen = screens.transform.Find("Results Screen").gameObject;
         GameObject chosenCharacterHolder = resultsScreen.transform.Find("Chosen Character Holder").gameObject;
@@ -201,7 +223,7 @@ public class GameManager : SaiMonoBehaviour
     protected virtual void LoadLevelReachedDisplay()
     {
         if (this.levelReachedDisplay != null) return;
-        Canvas canvas = FindObjectOfType<Canvas>();
+        if (this.canvas == null) return;
         GameObject screens = canvas.transform.Find("Screens").gameObject;
         GameObject resultsScreen = screens.transform.Find("Results Screen").gameObject;
         GameObject levelReachedHolder = resultsScreen.transform.Find("Level Reached Holder").gameObject;
@@ -213,9 +235,10 @@ public class GameManager : SaiMonoBehaviour
     {
         if (this.chosenWeaponsUI.Count > 0) return;
 
-        Canvas canvas = FindObjectOfType<Canvas>();
+        if (this.canvas == null) return;
         Transform screens = canvas.transform.Find("Screens");
-        Transform weaponAndPassiveItemChosen = screens.transform.Find("Weapon and Passive Item Chosen");
+        Transform resultScreen = screens.Find("Results Screen");
+        Transform weaponAndPassiveItemChosen = resultScreen.transform.Find("Weapon and Passive Item Chosen");
         Transform slotsWeapon = weaponAndPassiveItemChosen.transform.Find("Slots Weapon");
 
         foreach (Transform slot in slotsWeapon)
@@ -234,9 +257,10 @@ public class GameManager : SaiMonoBehaviour
     {
         if (this.chosenPassiveItemsUI.Count > 0) return;
 
-        Canvas canvas = FindObjectOfType<Canvas>();
+        if(this.canvas == null) return;
         Transform screens = canvas.transform.Find("Screens");
-        Transform weaponAndPassiveItemChosen = screens.transform.Find("Weapon and Passive Item Chosen");
+        Transform resultScreen = screens.Find("Results Screen");
+        Transform weaponAndPassiveItemChosen = resultScreen.transform.Find("Weapon and Passive Item Chosen");
         Transform slotsWeapon = weaponAndPassiveItemChosen.transform.Find("Slots Passive Item");
 
         foreach (Transform slot in slotsWeapon)
@@ -255,7 +279,7 @@ public class GameManager : SaiMonoBehaviour
     {
         if (this.timeSurvied != null) return;
 
-        Canvas canvas = FindObjectOfType<Canvas>();
+        if (this.canvas == null) return;
         Transform screens = canvas.transform.Find("Screens");
         Transform resultsScreen = screens.transform.Find("Results Screen");
         Transform timeSurvivedHolder = resultsScreen.transform.Find("Time Survived Holder");
@@ -268,21 +292,12 @@ public class GameManager : SaiMonoBehaviour
     {
         if (this.stopwatchDisplay != null) return;
 
-        Canvas canvas = FindObjectOfType<Canvas>();
+        if(this.canvas == null) return;
         this.stopwatchDisplay = canvas.transform.Find("Stopwatch Display").GetComponent<TextMeshProUGUI>();
 
         Debug.LogWarning(transform.name + ": LoadStopwatchDisplay", gameObject);
     }
-    protected virtual void LoadLevelUpScreen()
-    {
-        if (this.levelUpScreen != null) return;
-
-        Canvas canvas = FindObjectOfType<Canvas>();
-        Transform screens = canvas.transform.Find("Screens");
-        this.levelUpScreen = screens.transform.Find("Level Up Screen").gameObject;
-
-        Debug.LogWarning(transform.name + ": LoadLevelUpScreen", gameObject);
-    }
+    
     #endregion
 
     protected override void Update()
@@ -308,7 +323,7 @@ public class GameManager : SaiMonoBehaviour
                     this.isGameOver = true;
                     Time.timeScale = 0f; //Stop the game entirely
                     Debug.Log("Game is over");
-                    this.DisplayResults();
+                    this.DisplayGameOverScreen();
                 }                
                 break;
             case GameState.LevelUp:
@@ -319,6 +334,10 @@ public class GameManager : SaiMonoBehaviour
                     Debug.Log("Upgrade shown");
                     this.levelUpScreen.SetActive(true);
                 }
+                break;
+            case GameState.OpenTreasureChest:
+                this.DisplayTreasureChestScreen();
+                Time.timeScale = 0f;
                 break;
             default:
                 break;
@@ -369,18 +388,26 @@ public class GameManager : SaiMonoBehaviour
         this.pauseScreen.SetActive(false);
         this.resultsScreen.SetActive(false);
         this.levelUpScreen.SetActive(false);
+        this.treasureChestScreen.SetActive(false);
     }
 
     public virtual void GameOver()
     {
         this.ChangeState(GameState.GameOver);
         this.timeSurvied.text = this.stopwatchDisplay.text;
+        this.RecalculateTotalCoin();
     }
 
-    protected virtual void DisplayResults()
+    public virtual void DisplayResults()
     {
         this.resultsScreen.SetActive(true);
     }
+
+    protected virtual void DisplayGameOverScreen()
+    {
+        this.gameOverScreen.SetActive(true);
+    }
+
 
     public virtual void AssignCharacterDataUI(CharacterData characterSO)
     {
@@ -441,10 +468,10 @@ public class GameManager : SaiMonoBehaviour
         this.stopwatchTime += Time.deltaTime;
         this.UpdateStopwatchDisplay();
 
-        if(this.stopwatchTime >= this.timeLimit)
-        {
-            this.playerStats.SendMessage("Kill");
-        }
+        //if(this.stopwatchTime >= this.timeLimit)
+        //{
+        //    this.playerStats.SendMessage("Kill");
+        //}
     }
 
     protected virtual void UpdateStopwatchDisplay()
@@ -473,7 +500,7 @@ public class GameManager : SaiMonoBehaviour
 
     public void GenerateFloatingText(string text, Transform target, float duration = 1f, float speed = 1f)
     {
-        if (!instance.damageTextCanvas) return;
+        if (!instance.canvas) return;
 
         if(!instance.referenceCamera) instance.referenceCamera = Camera.main;
 
@@ -495,7 +522,7 @@ public class GameManager : SaiMonoBehaviour
 
         Destroy(textObj, duration);
 
-        textObj.transform.SetParent(instance.damageTextCanvas.transform);
+        textObj.transform.SetParent(instance.canvas.transform);
         textObj.transform.SetSiblingIndex(0);
 
         WaitForEndOfFrame w = new WaitForEndOfFrame();
@@ -516,5 +543,55 @@ public class GameManager : SaiMonoBehaviour
             yield return w;
             t += Time.deltaTime;
         }
+    }
+
+    public virtual void RecalculateTotalCoin()
+    {
+        float totalCoin = PlayerPrefs.GetFloat("TotalCoin");
+        PlayerPrefs.SetFloat("TotalCoin", totalCoin + this.coin);
+    }
+
+    public virtual void IncreaseCoin(float amount)
+    {
+        this.coin += amount;
+
+        this.UpdateCoinText();
+    }
+
+    public virtual void IncreaseEnemiesDead()
+    {
+        this.enemiesDead ++;
+
+        this.UpdateEnemiesDeadText();
+    }
+
+    protected virtual void UpdateCoinText()
+    {
+        this.coinText.text = coin.ToString();
+    }
+
+    protected virtual void UpdateEnemiesDeadText()
+    {
+        this.enemiesDeadText.text = this.enemiesDead.ToString();
+    }
+
+    protected virtual void DisplayTreasureChestScreen()
+    {
+        if (this.treasureChestScreen == null) return;
+
+        this.treasureChestScreen.SetActive(true);
+    }
+
+    public virtual void OpenTreasureChest()
+    {
+        this.ChangeState(GameState.OpenTreasureChest);
+    }
+
+    public virtual void DisableTreasureChestScreen()
+    {
+        this.ChangeState(GameState.GamePlay);
+        this.treasureChestScreen.SetActive(false);
+        Time.timeScale = 1f;
+        this.UpdateStopwatch();
     }
 }

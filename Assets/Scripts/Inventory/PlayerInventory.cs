@@ -78,7 +78,9 @@ public class PlayerInventory : SaiMonoBehaviour
     {
         foreach (Slot s in passiveSlots)
         {
+            if(s == null) continue;
             Passive p = s.item as Passive;
+            if(p == null) continue;
             if (p.data == type)
                 return p;
         }
@@ -91,6 +93,7 @@ public class PlayerInventory : SaiMonoBehaviour
         foreach (Slot s in weaponSlots)
         {
             Weapon w = s.item as Weapon;
+            if (w == null) continue;
             if (w.data == type)
                 return w;
         }
@@ -176,9 +179,9 @@ public class PlayerInventory : SaiMonoBehaviour
             // Spawn the weapon GameObject.
             GameObject go = new GameObject(data.baseStats.name + " Controller");
             Weapon spawnedWeapon = (Weapon)go.AddComponent(weaponType);
-            spawnedWeapon.Initialise(data);
             spawnedWeapon.transform.SetParent(transform); //Set the weapon to be a child of the player
             spawnedWeapon.transform.localPosition = Vector2.zero;
+            spawnedWeapon.Initialise(data);
             spawnedWeapon.OnEquip();
 
             // Assign the weapon to the slot.
@@ -268,7 +271,6 @@ public class PlayerInventory : SaiMonoBehaviour
         if (GameManager.Instance != null && GameManager.Instance.choosingUpgrade)
         {
             GameManager.Instance.EndLevelUp();
-            Debug.Log("Update successfully");
         }
     }
 

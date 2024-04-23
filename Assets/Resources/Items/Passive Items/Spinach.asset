@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b366585ba6eb52488ccb711c57b0bc7, type: 3}
   m_Name: Spinach
   m_EditorClassIdentifier: 
-  icon: {fileID: 1357428926, guid: 32cf785e773366e408f7d65a1864bbc2, type: 3}
-  maxLevel: 0
+  icon: {fileID: 21300000, guid: 7450495f9cd116245aec30a929cb388f, type: 3}
+  maxLevel: 5
+  evolutionData: []
   baseStats:
     name: Spinach
     description: Raises inflicted damage by 10%.
     boosts:
-      maxHealth: 0
+      maxHealth: 1
       recovery: 0
       moveSpeed: 0
       might: 0.1
@@ -28,16 +29,16 @@ MonoBehaviour:
   - name: Level 2
     description: Base damage up by 10%
     boosts:
-      maxHealth: 0
+      maxHealth: 1
       recovery: 0
       moveSpeed: 0
-      might: 0.1
+      might: 0.2
       speed: 0
       magnet: 0
   - name: Level 3
     description: Base damage up by 10%
     boosts:
-      maxHealth: 0
+      maxHealth: 1
       recovery: 0
       moveSpeed: 0
       might: 0.1
@@ -46,7 +47,7 @@ MonoBehaviour:
   - name: Level 4
     description: Base damage up by 10%
     boosts:
-      maxHealth: 0
+      maxHealth: 1
       recovery: 0
       moveSpeed: 0
       might: 0.1
@@ -55,7 +56,7 @@ MonoBehaviour:
   - name: Level 5
     description: Base damage up by 10%
     boosts:
-      maxHealth: 0
+      maxHealth: 1
       recovery: 0
       moveSpeed: 0
       might: 0.1

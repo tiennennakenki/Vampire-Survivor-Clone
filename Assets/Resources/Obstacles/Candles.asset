@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6556a5754a0eb04dbc5a04ef4000396, type: 3}
+  m_Name: Candles
+  m_EditorClassIdentifier: 
+  dropList:
+  - itemSO: {fileID: 11400000, guid: 4825621013cbe9e4f8a265081de25d98, type: 2}
+    dropRate: 100000
+    minDropRate: 0
+    maxDropRate: 0
+  - itemSO: {fileID: 11400000, guid: e6d56f35c35bd33428f7f00667a72999, type: 2}
+    dropRate: 20000
+    minDropRate: 0
+    maxDropRate: 0

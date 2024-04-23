@@ -10,16 +10,16 @@ GameObject:
   m_Component:
   - component: {fileID: 3784217190173059018}
   - component: {fileID: 6131673581822707779}
-  - component: {fileID: -7525683032435797484}
   - component: {fileID: -5883249232461085216}
   - component: {fileID: -8412549234626857943}
+  - component: {fileID: 4600869542142362320}
   m_Layer: 0
   m_Name: RedPotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3784217190173059018
 Transform:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1359997361
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 445086883, guid: 32cf785e773366e408f7d65a1864bbc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7525683032435797484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119672080248787074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a86b015e5c796241a327f692ff3edc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthToRestore: 50
 --- !u!61 &-5883249232461085216
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -129,7 +116,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -172,3 +159,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4600869542142362320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119672080248787074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f786c632e2369d04f83497a5d7025ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifespan: 0.5
+  target: {fileID: 0}
+  speed: 0
+  isPushed: 0
+  bobbingAnimation:
+    frequency: 2
+    direction: {x: 0, y: 0.3}
+  experience: 0
+  health: 50

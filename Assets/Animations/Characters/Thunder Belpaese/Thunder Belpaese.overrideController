@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Thunder Belpaese
+  m_Controller: {fileID: 9100000, guid: 5ceefc9c22b9726479e8548ea9ada7f9, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 067bebf90d2c02e4bac47806e95ead43, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: de2288b01dc3a5c4e9d9a09281ed1523, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ddf14a77113abe344a6e7c3caacd02fe, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a98df5e0ef8994e4cba63708bbcc0516, type: 2}

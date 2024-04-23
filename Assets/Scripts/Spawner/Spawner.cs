@@ -76,6 +76,23 @@ public abstract class Spawner : SaiMonoBehaviour
         return newPrefab;
     }
 
+    //public virtual Transform GetObjectFromPool(Transform prefab)
+    //{
+    //    foreach (Transform poolObj in this.poolObjs)
+    //    {
+    //        if (poolObj.name == prefab.name)
+    //        {
+    //            poolObjs.Remove(poolObj);
+    //            return poolObj;
+    //        }
+    //    }
+
+    //    Transform newPrefab = Instantiate(prefab);
+    //    newPrefab.name = prefab.name;
+    //    return newPrefab;
+    //}
+
+
     public virtual void Despawn(Transform obj)
     {
         if (this.poolObjs.Contains(obj)) return;

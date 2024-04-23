@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileWeapon : Weapon
@@ -5,6 +6,12 @@ public class ProjectileWeapon : Weapon
     [Header("Projectile Weapon")]
     [SerializeField] protected float currentAttackInterval;
     [SerializeField] protected int currentAttackCount; // Number of times this attack will happen.
+
+    protected override void Start()
+    {
+        base.Start();
+        ActivateCooldown();
+    }
 
     protected override void Update()
     {
@@ -30,7 +37,7 @@ public class ProjectileWeapon : Weapon
         if (!currentStats.projectilePrefab)
         {
             Debug.LogWarning(string.Format("Projectile prefab has not been set for {0}", name));
-            currentCooldown = data.baseStats.cooldown;
+            ActivateCooldown(true);
             return false;
         }
 
@@ -44,19 +51,28 @@ public class ProjectileWeapon : Weapon
         // Otherwise, calculate the angle and offset of our spawned projectile.
         float spawnAngle = GetSpawnAngle();
 
-        // And spawn a copy of the projectile.
-        Projectile prefab = Instantiate(
-            currentStats.projectilePrefab,
-            owner.transform.position + (Vector3)GetSpawnOffset(spawnAngle),
-            Quaternion.Euler(0, 0, spawnAngle)
-        );
+        //Projectile prefab = Instantiate(
+        //    currentStats.projectilePrefab,
+        //    owner.transform.position + (Vector3)GetSpawnOffset(spawnAngle),
+        //    Quaternion.Euler(0, 0, spawnAngle)
+        //);
+
+        ////And spawn a copy of the projectile.
+        Transform weaponTransform = WeaponSpawner.Instance.Spawn(currentStats.projectilePrefab.name,
+           owner.transform.position + (Vector3)GetSpawnOffset(spawnAngle),
+           Quaternion.Euler(0, 0, spawnAngle));
+
+        Projectile prefab = weaponTransform.GetComponent<Projectile>();
+        prefab.transform.gameObject.SetActive(true);
+
+        //Play attack sound effect
+        SoundController.Instance.PlayAttackSoundEffect();
 
         prefab.weapon = this;
         prefab.owner = owner;
 
-        // Reset the cooldown only if this attack was triggered by cooldown.
-        if (currentCooldown <= 0)
-            currentCooldown += currentStats.cooldown;
+        ActivateCooldown(true);
+
 
         attackCount--;
 

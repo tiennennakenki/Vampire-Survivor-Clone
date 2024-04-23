@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 283699577631437899}
   - component: {fileID: 3859708994348478462}
   - component: {fileID: -8654218507435027300}
+  - component: {fileID: -5499165557059257680}
   m_Layer: 0
   m_Name: terrain_28
   m_TagString: Prop
@@ -99,3 +100,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleData: {fileID: 11400000, guid: 42eb1419c76edeb438e9e73fe6683df4, type: 2}
   health: 10
+--- !u!50 &-5499165557059257680
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5811011942937469420}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

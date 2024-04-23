@@ -12,16 +12,16 @@ public class BreakableProps : SaiMonoBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadObstacleData();
+        //this.LoadObstacleData();
     }
 
-    protected virtual void LoadObstacleData()
-    {
-        if (this.obstacleData != null) return;
-        string resPath = "Obstacles/Obstacle";
-        this.obstacleData = Resources.Load<ObstacleSO>(resPath);
-        Debug.LogWarning(transform.name + ": LoadObstacleData", gameObject);
-    }
+    //protected virtual void LoadObstacleData()
+    //{
+    //    if (this.obstacleData != null) return;
+    //    string resPath = "Obstacles/Obstacle";
+    //    this.obstacleData = Resources.Load<ObstacleSO>(resPath);
+    //    Debug.LogWarning(transform.name + ": LoadObstacleData", gameObject);
+    //}
 
     public virtual void TakeDamage(float dmg)
     {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIHPBar : SaiMonoBehaviour
 {
-    [SerializeField] protected PlayerStats player;
+    [SerializeField] protected PlayerStats playerStats;
     [SerializeField] protected Transform hpBarData;
     public Transform HpBarData => hpBarData;
     [SerializeField] protected Slider slider;
@@ -17,7 +17,7 @@ public class UIHPBar : SaiMonoBehaviour
     protected override void Awake()
     {
         base.Awake();
-        this.player = FindObjectOfType<PlayerStats>();
+        this.playerStats = FindObjectOfType<PlayerStats>();
     }
 
     protected override void LoadComponents()
@@ -26,6 +26,7 @@ public class UIHPBar : SaiMonoBehaviour
         this.LoadPlayerCtrl();
         this.LoadHPBarData();
         this.LoadSlider();
+        this.LoadPlayerStats();
     }
 
     protected virtual void LoadPlayerCtrl()
@@ -46,7 +47,14 @@ public class UIHPBar : SaiMonoBehaviour
     {
         if (this.slider != null) return;
         this.slider = transform.GetComponent<Slider>();
-        Debug.LogWarning(transform.name + ": LoadHPBarData", gameObject);
+        Debug.LogWarning(transform.name + ": LoadSlider", gameObject);
+    }
+
+    protected virtual void LoadPlayerStats()
+    {
+        if (this.playerStats != null) return;
+        this.playerStats = this.playerCtrl.Model;
+        Debug.LogWarning(transform.name + ": LoadPlayerStats", gameObject);
     }
 
     protected override void FixedUpdate()
@@ -61,6 +69,6 @@ public class UIHPBar : SaiMonoBehaviour
         IHPBarInterface hPBarInterface = this.hpBarData.GetComponent<IHPBarInterface>();
         if (hpBarData == null) return;
         //this.slider.value = hPBarInterface.HP();
-        this.slider.value = this.player.CurrentHealth / this.player.characterData.stats.maxHealth;
+        this.slider.value = this.playerStats.CurrentHealth / this.playerStats.characterData.stats.maxHealth;
     }
 }

@@ -2,45 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class PlayerCollector : SaiMonoBehaviour
 {
+    [SerializeField] protected PlayerCtrl playerCtrl;
     [SerializeField] protected PlayerStats player;
-    [SerializeField] protected CircleCollider2D playerCollector;
+    [SerializeField] protected CircleCollider2D detector;
     [SerializeField] protected float pullSpeed = 300f;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        playerCtrl = GetComponentInParent<PlayerCtrl>();
+    }
     protected override void Start()
     {
         base.Start();
-        this.player = FindObjectOfType<PlayerStats>();
-        this.playerCollector = transform.GetComponent<CircleCollider2D>();
+        player = playerCtrl.Model;
     }
 
-    protected override void Update()
+    public void SetRadius(float radius)
     {
-        base.Update();
-        this.LoadPlayerCollector();
-    }
-
-    protected virtual void LoadPlayerCollector()
-    {
-        //this.playerCollector.radius = this.player.CurrentMagnet;
-        this.playerCollector.radius = 1.5f;
+        if (!detector) detector = GetComponent<CircleCollider2D>();
+        detector.radius = radius;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Check if the other game object has a ICollectable interface
-        if (collision.gameObject.TryGetComponent(out ICollectable collectable))
+        if (collision.gameObject.TryGetComponent(out PickUp pickUp))
         {
-            //Pulling animation
-            //Gets the Rigidbody2D component in the item
-            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
-            //Vector2 pointing from the item to the player
-            Vector2 forceDirection = (transform.parent.position - collision.transform.position).normalized;
-            //Applies force to the item in the forceDirection with pullSpeed
-            rb.AddForce(forceDirection * this.pullSpeed);
-
-            collectable.Collect();
+            pickUp.Collect(player, pullSpeed);
         }
     }
 }

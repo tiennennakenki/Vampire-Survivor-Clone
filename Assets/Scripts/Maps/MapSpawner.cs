@@ -7,12 +7,12 @@ public class MapSpawner : SaiMonoBehaviour
     [SerializeField] protected MapCtrl mapCtrl;
     public MapCtrl MapCtrl => mapCtrl;
     public List<GameObject> terrainChunks;
-    [SerializeField] protected GameObject player;
+    [SerializeField] protected PlayerCtrl player;
     [SerializeField] protected float checkerRadius = .2f;
     public Vector3 noTerrainPosition;
     [SerializeField] protected LayerMask terrainMask;
     public GameObject currentChunk;
-    Vector3 playerLastPosition;
+    public Vector3 playerLastPosition;
 
     [Header("Optimization")]
     public List<GameObject> spawnedChunks;
@@ -22,10 +22,25 @@ public class MapSpawner : SaiMonoBehaviour
     float optimizerCooldown;
     public float optimizerCooldownDur = 1;
 
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
-        this.playerLastPosition = this.player.transform.position;
+        base.OnEnable();
+
+        PlayerSelection.CharacterSetEvent += LoadPlayer;
+        if (player != null)
+        {
+            this.playerLastPosition = this.player.transform.position;
+        }
+        else
+        {
+            Debug.LogWarning("Player is null. Make sure to assign the player object in the inspector.");
+        }
+    }
+
+
+    protected override void OnDisable()
+    {
+        PlayerSelection.CharacterSetEvent -= LoadPlayer;
     }
 
     #region LoadComponent
@@ -33,7 +48,6 @@ public class MapSpawner : SaiMonoBehaviour
     {
         base.LoadComponents();
         this.LoadMapCtrl();
-        this.LoadPlayer();
         //this.LoadPlayerMovement();
         this.LoadTerrainChunks();
         this.LoadTerrainMask();
@@ -48,7 +62,9 @@ public class MapSpawner : SaiMonoBehaviour
     protected virtual void LoadPlayer()
     {
         if (this.player != null) return;
-        this.player = GameObject.Find("Player");
+
+        //this.player = PlayerCtrl.Instance.GetComponent<PlayerCtrl>();
+        this.player = PlayerCtrl.Instance;
         Debug.LogWarning(transform.name + ": LoadPlayer", gameObject);
     }
 

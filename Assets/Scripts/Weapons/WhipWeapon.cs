@@ -12,7 +12,7 @@ public class WhipWeapon : ProjectileWeapon
         if (!currentStats.projectilePrefab)
         {
             Debug.LogWarning(string.Format("Projectile prefab has not been set for {0}", name));
-            currentCooldown = currentStats.cooldown;
+            ActivateCooldown(true);
             return false;
         }
 
@@ -36,27 +36,46 @@ public class WhipWeapon : ProjectileWeapon
             currentSpawnYOffset
         );
 
-        // And spawn a copy of the projectile.
-        Projectile prefab = Instantiate(
-            currentStats.projectilePrefab,
-            owner.transform.position + (Vector3)spawnOffset,
-            Quaternion.identity
+        Transform weaponTransform = WeaponSpawner.Instance.Spawn(currentStats.projectilePrefab.name,
+           owner.transform.position + (Vector3)spawnOffset,
+           Quaternion.identity
         );
+
+        Projectile prefab = weaponTransform.GetComponent<Projectile>();
+        prefab.transform.gameObject.SetActive(true);
+
+        // And spawn a copy of the projectile.
+        //Projectile prefab = Instantiate(
+        //    currentStats.projectilePrefab,
+        //    owner.transform.position + (Vector3)spawnOffset,
+        //    Quaternion.identity
+        //);
+
+        prefab.transform.localScale = new Vector3(
+               Mathf.Abs(prefab.transform.localScale.x * GetArea()),
+               prefab.transform.localScale.y * GetArea(),
+               prefab.transform.localScale.z * GetArea()
+           );
+
+        //Play attack sound effect
+        SoundController.Instance.PlayAttackSoundEffect();
+
+        prefab.weapon = this;
         prefab.owner = owner; // Set ourselves to be the owner.
 
         // Flip the projectile's sprite.
         if (spawnDir < 0)
         {
             prefab.transform.localScale = new Vector3(
-                -Mathf.Abs(prefab.transform.localScale.x),
-                prefab.transform.localScale.y,
-                prefab.transform.localScale.z
+                -Mathf.Abs(prefab.transform.localScale.x * GetArea()),
+                prefab.transform.localScale.y * GetArea(),
+                prefab.transform.localScale.z * GetArea()
             );
         }
 
         // Assign the stats.
         prefab.weapon = this;
-        currentCooldown += currentStats.cooldown;
+        ActivateCooldown(true);
         attackCount--;
 
         // Determine where the next projectile should spawn.

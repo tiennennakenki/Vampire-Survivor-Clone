@@ -8,4 +8,5 @@ public enum GameState
     Pause = 1,
     GameOver = 2,
     LevelUp = 3,
+    OpenTreasureChest = 4,
 }

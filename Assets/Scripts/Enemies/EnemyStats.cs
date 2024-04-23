@@ -17,8 +17,8 @@ public class EnemyStats : SaiMonoBehaviour
     public float damageFlashDuration = 0.2f; //How long the flash should last
     public float deathFadeTime = 0.6f; //How much time it takes for enemy to fade
     protected Color originalColor;
-    protected SpriteRenderer spriteRenderer;
-    protected EnemyMovement enemyMovement;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected EnemyMovement enemyMovement;
 
     protected override void Awake()
     {
@@ -31,23 +31,49 @@ public class EnemyStats : SaiMonoBehaviour
     protected override void Start()
     {
         base.Start();
+        this.originalColor = spriteRenderer.color;
     }
 
+    #region LoadComponents
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadEnemySO();
+        this.LoadSpriteRenderer();
+        this.LoadEnemyMovement();
     }
 
     protected virtual void LoadEnemySO()
     {
-        //For override
+        if (this.enemyData != null) return;
+        string resPath = "Enemies/" + transform.name;
+        this.enemyData = Resources.Load<EnemySO>(resPath);
+        Debug.Log(resPath);
+        Debug.LogWarning(transform.name + ": LoadBatEnemySO", gameObject);
     }
+
+    protected virtual void LoadSpriteRenderer()
+    {
+        if (this.spriteRenderer != null) return;
+
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
+        Debug.LogWarning(transform.name + ": LoadSpriteRenderer", gameObject);
+    }
+
+    protected virtual void LoadEnemyMovement()
+    {
+        if (this.enemyMovement != null) return;
+
+        this.enemyMovement = GetComponent<EnemyMovement>();
+        Debug.LogWarning(transform.name + ": LoadEnemyMovement", gameObject);
+    }
+    #endregion
 
     public virtual void TakeDamage(float damage, Vector2 sourcePosition, float knockbackForce = 5f, float knockbackDuration = 0.2f)
     {
         this.currentHealth -= damage;
         StartCoroutine(DamageFlash());
+        SoundController.Instance.PlayEnemyHurtSoundEffect();
 
         if(damage > 0)
         {
@@ -87,6 +113,7 @@ public class EnemyStats : SaiMonoBehaviour
         this.OnDeadDrop();
         EnemiesSpawner.Instance.OnEnemyKilled();
         EnemiesSpawner.Instance.Despawn(transform);
+        GameManager.Instance.IncreaseEnemiesDead();
     }
 
     protected virtual void OnDeadDrop()
@@ -96,7 +123,26 @@ public class EnemyStats : SaiMonoBehaviour
         ItemsDropSpawner.Instance.Drop(this.enemyData.dropList, dropPos, dropRot);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        Debug.Log("collider with player");
+    //        PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
+    //        player.TakeDamage(currentDamage);
+    //    }
+    //}
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
+    //        player.TakeDamage(currentDamage);
+    //    }
+    //}
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

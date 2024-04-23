@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1821230934426381770}
   - component: {fileID: 9074540841629110633}
   - component: {fileID: 8111945693233394270}
-  - component: {fileID: -6470791075070484616}
   m_Layer: 0
   m_Name: terrain_7
   m_TagString: Prop
@@ -133,20 +132,6 @@ BoxCollider2D:
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &8111945693233394270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4865139135560097205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b7d137be927f0e4c9e547235b21cad4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacleData: {fileID: 11400000, guid: 42eb1419c76edeb438e9e73fe6683df4, type: 2}
-  health: 10
---- !u!114 &-6470791075070484616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -6,8 +6,11 @@ using UnityEngine;
 public class PlayerCtrl : SaiMonoBehaviour
 {
     [Header("Player Ctrl")]
-    [SerializeField] protected GameObject model;
-    public GameObject Model =>  model;
+    private static PlayerCtrl instance;
+    public static PlayerCtrl Instance => instance;
+
+    [SerializeField] protected PlayerStats model;
+    public PlayerStats Model =>  model;
 
     [SerializeField] protected PlayerHP playerHPBar;
     public PlayerHP PlayerHPBar => playerHPBar;
@@ -16,6 +19,19 @@ public class PlayerCtrl : SaiMonoBehaviour
     [SerializeField] protected Canvas canvas;
     public Canvas Canvas => canvas;
 
+    [SerializeField] protected PlayerCollector collector;
+    public PlayerCollector Collector => collector;
+
+    [SerializeField] protected PlayerMovement playerMovement;
+    public PlayerMovement PlayerMovement => playerMovement;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (instance != null) Debug.LogError("Only 1 PlayerCtrl allow to exits");
+        instance = this;
+    }
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -23,12 +39,20 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadCanvas();
         this.LoadAnimation();
         this.LoadModel();
+        this.LoadCollector();
+        this.LoadPlayerMovement();
+    }
+
+    protected virtual void LoadCollector()
+    {
+        if (this.collector != null) return;
+        this.collector = gameObject.GetComponentInChildren<PlayerCollector>();
+        Debug.LogWarning(transform.name + ": LoadCollector", gameObject);
     }
 
     protected virtual void LoadPlayerHPBar()
     {
         if (this.playerHPBar != null) return;
-        //this.playerHPBar = transform.Find("PlayerHPBar").gameObject;
         this.playerHPBar = gameObject.GetComponentInChildren<PlayerHP>();
         Debug.LogWarning(transform.name + ": LoadPlayerHPBar", gameObject);
     }
@@ -36,7 +60,6 @@ public class PlayerCtrl : SaiMonoBehaviour
     protected virtual void LoadAnimation()
     {
         if (this.animationPlayer != null) return;
-        //this.animation = transform.Find("Animation").gameObject;
         this.animationPlayer = gameObject.GetComponentInChildren<Animation>();
         Debug.LogWarning(transform.name + ": LoadAnimation", gameObject);
     }
@@ -51,7 +74,14 @@ public class PlayerCtrl : SaiMonoBehaviour
     protected virtual void LoadModel()
     {
         if (this.model != null) return;
-        this.model = transform.Find("Model").gameObject;
+        this.model = gameObject.GetComponentInChildren<PlayerStats>();
         Debug.LogWarning(transform.name + ": LoadCanvas", gameObject);
+    }
+
+    protected virtual void LoadPlayerMovement()
+    {
+        if (this.playerMovement != null) return;
+        this.playerMovement = gameObject.GetComponentInChildren<PlayerMovement>();
+        Debug.LogWarning(transform.name + ": LoadPlayerMovement", gameObject);
     }
 }
