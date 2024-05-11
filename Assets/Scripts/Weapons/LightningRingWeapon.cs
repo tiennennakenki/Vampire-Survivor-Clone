@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,13 @@ using UnityEngine;
 public class LightningRingWeapon : ProjectileWeapon
 {
     List<EnemyStats> allSelectedEnemies = new List<EnemyStats>();
+
+    private IEnumerator DeSpawnObj(Transform weapon)
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log("despawn LightningRing");
+        WeaponSpawner.Instance.Despawn(weapon);
+    }
 
     protected override bool Attack(int attackCount = 1)
     {
@@ -34,7 +42,10 @@ public class LightningRingWeapon : ProjectileWeapon
         {
             DamageArea(target.transform.position, GetArea(), GetDamage());
 
-            Instantiate(currentStats.hitEffect, target.transform.position, Quaternion.identity);
+            Transform weapon =  WeaponSpawner.Instance.Spawn(currentStats.hitEffect.transform, target.transform.position, Quaternion.identity);
+            weapon.gameObject.SetActive(true);
+            StartCoroutine(DeSpawnObj(weapon));
+            //Instantiate(currentStats.hitEffect, target.transform.position, Quaternion.identity);
             SoundController.Instance.PlayLightningRingSoundEffect();
         }
 

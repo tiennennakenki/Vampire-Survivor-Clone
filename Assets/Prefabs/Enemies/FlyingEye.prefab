@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4680191730788314951}
   - component: {fileID: 7384863184396610485}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28125, y: 1}
+  m_Size: {x: 0.875, y: 0.59375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8422999122750353362}
   - component: {fileID: 4969083698921863848}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.25, y: 0.78125}
+  m_Size: {x: 0.84375, y: 0.46875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1877218900359258809}
   - component: {fileID: 281361475967560967}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.3125, y: 0.75}
+  m_Size: {x: 0.875, y: 0.40625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4494434116519047449}
   - component: {fileID: 6767730234536369854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.25, y: 0.90625}
+  m_Size: {x: 0.84375, y: 0.53125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7244331538746348354}
   - component: {fileID: 1911005249016658304}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28125, y: 0.96875}
+  m_Size: {x: 0.875, y: 0.5625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 2236784344487892899}
   - component: {fileID: 1426128322163286919}
   - component: {fileID: -1810633000514308967}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FlyingEye
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -569,7 +569,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -586,7 +586,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.024912238, y: -0.017821148}
+  m_Offset: {x: 0.029486299, y: -0.007310912}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -597,7 +597,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.65172803, y: 0.6096382}
+  m_Size: {x: 0.57323587, y: 0.3541756}
   m_EdgeRadius: 0
 --- !u!114 &1426128322163286919
 MonoBehaviour:
@@ -657,7 +657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8253919166787585613}
   - component: {fileID: 2536173644730418079}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +725,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.21875, y: 0.78125}
+  m_Size: {x: 0.84375, y: 0.46875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -741,7 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5268392335492294355}
   - component: {fileID: 6534687694361726557}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.25, y: 0.75}
+  m_Size: {x: 0.84375, y: 0.4375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -825,7 +825,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3088285953323976529}
   - component: {fileID: 4691203450406972199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +893,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.25, y: 0.75}
+  m_Size: {x: 0.84375, y: 0.4375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

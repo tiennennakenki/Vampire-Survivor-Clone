@@ -43,7 +43,6 @@ public class PickUp : SaiMonoBehaviour
 
     protected override void Update()
     {
-        base.Update();
         if (!target)
         {
             //transform.position = initialPosition + bobbingAnimation.direction * Mathf.Sin(Time.time * bobbingAnimation.frequency);
@@ -57,12 +56,12 @@ public class PickUp : SaiMonoBehaviour
                 Rigidbody2D rb2D = this.GetComponent<Rigidbody2D>();
                 if (!this.isPushed)
                 {
-                    rb2D.AddForce(-distance.normalized * this.speed * 2);
+                    rb2D.AddForce(-distance.normalized * 20);
                 }
                 if (distance.sqrMagnitude >= 1.5)
                 {
                     this.isPushed = true;
-                    rb2D.AddForce(distance.normalized * this.speed * 10);
+                    rb2D.AddForce(distance.normalized * 100);
                 }
             }
             else
@@ -94,6 +93,7 @@ public class PickUp : SaiMonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            if(this.target == null) return;
             SoundController.Instance.PlayCollectSoundEffect();
 
             if (experience != 0) target.IncreaseExperience(experience);

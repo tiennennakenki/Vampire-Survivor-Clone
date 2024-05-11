@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 243385499584508412}
   - component: {fileID: 6632688163265093217}
   - component: {fileID: -2499219171855286335}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3959331451300111158}
   - component: {fileID: 5216404205002983290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: goblin_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6994337369342112794}
   - component: {fileID: 6242849517434475655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: goblin_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1910039580652993410}
   - component: {fileID: 7088859838775885004}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: goblin_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1288968896572109256}
   - component: {fileID: 7025543136998044710}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: goblin_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

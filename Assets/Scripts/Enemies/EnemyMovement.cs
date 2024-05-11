@@ -10,6 +10,7 @@ public class EnemyMovement : SaiMonoBehaviour
 
     [SerializeField] protected Vector2 knockbackVelocity;
     [SerializeField] protected float knockbackDuration;
+    [SerializeField] protected List<Transform> spawnPointsClone;
 
     protected override void LoadComponents()
     {
@@ -19,10 +20,8 @@ public class EnemyMovement : SaiMonoBehaviour
 
     protected override void Start()
     {
-        base.Start();
-        //this.player = FindObjectOfType<PlayerMovement>().transform;
         this.player = PlayerCtrl.Instance.PlayerMovement.transform;
-        //this.enemyStats = GetComponent<EnemyStats>();
+        spawnPointsClone = EnemiesSpawner.Instance.spawnPoints;
     }
 
     protected virtual void LoadEnemyStats()
@@ -33,9 +32,9 @@ public class EnemyMovement : SaiMonoBehaviour
     }
     protected override void Update()
     {
-        base.Update();
         this.MovingFollowTarget();
         this.Knockbacking();
+        this.MoveEnemyIntoCamera(spawnPointsClone);
     }
 
     protected virtual void MovingFollowTarget()
@@ -59,6 +58,16 @@ public class EnemyMovement : SaiMonoBehaviour
                transform.localScale.y,
                transform.localScale.z
             );
+        }
+    }
+
+    protected virtual void MoveEnemyIntoCamera(List<Transform> spawnPointsClone)
+    {
+        Vector2 movePosition = spawnPointsClone[Random.Range(0, spawnPointsClone.Count)].transform.position;
+        
+        if(Vector3.Distance(this.transform.position, this.player.position) > 25f)
+        {
+            this.transform.position = movePosition;
         }
     }
 

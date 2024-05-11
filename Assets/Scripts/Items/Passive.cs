@@ -26,7 +26,6 @@ public class Passive : Item
 
     public virtual CharacterData.Stats GetBoosts()
     {
-        Debug.Log(this.currentBoosts.maxHealth);
         return currentBoosts;
     }
 
@@ -45,5 +44,10 @@ public class Passive : Item
         // Otherwise, add stats of the next level to our weapon.
         currentBoosts += data.GetLevelData(++currentLevel).boosts;
         return true;
+    }
+
+    public override void OnUnequip()
+    {
+        currentBoosts -= data.GetLevelData(currentLevel).boosts;
     }
 }

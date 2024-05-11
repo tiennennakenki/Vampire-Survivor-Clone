@@ -17,11 +17,11 @@ MonoBehaviour:
   evolutionData:
   - name: Soul Eater
     condition: 1
-    consumes: 2
-    evolutionLevel: 1
+    consumes: 1
+    evolutionLevel: 2
     catalysts:
     - itemType: {fileID: 11400000, guid: b378c613325a4134ea7a70efb2d8a540, type: 2}
-      level: 2
+      level: 3
     outcome:
       itemType: {fileID: 11400000, guid: f37f91d4dac71a6499d3d01a6b42440f, type: 2}
       level: 1
@@ -31,9 +31,14 @@ MonoBehaviour:
     boosts:
       maxHealth: 1
       recovery: 0.2
+      armor: 0
       moveSpeed: 0
       might: 0
+      area: 0
       speed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
       magnet: 0
   growth:
   - name: Level 2
@@ -41,34 +46,54 @@ MonoBehaviour:
     boosts:
       maxHealth: 1
       recovery: 0.2
+      armor: 0
       moveSpeed: 0
       might: 0
+      area: 0
       speed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
       magnet: 0
   - name: Level 3
     description: Health recovery increases by 0.2 HP per second.
     boosts:
       maxHealth: 1
       recovery: 0.2
+      armor: 0
       moveSpeed: 0
       might: 0
+      area: 0
       speed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
       magnet: 0
   - name: Level 4
     description: Health recovery increases by 0.2 HP per second.
     boosts:
       maxHealth: 1
       recovery: 0.2
+      armor: 0
       moveSpeed: 0
       might: 0
+      area: 0
       speed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
       magnet: 0
   - name: Level 5
     description: Health recovery increases by 0.2 HP per second.
     boosts:
       maxHealth: 1
       recovery: 0.2
+      armor: 0
       moveSpeed: 0
       might: 0
+      area: 0
       speed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
       magnet: 0

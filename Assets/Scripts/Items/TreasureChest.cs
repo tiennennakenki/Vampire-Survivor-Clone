@@ -128,7 +128,6 @@ public class TreasureChest : SaiMonoBehaviour
                     bool attempt = w.AttemptEvolution(e, 0);
                     if (attempt) return true; // If evolution suceeds, stop.
                 }
-
             }
         }
 
@@ -173,33 +172,8 @@ public class TreasureChest : SaiMonoBehaviour
 
             this.coinText.text = coinClone.ToString();
             GameManager.Instance.IncreaseCoin(coinClone);
-            Debug.Log("Coin: " + coinClone);
         }
 
         Destroy(gameObject);
     }
-
-    //public virtual IEnumerator UpdateCoin(float finalCoin)
-    //{
-    //    float currentCoin = 0;
-    //    float increment = 0.01f;
-    //    float delay = 0.00005f;
-
-    //    while (currentCoin < finalCoin)
-    //    {
-    //        currentCoin += increment;
-    //        if (currentCoin > finalCoin)
-    //        {
-    //            currentCoin = finalCoin;
-    //        }
-
-    //        this.coinText.text = currentCoin.ToString("F2");
-
-    //        yield return new WaitForSeconds(delay);
-    //    }
-
-    //    GameManager.Instance.IncreaseCoin(finalCoin);
-    //    Debug.Log("Coin: " + finalCoin);
-        
-    //}
 }

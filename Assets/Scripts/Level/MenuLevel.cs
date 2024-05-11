@@ -57,6 +57,7 @@ public class MenuLevel : SaiMonoBehaviour
     public void OpenLevel(int levelId)
     {
         string levelName = "Stage " + levelId;
-        SceneManager.LoadScene(levelName);
+        //SceneManager.LoadScene(levelName);
+        SceneController.Instance.LoadingScene(levelName);
     }
 }

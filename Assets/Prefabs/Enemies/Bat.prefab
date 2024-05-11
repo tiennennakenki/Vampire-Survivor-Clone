@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 4381111839888092005}
   - component: {fileID: -8532127350715437798}
   - component: {fileID: 7541574461865866026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,6 +77,7 @@ MonoBehaviour:
   player: {fileID: 0}
   knockbackVelocity: {x: 0, y: 0}
   knockbackDuration: 0
+  spawnPointsClone: []
 --- !u!212 &-8169370681728494532
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -150,6 +151,7 @@ MonoBehaviour:
   deathFadeTime: 0.6
   spriteRenderer: {fileID: -8169370681728494532}
   enemyMovement: {fileID: 1781197951289393579}
+  rb2D: {fileID: -8532127350715437798}
 --- !u!50 &-8532127350715437798
 Rigidbody2D:
   serializedVersion: 4
@@ -160,7 +162,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 2925133537809436152}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -174,7 +176,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &7541574461865866026
@@ -192,7 +194,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -209,7 +211,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010856688, y: 0.052732393}
+  m_Offset: {x: 0.016555667, y: 0.088669404}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -220,7 +222,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.48818558, y: 0.40443423}
+  m_Size: {x: 0.51819974, y: 0.4491509}
   m_EdgeRadius: 0
 --- !u!1 &4258333103220673751
 GameObject:
@@ -232,9 +234,9 @@ GameObject:
   m_Component:
   - component: {fileID: 609352973712412472}
   - component: {fileID: 7640714421319502634}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bat_3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -316,9 +318,9 @@ GameObject:
   m_Component:
   - component: {fileID: 992558022996132491}
   - component: {fileID: 1146976387325958642}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bat_2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -400,9 +402,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5036588080702377583}
   - component: {fileID: 5767332381374184339}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bat_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

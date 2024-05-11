@@ -83,16 +83,31 @@ public abstract class Item : SaiMonoBehaviour
         bool consumePassives = (evolutionData.consumes & ItemData.Evolution.Consumption.passives) > 0;
         bool consumeWeapons = (evolutionData.consumes & ItemData.Evolution.Consumption.weapons) > 0;
 
+        if (!consumePassives || !consumeWeapons) return false;
+
         // Loop through all the catalysts and check if we should consume them.
         foreach (ItemData.Evolution.Config c in evolutionData.catalysts)
         {
-            if (c.itemType is PassiveData && consumePassives) inventory.Remove(c.itemType, true);
-            if (c.itemType is WeaponData && consumeWeapons) inventory.Remove(c.itemType, true);
+            if (c.itemType is PassiveData && consumePassives)
+            {
+                inventory.Remove(c.itemType, true);
+            }
+            else if (c.itemType is WeaponData && consumeWeapons)
+            {
+                inventory.Remove(c.itemType, true);
+            }
         }
 
         // Should we consume ourselves as well?
-        if (this is Passive && consumePassives) inventory.Remove((this as Passive).data, true);
-        else if (this is Weapon && consumeWeapons) inventory.Remove((this as Weapon).data, true);
+        if (this is Passive && consumePassives)
+        {
+            inventory.Remove((this as Passive).data, true);
+        }
+
+        if (this is Weapon && consumeWeapons)
+        {
+            inventory.Remove((this as Weapon).data, true);
+        }
 
         // Add the new weapon onto our inventory.
         inventory.Add(evolutionData.outcome.itemType);

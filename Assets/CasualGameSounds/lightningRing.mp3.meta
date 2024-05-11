@@ -1,11 +1,5 @@
 fileFormatVersion: 2
-guid: 52320e590bf774734a288886eba557ba
-labels:
-- Audio
-- Casual
-- Sound
-- SFX
-- Effect
+guid: d5d1cd377b839e44780c89a1ff3310f9
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7
@@ -17,7 +11,7 @@ AudioImporter:
     compressionFormat: 1
     quality: 1
     conversionMode: 0
-    preloadAudioData: 1
+    preloadAudioData: 0
   platformSettingOverrides: {}
   forceToMono: 0
   normalize: 1

@@ -6,7 +6,6 @@ public abstract class Despawn : SaiMonoBehaviour
 {
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
         this.Despawning();
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -20,6 +21,8 @@ public class EnemyStats : SaiMonoBehaviour
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected EnemyMovement enemyMovement;
 
+    public bool isDead;
+
     protected override void Awake()
     {
         base.Awake();
@@ -30,8 +33,14 @@ public class EnemyStats : SaiMonoBehaviour
 
     protected override void Start()
     {
-        base.Start();
         this.originalColor = spriteRenderer.color;
+        this.isDead = false;
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        this.isDead = false;
     }
 
     #region LoadComponents
@@ -71,6 +80,7 @@ public class EnemyStats : SaiMonoBehaviour
 
     public virtual void TakeDamage(float damage, Vector2 sourcePosition, float knockbackForce = 5f, float knockbackDuration = 0.2f)
     {
+        if(this.isDead) return;
         this.currentHealth -= damage;
         StartCoroutine(DamageFlash());
         SoundController.Instance.PlayEnemyHurtSoundEffect();
@@ -88,6 +98,7 @@ public class EnemyStats : SaiMonoBehaviour
 
         if(this.currentHealth <= 0 )
         {
+            this.isDead = true;
             this.OnDead();
         }
     }
@@ -99,14 +110,14 @@ public class EnemyStats : SaiMonoBehaviour
 
     IEnumerator KillFale()
     {
+        
         WaitForEndOfFrame w = new WaitForEndOfFrame();
         float t = 0, originalAlpha = spriteRenderer.color.a;
 
-        while(t<deathFadeTime)
+        while(t < deathFadeTime)
         {
             yield return w;
             t += Time.deltaTime;
-
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, (1 - t / deathFadeTime) * originalAlpha);
         }
 
@@ -123,32 +134,23 @@ public class EnemyStats : SaiMonoBehaviour
         ItemsDropSpawner.Instance.Drop(this.enemyData.dropList, dropPos, dropRot);
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        Debug.Log("collider with player");
-    //        PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
-    //        player.TakeDamage(currentDamage);
-    //    }
-    //}
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
-    //        player.TakeDamage(currentDamage);
-    //    }
-    //}
-
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
-            player.TakeDamage(currentDamage);
-        }
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
+        //    player.TakeDamage(currentDamage);
+        //}
+
+        //if (collision.gameObject.CompareTag("Enemy"))
+        //{
+        //    Debug.Log("collision with enemy");
+        //}
+        if(isDead) return;
+        if (!collision.gameObject.CompareTag("Player")) return;
+
+        PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
+        player.TakeDamage(currentDamage);
     }
 
     public virtual void ResetCurrentHealth()

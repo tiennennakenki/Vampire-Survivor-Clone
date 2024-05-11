@@ -9,20 +9,6 @@ public class BreakableProps : SaiMonoBehaviour
     [SerializeField] protected float health = 10;
     public float Health => health;
 
-    protected override void LoadComponents()
-    {
-        base.LoadComponents();
-        //this.LoadObstacleData();
-    }
-
-    //protected virtual void LoadObstacleData()
-    //{
-    //    if (this.obstacleData != null) return;
-    //    string resPath = "Obstacles/Obstacle";
-    //    this.obstacleData = Resources.Load<ObstacleSO>(resPath);
-    //    Debug.LogWarning(transform.name + ": LoadObstacleData", gameObject);
-    //}
-
     public virtual void TakeDamage(float dmg)
     {
         this.health -= dmg;

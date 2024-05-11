@@ -15,6 +15,11 @@ public class AuraWeapon : Weapon
         {
             if (currentAura) Destroy(currentAura);
             currentAura = Instantiate(currentStats.auraPrefab, transform);
+            //if (currentAura) 
+            //    WeaponSpawner.Instance.Despawn(currentAura.transform);
+            //Debug.Log("CurrentAura.name = " +currentAura.name);
+            //currentAura = WeaponSpawner.Instance.Spawn(currentStats.auraPrefab.name, transform.position, Quaternion.identity).GetComponent<Aura>();
+            //currentAura.gameObject.SetActive(true);
             currentAura.weapon = this;
             currentAura.owner = owner;
 
@@ -26,6 +31,10 @@ public class AuraWeapon : Weapon
     public override void OnUnequip()
     {
         if (currentAura) Destroy(currentAura);
+        //if (currentAura)
+        //{
+        //    WeaponSpawner.Instance.Despawn(currentAura.transform);
+        //}
     }
 
     public override bool DoLevelUp()

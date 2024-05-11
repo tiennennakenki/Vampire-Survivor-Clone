@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PropRandomizer : SaiMonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PropRandomizer : SaiMonoBehaviour
     public List<GameObject> PropSpawnPoints => propSpawnPoints;
     [SerializeField] protected List<GameObject> propPrefabs;
     public List<GameObject> PropPrefabs => propPrefabs;
+
+    private HashSet<Vector3> spawnedPositions = new HashSet<Vector3>();
 
     protected override void LoadComponents()
     {
@@ -55,20 +58,26 @@ public class PropRandomizer : SaiMonoBehaviour
 
     protected override void Start()
     {
-        base.Start();
         this.SpawnProps();
+    }
+
+    bool HasSpawnedAtPosition(Vector3 position)
+    {
+        return spawnedPositions.Contains(position);
     }
 
     protected virtual void SpawnProps()
     {
         foreach(GameObject child in this.propSpawnPoints)
         {
+            if (HasSpawnedAtPosition(child.transform.position)) continue;
             int rand = Random.Range(0,this.propPrefabs.Count);
 
             GameObject obstacle = Instantiate(propPrefabs[rand].gameObject, child.transform.position, Quaternion.identity);
             obstacle.SetActive(true);
 
             obstacle.transform.parent = child.transform;
+            spawnedPositions.Add(child.transform.position);
         }
     }
 }

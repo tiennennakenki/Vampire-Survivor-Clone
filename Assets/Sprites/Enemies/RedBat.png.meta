@@ -140,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 97
+        y: 1
         width: 26
         height: 11
       alignment: 0
@@ -161,7 +161,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 35
-        y: 101
+        y: 5
         width: 27
         height: 22
       alignment: 0
@@ -182,7 +182,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 66
-        y: 107
+        y: 11
         width: 29
         height: 15
       alignment: 0
@@ -203,7 +203,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 97
-        y: 106
+        y: 10
         width: 31
         height: 21
       alignment: 0
@@ -215,258 +215,6 @@ TextureImporter:
       bones: []
       spriteID: bfb92b46a4243ca47ae7fc0f8b077733
       internalID: -44698522
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_4
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 64
-        width: 19
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4580ecd982df6214383c23033ab48959
-      internalID: 2134647760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_5
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 74
-        width: 17
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 392df6f5104b2ee4793deb5b32b0ded0
-      internalID: -1874432650
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_6
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 75
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: de9124fd4ad95b6469baf0db793a4b95
-      internalID: -1366756412
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_7
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 69
-        width: 15
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c47f217bf5345fb41986199669d0387e
-      internalID: -368205400
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_8
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 37
-        width: 27
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 59211eef48438424698994a12d2ebb7f
-      internalID: -129776759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_9
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 45
-        width: 29
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9da44ed1d8ca1f24aa71bd2fd3539bc1
-      internalID: 1323841767
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_10
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 43
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a8f8dc38455bee4d8ff27e2ca64da51
-      internalID: 1963009534
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_11
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 33
-        width: 25
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5e9460478497dae43b607c98749a7dcb
-      internalID: 777370217
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_12
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 0
-        width: 19
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 944dc97c91e1ac54b80df9276e4cada9
-      internalID: -746346963
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_13
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 10
-        width: 17
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 596712ea6be70e5409b89dd34dfb0bae
-      internalID: 612841531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_14
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 11
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b168c04d7c5c10b459c882dcea878d2a
-      internalID: -1471534105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBat_15
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 5
-        width: 15
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cddbe7750d64cdf448ebdf02760b0a4c
-      internalID: 619999183
       vertices: []
       indices: 
       edges: []
@@ -484,20 +232,8 @@ TextureImporter:
     nameFileIdTable:
       RedBat_0: 806588899
       RedBat_1: -162097331
-      RedBat_10: 1963009534
-      RedBat_11: 777370217
-      RedBat_12: -746346963
-      RedBat_13: 612841531
-      RedBat_14: -1471534105
-      RedBat_15: 619999183
       RedBat_2: -843464162
       RedBat_3: -44698522
-      RedBat_4: 2134647760
-      RedBat_5: -1874432650
-      RedBat_6: -1366756412
-      RedBat_7: -368205400
-      RedBat_8: -129776759
-      RedBat_9: 1323841767
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

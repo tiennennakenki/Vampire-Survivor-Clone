@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8009500053303182413}
   - component: {fileID: 6423973376900615029}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye Lord_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6739941974015040434}
   - component: {fileID: 5682864594590582785}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye Lord_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 5374779839186153326}
   - component: {fileID: 2051758564175944903}
   - component: {fileID: 350931702655782463}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FlyingEyeLordBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -334,7 +334,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0024790764, y: -0.123577625}
+  m_Offset: {x: -0.011887029, y: -0.019453824}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -345,7 +345,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6709565, y: 0.8211511}
+  m_Size: {x: 0.9696995, y: 0.6129035}
   m_EdgeRadius: 0
 --- !u!114 &2051758564175944903
 MonoBehaviour:
@@ -405,7 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3418052763870106720}
   - component: {fileID: 3589366207727503678}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye Lord_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,7 +489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1426029398499902238}
   - component: {fileID: 6513378074836712327}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye Lord_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4131766300566915680}
   - component: {fileID: 2060426330957637409}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye Lord_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,7 +657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4242914605466969884}
   - component: {fileID: 7834979316868808892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye Lord_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2369835596760750635}
   - component: {fileID: 1862285634474096459}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye Lord_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,7 +825,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6026536412817954213}
   - component: {fileID: 9061929085084507135}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flying eye Lord_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}

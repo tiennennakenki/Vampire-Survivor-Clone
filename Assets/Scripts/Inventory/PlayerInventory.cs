@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEditor.Progress;
 
 public class PlayerInventory : SaiMonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PlayerInventory : SaiMonoBehaviour
                 image.enabled = true;
                 image.sprite = p.data.icon;
             }
-            Debug.Log(string.Format("Assigned {0} to player.", item.name));
+            //Debug.Log(string.Format("Assigned {0} to player.", item.name));
         }
 
         public void Clear()
@@ -39,6 +40,7 @@ public class PlayerInventory : SaiMonoBehaviour
 
         public bool IsEmpty() { return item == null; }
     }
+    [SerializeField] protected Canvas canvas;
     public List<Slot> weaponSlots = new List<Slot>(6);
     public List<Slot> passiveSlots = new List<Slot>(6);
 
@@ -62,6 +64,143 @@ public class PlayerInventory : SaiMonoBehaviour
     {
         player = GetComponent<PlayerStats>();
     }
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        this.LoadCanvas();
+        this.LoadWeaponSlots();
+        this.LoadPassiveItemSlots();
+        this.LoadUpgradeUIOptions();
+    }
+
+    protected virtual void LoadCanvas()
+    {
+        Canvas[] allCanvas = FindObjectsOfType<Canvas>();
+        foreach (Canvas canvas in allCanvas)
+        {
+            if (canvas.CompareTag("UIGame"))
+            {
+                this.canvas = canvas;
+                return;
+            }
+        }
+
+        if (canvas == null)
+        {
+            Debug.LogError("Canvas not found");
+        }
+    }
+
+    protected virtual void LoadWeaponSlots()
+    {
+        if (this.canvas == null)
+        {
+            Debug.LogError("Canvas not found");
+            return;
+        }
+
+        Transform inventorySlots = canvas.transform.Find("Inventory Slots");
+        if (inventorySlots == null)
+        {
+            Debug.LogError("Inventory Slots not found");
+            return;
+        }
+
+        Transform weaponSlotsUI = inventorySlots.Find("Weapon Slots");
+        if (weaponSlotsUI == null)
+        {
+            Debug.LogError("Weapon Slots not found");
+            return;
+        }
+
+        for (int i = 0; i < weaponSlots.Count; i++)
+        {
+            // Kiểm tra xem weaponSlots[i] có hợp lệ không và đã được thiết lập hình ảnh chưa
+            if (i < weaponSlots.Count && weaponSlots[i] != null && weaponSlots[i].image == null)
+            {
+                Image weaponSlotImage = weaponSlotsUI.GetChild(i).GetComponent<Image>();
+                if (weaponSlotImage != null)
+                {
+                    weaponSlots[i].image = weaponSlotImage;
+                }
+            }
+        }
+    }
+
+    protected virtual void LoadPassiveItemSlots()
+    {
+        if (this.canvas == null)
+        {
+            Debug.LogError("Canvas not found");
+            return;
+        }
+
+        Transform inventorySlots = canvas.transform.Find("Inventory Slots");
+        if (inventorySlots == null)
+        {
+            Debug.LogError("Inventory Slots not found");
+            return;
+        }
+
+        Transform passiveItemSlotsUI = inventorySlots.Find("Passive Item Slots");
+        if (passiveItemSlotsUI == null)
+        {
+            Debug.LogError("Weapon Slots not found");
+            return;
+        }
+
+        for (int i = 0; i < passiveSlots.Count; i++)
+        {
+            // Kiểm tra xem weaponSlots[i] có hợp lệ không và đã được thiết lập hình ảnh chưa
+            if (i < passiveSlots.Count && passiveSlots[i] != null && passiveSlots[i].image == null)
+            {
+                Image PassiveItemSlotImage = passiveItemSlotsUI.GetChild(i).GetComponent<Image>();
+                if (PassiveItemSlotImage != null)
+                {
+                    passiveSlots[i].image = PassiveItemSlotImage;
+                }
+            }
+        }
+    }
+
+    protected virtual void LoadUpgradeUIOptions()
+    {
+        if (this.canvas == null)
+        {
+            Debug.LogError("Canvas not found");
+            return;
+        }
+        Transform screens = canvas.transform.Find("Screens");
+        if (screens == null)
+        {
+            Debug.LogError("Screens not found");
+            return;
+        }
+        Transform levelUpScreens = screens.transform.Find("Level Up Screen");
+        if (levelUpScreens == null)
+        {
+            Debug.LogError("Level Up Screens not found");
+            return;
+        }
+        Transform upgradeOptionsHolder = levelUpScreens.transform.Find("Upgrade Options Holder");
+        if (upgradeOptionsHolder == null)
+        {
+            Debug.LogError("Upgrade Options Holder not found");
+            return;
+        }
+
+        for(int i = 0; i< upgradeUIOptions.Count; i++)
+        {
+            Image upgradeOption = upgradeOptionsHolder.GetChild(i).GetComponent<Image>();
+            upgradeUIOptions[i].upgradeDescriptionDisplay = upgradeOption.transform.Find("Upgrade Description").GetComponent<TextMeshProUGUI>();
+            upgradeUIOptions[i].upgradeNameDisplay = upgradeOption.transform.Find("Upgrade Name").GetComponent<TextMeshProUGUI>();
+            upgradeUIOptions[i].upgradeIcon = upgradeOption.transform.Find("Upgrade Icon Background").GetComponent<Image>();
+            upgradeUIOptions[i].upgradeButton = upgradeOption.transform.Find("Upgrade Option Button").GetComponent<Button>();
+        }
+
+    }
+
 
     // Checks if the inventory has an item of a certaint type.
     public bool Has(ItemData type) { return Get(type); }
@@ -125,20 +264,24 @@ public class PlayerInventory : SaiMonoBehaviour
     public bool Remove(PassiveData data, bool removeUpgradeAvailability = false)
     {
         // Remove this passive from the upgrade pool.
-        if (removeUpgradeAvailability) availablePassives.Remove(data);
-
-        for (int i = 0; i < weaponSlots.Count; i++)
+        if (removeUpgradeAvailability)
         {
-            Passive p = weaponSlots[i].item as Passive;
+            availablePassives.Remove(data);
+        }
+
+        for (int i = 0; i < passiveSlots.Count; i++)
+        {
+            Passive p = passiveSlots[i].item as Passive;
             if (p.data == data)
             {
-                weaponSlots[i].Clear();
+                passiveSlots[i].Clear();
                 p.OnUnequip();
+                player.RecalculateStats();
                 Destroy(p.gameObject);
                 return true;
             }
         }
-
+        
         return false;
     }
 

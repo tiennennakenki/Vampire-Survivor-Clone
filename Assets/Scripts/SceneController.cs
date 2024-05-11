@@ -1,18 +1,46 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneController : SaiMonoBehaviour
 {
+    private static SceneController instance;
+    public static SceneController Instance => instance;
+
     [SerializeField] protected TextMeshProUGUI coin;
+    [SerializeField] protected GameObject loadingScene;
+    [SerializeField] protected Image loadingBarFill;
 
     protected override void Awake()
     {
         base.Awake();
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         this.UpdateCoin();
+    }
+
+    IEnumerator LoadSceneAsync(string name)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(name);
+
+        if (loadingScene == null) 
+            yield return null;
+        loadingScene.SetActive(true);
+
+        while(!operation.isDone)
+        {
+            float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
+
+            loadingBarFill.fillAmount = progressValue;
+
+            yield return null;
+        }
+
     }
 
     public virtual void SceneChange(string name)
@@ -20,6 +48,11 @@ public class SceneController : SaiMonoBehaviour
         SceneManager.LoadScene(name);
         Time.timeScale = 1f;
         this.UpdateCoin();
+    }
+
+    public virtual void LoadingScene(string name)
+    {
+        StartCoroutine(LoadSceneAsync(name));
     }
 
     public virtual void Quit()

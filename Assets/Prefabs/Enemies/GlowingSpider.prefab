@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8269359597614169575}
   - component: {fileID: 6312246462474653736}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GlowingSpider_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4426388648390339324}
   - component: {fileID: 1544484404649900905}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GlowingSpider_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.0625, y: 1.0625}
+  m_Size: {x: 2, y: 1.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 7247658008759249456}
   - component: {fileID: 6730063035956335174}
   - component: {fileID: 9012083114787418374}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GlowingSpider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -401,7 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6163012015432816375}
   - component: {fileID: 6984539329006375860}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GlowingSpider_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6722429023157881345}
   - component: {fileID: 5353459459927079077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GlowingSpider_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,7 +9,6 @@ public class ProjectileWeapon : Weapon
 
     protected override void Start()
     {
-        base.Start();
         ActivateCooldown();
     }
 
@@ -50,12 +49,6 @@ public class ProjectileWeapon : Weapon
 
         // Otherwise, calculate the angle and offset of our spawned projectile.
         float spawnAngle = GetSpawnAngle();
-
-        //Projectile prefab = Instantiate(
-        //    currentStats.projectilePrefab,
-        //    owner.transform.position + (Vector3)GetSpawnOffset(spawnAngle),
-        //    Quaternion.Euler(0, 0, spawnAngle)
-        //);
 
         ////And spawn a copy of the projectile.
         Transform weaponTransform = WeaponSpawner.Instance.Spawn(currentStats.projectilePrefab.name,

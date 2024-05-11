@@ -139,8 +139,8 @@ TextureImporter:
       name: Skeleton_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 49
+        x: 11
+        y: 8
         width: 45
         height: 51
       alignment: 0
@@ -160,8 +160,8 @@ TextureImporter:
       name: Skeleton_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 49
+        x: 77
+        y: 9
         width: 45
         height: 50
       alignment: 0
@@ -181,8 +181,8 @@ TextureImporter:
       name: Skeleton_2
       rect:
         serializedVersion: 2
-        x: 360
-        y: 49
+        x: 141
+        y: 10
         width: 45
         height: 50
       alignment: 0
@@ -202,8 +202,8 @@ TextureImporter:
       name: Skeleton_3
       rect:
         serializedVersion: 2
-        x: 510
-        y: 49
+        x: 205
+        y: 10
         width: 45
         height: 51
       alignment: 0

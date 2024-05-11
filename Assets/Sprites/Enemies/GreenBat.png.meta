@@ -140,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 97
+        y: 1
         width: 25
         height: 11
       alignment: 0
@@ -161,7 +161,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 35
-        y: 101
+        y: 5
         width: 27
         height: 22
       alignment: 0
@@ -182,7 +182,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 66
-        y: 107
+        y: 11
         width: 29
         height: 15
       alignment: 0
@@ -203,7 +203,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 97
-        y: 106
+        y: 10
         width: 31
         height: 21
       alignment: 0
@@ -215,258 +215,6 @@ TextureImporter:
       bones: []
       spriteID: 8e9fb604392aff2459bc5a86885d3be7
       internalID: -977532022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_4
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 64
-        width: 19
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a7e6afaa9e26f7240a674e1dc09e423b
-      internalID: -1419336001
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_5
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 74
-        width: 17
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ec3470f833fd5a1478fe95e707a7de90
-      internalID: -1368475458
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_6
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 75
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e56894ee3ff02634080bdf84d3ae6482
-      internalID: -1647421888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_7
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 69
-        width: 15
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74a21d056e3b342499afd9e440841f1d
-      internalID: 476910276
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_8
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 37
-        width: 27
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a723e375e9687604497c9e444f6db6db
-      internalID: -171288324
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_9
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 45
-        width: 29
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 387a70c412ea39d48b4557f6063d25db
-      internalID: -2001801954
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_10
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 43
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dcf395c544cedf6438ed1f878b9bfb94
-      internalID: -1879433478
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_11
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 33
-        width: 25
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5ea4fb11a12eefb4aab536f69ed86542
-      internalID: 113843896
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_12
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 0
-        width: 19
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d814a2adc6abe84d99002ec73ada8e5
-      internalID: -100847659
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_13
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 10
-        width: 17
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 477407b80388d724e91fdfa776bae832
-      internalID: -1346589195
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_14
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 11
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 682bae506b5695a43ba3ff482f621a9b
-      internalID: -1787268131
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GreenBat_15
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 5
-        width: 15
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c91cbaeabdaa4554a8c06f58b64ef73c
-      internalID: 1726912550
       vertices: []
       indices: 
       edges: []
@@ -484,20 +232,8 @@ TextureImporter:
     nameFileIdTable:
       GreenBat_0: -2064257466
       GreenBat_1: 1169604732
-      GreenBat_10: -1879433478
-      GreenBat_11: 113843896
-      GreenBat_12: -100847659
-      GreenBat_13: -1346589195
-      GreenBat_14: -1787268131
-      GreenBat_15: 1726912550
       GreenBat_2: 1118127751
       GreenBat_3: -977532022
-      GreenBat_4: -1419336001
-      GreenBat_5: -1368475458
-      GreenBat_6: -1647421888
-      GreenBat_7: 476910276
-      GreenBat_8: -171288324
-      GreenBat_9: -2001801954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -21,7 +21,6 @@ public class PlayerSelection : SaiMonoBehaviour
 
     protected override void Start()
     {
-        base.Start();
         this.SetCharacter();
     }
 

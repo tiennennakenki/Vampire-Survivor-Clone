@@ -59,14 +59,15 @@ public abstract class Spawner : SaiMonoBehaviour
 
     public virtual Transform GetObjectFromPool(Transform prefab)
     {
-        foreach (Transform poolObj in this.poolObjs)
+        for (int i = 0; i < this.poolObjs.Count; i++)
         {
+            Transform poolObj = this.poolObjs[i];
             if (poolObj.name == prefab.name)
             {
-                poolObj.position = new Vector3(0, 0, 0);
+                poolObj.position = Vector3.zero;
                 poolObj.rotation = Quaternion.identity;
                 poolObj.localScale = Vector3.one;
-                poolObjs.Remove(poolObj);
+                this.poolObjs.RemoveAt(i);
                 return poolObj;
             }
         }
@@ -75,6 +76,7 @@ public abstract class Spawner : SaiMonoBehaviour
         newPrefab.name = prefab.name;
         return newPrefab;
     }
+
 
     //public virtual Transform GetObjectFromPool(Transform prefab)
     //{

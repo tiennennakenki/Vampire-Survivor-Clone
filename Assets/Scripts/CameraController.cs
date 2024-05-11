@@ -35,7 +35,6 @@ public class CameraController : SaiMonoBehaviour
 
     protected override void Update()
     {
-        base.Update();
         this.FollowPlayer();
     }
 

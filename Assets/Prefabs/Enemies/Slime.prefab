@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2709773295126347919}
   - component: {fileID: 1019906641444406514}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 16854531627858385}
   - component: {fileID: 1821812178125263188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8427987425314465501}
   - component: {fileID: 4835717804904052733}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3061453615733297030}
   - component: {fileID: 8443295954283048990}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2003083100432716768}
   - component: {fileID: 5579417865004527465}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2400396552791859982}
   - component: {fileID: 3576420249540914378}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6651114279702995048}
   - component: {fileID: 9193677729023519634}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3059125600403945565}
   - component: {fileID: 3008932781043236359}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 2767281708762839612}
   - component: {fileID: 4079788976596446648}
   - component: {fileID: 5252414557881363512}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -823,7 +823,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -911,7 +911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6827315506384344033}
   - component: {fileID: 7654168638929736351}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -995,7 +995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5144582107680706108}
   - component: {fileID: 748685599862374608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slime_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

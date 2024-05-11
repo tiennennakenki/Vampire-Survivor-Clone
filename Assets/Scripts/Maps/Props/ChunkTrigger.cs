@@ -29,15 +29,7 @@ public class ChunkTrigger : SaiMonoBehaviour
         Debug.LogWarning(transform.name + ": LoadTargetMap", gameObject);
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Player"))
-    //    {
-    //        Debug.Log("Entering in the Terrain - Successfull");
-    //    }
-    //}
-
-    public void OnTriggerStay2D(Collider2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {

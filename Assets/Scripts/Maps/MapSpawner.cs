@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,11 +20,12 @@ public class MapSpawner : SaiMonoBehaviour
     float opDist;
     float optimizerCooldown;
     public float optimizerCooldownDur = 1;
+    private HashSet<Vector3> spawnedChunkPositions = new HashSet<Vector3>();
+    private bool hasSpawnedChunkThisFrame = false;
+
 
     protected override void OnEnable()
     {
-        base.OnEnable();
-
         PlayerSelection.CharacterSetEvent += LoadPlayer;
         if (player != null)
         {
@@ -68,13 +68,6 @@ public class MapSpawner : SaiMonoBehaviour
         Debug.LogWarning(transform.name + ": LoadPlayer", gameObject);
     }
 
-    //protected virtual void LoadPlayerMovement()
-    //{
-    //    if (this.playerMovement != null) return;
-    //    this.playerMovement = this.player.GetComponentInChildren<PlayerMovement>();
-    //    Debug.LogWarning(transform.name + ": LoadPlayerMovement", gameObject);
-    //}
-
     protected virtual void LoadTerrainChunks()
     {
         if (this.terrainChunks.Count > 0) return;
@@ -108,24 +101,38 @@ public class MapSpawner : SaiMonoBehaviour
         this.playerLastPosition = this.player.transform.position;
 
         string directionName = this.GetDirectionName(moveDir);
-        this.CheckAndSpawnChunk(directionName);
+        //this.CheckAndSpawnChunk(directionName);
 
-        if (directionName.Contains("Up"))
+        if (!hasSpawnedChunkThisFrame)
         {
-            this.CheckAndSpawnChunk("Up");
+            if (directionName.Contains("Up") && !HasSpawnedChunkAtPosition(currentChunk.transform.Find("Up").position))
+            {
+                this.CheckAndSpawnChunk("Up");
+                this.CheckAndSpawnChunk("Right Up");
+                this.CheckAndSpawnChunk("Left Up");
+            }
+            if (directionName.Contains("Down") && !HasSpawnedChunkAtPosition(currentChunk.transform.Find("Down").position))
+            {
+                this.CheckAndSpawnChunk("Down");
+                this.CheckAndSpawnChunk("Right Down");
+                this.CheckAndSpawnChunk("Left Down");
+            }
+            if (directionName.Contains("Right") && !HasSpawnedChunkAtPosition(currentChunk.transform.Find("Right").position))
+            {
+                this.CheckAndSpawnChunk("Right");
+                this.CheckAndSpawnChunk("Right Up");
+                this.CheckAndSpawnChunk("Right Down");
+            }
+            if (directionName.Contains("Left") && !HasSpawnedChunkAtPosition(currentChunk.transform.Find("Left").position))
+            {
+                this.CheckAndSpawnChunk("Left");
+                this.CheckAndSpawnChunk("Left Up");
+                this.CheckAndSpawnChunk("Left Down");
+            }
         }
-        if (directionName.Contains("Down"))
-        {
-            this.CheckAndSpawnChunk("Down");
-        }
-        if (directionName.Contains("Right"))
-        {
-            this.CheckAndSpawnChunk("Right");
-        }
-        if (directionName.Contains("Left"))
-        {
-            this.CheckAndSpawnChunk("Left");
-        }
+
+        // Reset the flag at the end of the frame
+        hasSpawnedChunkThisFrame = false;
     }
 
     protected virtual void CheckAndSpawnChunk(string directionName)
@@ -133,7 +140,9 @@ public class MapSpawner : SaiMonoBehaviour
         if (Physics2D.OverlapCircle(this.currentChunk.transform.Find(directionName).position, this.checkerRadius, this.terrainMask))
             return;
         SpawnChunk(currentChunk.transform.Find(directionName).position);
+        hasSpawnedChunkThisFrame = true; // Mark that a chunk has been spawned
     }
+
 
     protected virtual string GetDirectionName(Vector3 direction)
     {
@@ -186,6 +195,14 @@ public class MapSpawner : SaiMonoBehaviour
         latestChunk.SetActive(true);
         spawnedChunks.Add(latestChunk);
         latestChunk.transform.SetParent(transform);
+
+        spawnedChunkPositions.Add(spawnPosition);
+    }
+
+    // Check if a chunk has been spawned at the given position
+    bool HasSpawnedChunkAtPosition(Vector3 position)
+    {
+        return spawnedChunkPositions.Contains(position);
     }
 
     void ChunkOptimzer()

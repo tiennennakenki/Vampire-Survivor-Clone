@@ -15,6 +15,8 @@ public class SoundController : SaiMonoBehaviour
     [SerializeField] protected AudioSource characterHurtSoundEffect;
     [SerializeField] protected AudioSource itemUnlockedSoundEffect;
     [SerializeField] protected AudioSource itemFailedSoundEffect;
+    [SerializeField] protected AudioSource soundTrackEffect;
+    [SerializeField] protected AudioSource startSoundEffect;
 
     protected override void Awake()
     {
@@ -26,6 +28,7 @@ public class SoundController : SaiMonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    #region LoadComponents
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -37,6 +40,8 @@ public class SoundController : SaiMonoBehaviour
         this.LoadCharacterHurtSoundEffect();
         this.LoadItemUnlockedSoundEffect();
         this.LoadItemFailedSoundEffect();
+        this.LoadSoundTrackEffect();
+        this.LoadStartSoundEffect();
     }
 
     protected virtual void LoadClickSoundEffect()
@@ -51,6 +56,22 @@ public class SoundController : SaiMonoBehaviour
             {
                 this.clickSoundEffect = audioSource;
                 Debug.LogWarning(transform.name + ": LoadClickSoundEffect", gameObject);
+            }
+        }
+    }
+
+    protected virtual void LoadStartSoundEffect()
+    {
+        if (this.startSoundEffect != null) return;
+
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+
+        foreach (AudioSource audioSource in audioSources)
+        {
+            if (audioSource.clip.name == "startSound")
+            {
+                this.startSoundEffect = audioSource;
+                Debug.LogWarning(transform.name + ": LoadStartSoundEffect", gameObject);
             }
         }
     }
@@ -167,9 +188,44 @@ public class SoundController : SaiMonoBehaviour
         }
     }
 
+    protected virtual void LoadSoundTrackEffect()
+    {
+        if (this.soundTrackEffect != null) return;
+
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+
+        foreach (AudioSource audioSource in audioSources)
+        {
+            if (audioSource.clip.name == "soundTrack")
+            {
+                this.soundTrackEffect = audioSource;
+                Debug.LogWarning(transform.name + ": LoadSoundTrackEffect", gameObject);
+            }
+        }
+    }
+    #endregion
+
     public virtual void PlayClickSoundEffect()
     {
         this.clickSoundEffect.Play();
+    }
+
+    public virtual void PlaySoundTrackEffect()
+    {
+        if (this.soundTrackEffect == null) return;
+        this.soundTrackEffect.Play();
+    }
+
+    public virtual void StopSoundTrackEffect()
+    {
+        if (this.soundTrackEffect == null) return;
+        this.soundTrackEffect.Stop();
+    }
+
+    public virtual void PlayStartSoundEffect()
+    {
+        if(this.startSoundEffect == null) return;
+        this.startSoundEffect.Play();
     }
 
     public virtual void PlayAttackSoundEffect()

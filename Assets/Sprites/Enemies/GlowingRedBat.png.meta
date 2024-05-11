@@ -140,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 96
+        y: 0
         width: 28
         height: 13
       alignment: 0
@@ -161,7 +161,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 34
-        y: 100
+        y: 4
         width: 29
         height: 24
       alignment: 0
@@ -182,7 +182,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 65
-        y: 106
+        y: 10
         width: 31
         height: 17
       alignment: 0
@@ -203,7 +203,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 105
+        y: 9
         width: 32
         height: 23
       alignment: 0
@@ -215,258 +215,6 @@ TextureImporter:
       bones: []
       spriteID: 9cb4141b523165b45ad264df6727a81e
       internalID: 590038663
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_4
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 64
-        width: 19
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 246a8d2f922a3c24fb5a100f55d7d412
-      internalID: -656112227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_5
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 74
-        width: 17
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bdee94ac38adedd4bb5537c5b1a7e0da
-      internalID: -55704976
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_6
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 75
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 462588e1e29fdc04283b47f027654ffd
-      internalID: -533733950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_7
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 69
-        width: 15
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fccd5430c21b6424da0e17a84d933bae
-      internalID: 1409271074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_8
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 37
-        width: 27
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9884b373fbda67b4db17f10fc4ee913d
-      internalID: -1856575425
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_9
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 45
-        width: 29
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aa5f10c743734d44cbac245987a29189
-      internalID: 1821526978
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_10
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 43
-        width: 31
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 51517e2f6e0564d43886de0cac98b610
-      internalID: 1062698146
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_11
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 33
-        width: 25
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c998b41e67c87544bac93f7235bebb2e
-      internalID: -121078538
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_12
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 0
-        width: 19
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d22aec7229822bb419bc83a13b4ca1ba
-      internalID: 1810806661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_13
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 10
-        width: 17
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f2735e218a8444a4d889652adb7d7942
-      internalID: 1180134503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_14
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 11
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81fab4a9ec1c93048b08b45ca447f3c3
-      internalID: 2017708356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GlowingRedBat_15
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 5
-        width: 15
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c84749df21bd7c49a802c1e16d08396
-      internalID: 104001682
       vertices: []
       indices: 
       edges: []
@@ -484,20 +232,8 @@ TextureImporter:
     nameFileIdTable:
       GlowingRedBat_0: 994006799
       GlowingRedBat_1: -1272515225
-      GlowingRedBat_10: 1062698146
-      GlowingRedBat_11: -121078538
-      GlowingRedBat_12: 1810806661
-      GlowingRedBat_13: 1180134503
-      GlowingRedBat_14: 2017708356
-      GlowingRedBat_15: 104001682
       GlowingRedBat_2: -1511508164
       GlowingRedBat_3: 590038663
-      GlowingRedBat_4: -656112227
-      GlowingRedBat_5: -55704976
-      GlowingRedBat_6: -533733950
-      GlowingRedBat_7: 1409271074
-      GlowingRedBat_8: -1856575425
-      GlowingRedBat_9: 1821526978
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

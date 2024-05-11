@@ -17,7 +17,6 @@ public class PlayerCollector : SaiMonoBehaviour
     }
     protected override void Start()
     {
-        base.Start();
         player = playerCtrl.Model;
     }
 

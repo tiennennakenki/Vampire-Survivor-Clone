@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1122042520610690351}
   - component: {fileID: 2405884544694536765}
   - component: {fileID: -1559336398465302919}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RedBat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -161,7 +161,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.013544649, y: 0.11036846}
+  m_Offset: {x: 0.009159073, y: 0.08665851}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -172,7 +172,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6132712, y: 0.4814486}
+  m_Size: {x: 0.4575244, y: 0.43402869}
   m_EdgeRadius: 0
 --- !u!114 &2405884544694536765
 MonoBehaviour:
@@ -232,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 505424947357230852}
   - component: {fileID: 7086305693073117522}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bat_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7904234632815094324}
   - component: {fileID: 3723243372627120367}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bat_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7373369854616198663}
   - component: {fileID: 8352047069281552092}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bat_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

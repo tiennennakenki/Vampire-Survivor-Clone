@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1208909241937201186}
   - component: {fileID: 1037503075168016418}
   - component: {fileID: 2414514518364474358}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GreenSpider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -167,7 +167,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.027331054, y: 0.3452068}
+  m_Offset: {x: -0.027331054, y: 0.63148665}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -178,7 +178,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.05642, y: 0.6417371}
+  m_Size: {x: 1.05642, y: 0.7921891}
   m_EdgeRadius: 0
 --- !u!114 &1037503075168016418
 MonoBehaviour:
@@ -238,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158894725870539847}
   - component: {fileID: 1591384568269759054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spider 1_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8136828202839900332}
   - component: {fileID: 2994380628008579232}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spider 1_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4347512368313955872}
   - component: {fileID: 3449156620045056420}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spider 1_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9193319749746641237}
   - component: {fileID: 6993835866334066670}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spider 1_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5751517425142613402}
   - component: {fileID: 1546563473002999492}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spider 1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6882672146025553857}
   - component: {fileID: 5981044952142646596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spider 1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8734808431224216566}
   - component: {fileID: 7465014049404763089}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spider 1_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5548766837943841734}
   - component: {fileID: 3166225160746581597}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spider 1_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,7 +910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2425968588599998438}
   - component: {fileID: 1483271211232800831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spider 1_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}

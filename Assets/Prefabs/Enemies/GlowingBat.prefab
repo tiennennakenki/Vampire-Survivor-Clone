@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 497759817790956804}
   - component: {fileID: 6142747189073270466}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glowing Bat_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 3511831226741019485}
   - component: {fileID: 1557538317305514510}
   - component: {fileID: -3285150153352050604}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GlowingBat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -245,7 +245,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.023158878, y: 0.11357319}
+  m_Offset: {x: 0.0028511435, y: 0.1016891}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -256,7 +256,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.60686165, y: 0.48785806}
+  m_Size: {x: 0.64523363, y: 0.46408987}
   m_EdgeRadius: 0
 --- !u!114 &1557538317305514510
 MonoBehaviour:
@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3648789416631629699}
   - component: {fileID: 920287738394635299}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glowing Bat_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7144955531973049102}
   - component: {fileID: 6174926257795745353}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Glowing Bat_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

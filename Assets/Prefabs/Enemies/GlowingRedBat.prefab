@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 833540042250553121}
   - component: {fileID: 1486487579289766230}
   - component: {fileID: -4280936535875172603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GlowingRedBat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -161,7 +161,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.016749382, y: 0.10395898}
+  m_Offset: {x: 0.011440679, y: 0.0867151}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -172,7 +172,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6068617, y: 0.55836236}
+  m_Size: {x: 0.62081635, y: 0.5238745}
   m_EdgeRadius: 0
 --- !u!114 &1486487579289766230
 MonoBehaviour:
@@ -232,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 102641348960090998}
   - component: {fileID: 309472632252979493}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GlowingRedBat_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2153859844313956476}
   - component: {fileID: 3753588773798543722}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GlowingRedBat_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3264964750418339110}
   - component: {fileID: 4087529686165816665}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GlowingRedBat_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

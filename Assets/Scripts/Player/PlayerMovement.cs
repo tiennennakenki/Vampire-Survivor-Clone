@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : SaiMonoBehaviour
@@ -32,8 +30,6 @@ public class PlayerMovement : SaiMonoBehaviour
 
     protected override void Start()
     {
-        base.Start();
-        //this.playerStats = FindObjectOfType<PlayerStats>();
         moveSpeed = playerCtrl.Model.characterData.stats.moveSpeed;
     }
 
@@ -77,7 +73,6 @@ public class PlayerMovement : SaiMonoBehaviour
 
     protected override void Update()
     {
-        base.Update();
         this.Moving();
     }
 
@@ -97,9 +92,9 @@ public class PlayerMovement : SaiMonoBehaviour
                 {
                     isFacingRight = !isFacingRight;
 
-                    Vector3 scale = playerCtrl.Model.transform.localScale;
-                    scale.x = playerCtrl.Model.transform.localScale.x * -1;
-                    playerCtrl.Model.transform.localScale = scale;
+                    Vector3 scale = playerCtrl.AnimationPlayer.transform.localScale;
+                    scale.x = playerCtrl.AnimationPlayer.transform.localScale.x * -1;
+                    playerCtrl.AnimationPlayer.transform.localScale = scale;
                 }
                 // Chuyển đổi animation tại đây
                 animate.horizontal = Mathf.Abs(direction.x);

@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class EnemiesSpawner : Spawner
@@ -25,7 +23,7 @@ public class EnemiesSpawner : Spawner
     [SerializeField] protected bool isWaveActive = false;
 
     [Header("Spawn Point")]
-    [SerializeField] protected List<Transform> spawnPoints;
+    [SerializeField] public List<Transform> spawnPoints;
 
     protected override void Awake()
     {
@@ -54,7 +52,6 @@ public class EnemiesSpawner : Spawner
 
     protected override void Start()
     {
-        base.Start();
         this.CaculatorWaveQuote();
     }
 
@@ -93,8 +90,12 @@ public class EnemiesSpawner : Spawner
 
     protected override void Update()
     {
-        base.Update();
         this.SpawnPointsFollowPlayer();
+        this.SpawnEnemies();
+    }
+
+    protected virtual void SpawnEnemies()
+    {
         if (this.currentWaveCount < waves.Count && waves[currentWaveCount].spawnCount == 0 && !isWaveActive)
         {
             StartCoroutine(BeginNextWave());

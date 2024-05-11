@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 448400449769383245}
   - component: {fileID: 5378794815112692362}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SkeletonLord_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8463349445763363871}
   - component: {fileID: 7893436711481377449}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SkeletonLord_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4987509012270211759}
   - component: {fileID: 1491405753675629457}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SkeletonLord_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 6650171546869610808}
   - component: {fileID: 286007486311085413}
   - component: {fileID: -7579856103189871363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SkeletonLordBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -485,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4262112104644834756}
   - component: {fileID: 6121220094851412745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SkeletonLord_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

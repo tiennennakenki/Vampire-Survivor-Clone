@@ -1,8 +1,7 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class PlayerStats : SaiMonoBehaviour
@@ -49,6 +48,7 @@ public class PlayerStats : SaiMonoBehaviour
 
     //UI
     [Header("UI")]
+    [SerializeField] protected Canvas canvas;
     [SerializeField] protected Image expBar;
     [SerializeField] protected TextMeshProUGUI levelText;
 
@@ -90,22 +90,64 @@ public class PlayerStats : SaiMonoBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
+        this.LoadCanvas();
         this.LoadPlayerCtrl();
         this.LoadInventory();
         this.LoadCollector();
-        //this.LoadExperienceBar();
+        this.LoadExperienceBar();
+        this.LoadLevelText();
+    }
+
+    protected virtual void LoadCanvas()
+    {
+        Canvas[] allCanvas = FindObjectsOfType<Canvas>();
+        foreach (Canvas canvas in allCanvas)
+        {
+            if (canvas.CompareTag("UIGame"))
+            {
+                this.canvas = canvas;
+                return;
+            }
+        }
+
+        if (canvas == null)
+        {
+            Debug.LogError("Canvas not found");
+        }
     }
 
     protected virtual void LoadExperienceBar()
     {
         if (this.expBar != null) return;
-        Canvas canvas = GameObject.Find("UI_Canvas").GetComponent<Canvas>();
         if (canvas != null)
         {
             Transform experienceBarHolder = canvas.transform.Find("Experience Bar Holder");
             if (experienceBarHolder != null)
             {
                 this.expBar = experienceBarHolder.Find("Experience Bar")?.GetComponent<Image>();
+            }
+            else
+            {
+                Debug.LogError("Experience Bar Holder not found!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Canvas not found!");
+        }
+
+        Debug.LogWarning(transform.name + ": LoadExperienceBar", gameObject);
+    }
+
+    protected virtual void LoadLevelText()
+    {
+        if (this.levelText != null) return;
+        if (canvas != null)
+        {
+            Transform experienceBarHolder = canvas.transform.Find("Experience Bar Holder");
+            if (experienceBarHolder != null)
+            {
+                this.levelText = experienceBarHolder.Find("Level Display")?.GetComponent<TextMeshProUGUI>();
             }
             else
             {
@@ -148,7 +190,6 @@ public class PlayerStats : SaiMonoBehaviour
 
     protected override void Start()
     {
-        base.Start();
         //Spawn the starting weapon
         inventory.Add(characterData.StartingWeapon);
 
@@ -163,7 +204,6 @@ public class PlayerStats : SaiMonoBehaviour
 
     protected override void Update()
     {
-        base.Update();
         this.ResetInvinciblility();
     }
 
@@ -215,6 +255,12 @@ public class PlayerStats : SaiMonoBehaviour
         }
     }
 
+    private IEnumerator DespawnEffect(Transform effect)
+    {
+        yield return new WaitForSeconds(1f);
+        EffectSpawner.Instance.Despawn(effect);
+    }
+
     public virtual void TakeDamage(float amount)
     {
         //If the player is not currently invincible, reduce health and start invincibility 
@@ -230,8 +276,13 @@ public class PlayerStats : SaiMonoBehaviour
 
                 invincibilityTimer = invincibilityDuration;
                 isInvincible = true;
+
                 // If there is a damage effect assigned, play it.
-                if (damageEffect) Destroy(Instantiate(damageEffect, transform.position, Quaternion.identity), 5f);
+                //if (damageEffect) Destroy(Instantiate(damageEffect, transform.position, Quaternion.identity), 5f);
+                if (damageEffect)
+                {
+                    this.SpawnAndDespawnEffect(damageEffect.transform);
+                }
 
                 //Play character hurt sound effect
                 SoundController.Instance.PlayCharacterHurtSoundEffect();
@@ -244,13 +295,23 @@ public class PlayerStats : SaiMonoBehaviour
             else
             {
                 // If there is a blocked effect assigned, play it.
-                if (blockedEffect) Destroy(Instantiate(blockedEffect, transform.position, Quaternion.identity), 5f);
+                if (blockedEffect)
+                {
+                    this.SpawnAndDespawnEffect(blockedEffect.transform);
+                }
             }
 
             invincibilityTimer = invincibilityDuration;
             isInvincible = true;
         }
 
+    }
+
+    protected virtual void SpawnAndDespawnEffect(Transform prefab)
+    {
+        Transform effect = EffectSpawner.Instance.Spawn(prefab, transform.position, Quaternion.identity);
+        effect.gameObject.SetActive(true);
+        StartCoroutine(DespawnEffect(effect));
     }
 
     protected virtual void ResetInvinciblility()

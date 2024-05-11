@@ -139,8 +139,8 @@ TextureImporter:
       name: Flying eye Lord_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 57
+        x: 3
+        y: 86
         width: 43
         height: 33
       alignment: 0
@@ -160,8 +160,8 @@ TextureImporter:
       name: Flying eye Lord_1
       rect:
         serializedVersion: 2
-        x: 206
-        y: 57
+        x: 52
+        y: 85
         width: 43
         height: 34
       alignment: 0
@@ -181,8 +181,8 @@ TextureImporter:
       name: Flying eye Lord_2
       rect:
         serializedVersion: 2
-        x: 356
-        y: 60
+        x: 98
+        y: 89
         width: 42
         height: 31
       alignment: 0
@@ -202,8 +202,8 @@ TextureImporter:
       name: Flying eye Lord_3
       rect:
         serializedVersion: 2
-        x: 507
-        y: 59
+        x: 148
+        y: 90
         width: 41
         height: 27
       alignment: 0
@@ -223,8 +223,8 @@ TextureImporter:
       name: Flying eye Lord_4
       rect:
         serializedVersion: 2
-        x: 656
-        y: 59
+        x: 4
+        y: 43
         width: 42
         height: 26
       alignment: 0
@@ -244,8 +244,8 @@ TextureImporter:
       name: Flying eye Lord_5
       rect:
         serializedVersion: 2
-        x: 805
-        y: 58
+        x: 51
+        y: 42
         width: 44
         height: 26
       alignment: 0
@@ -265,8 +265,8 @@ TextureImporter:
       name: Flying eye Lord_6
       rect:
         serializedVersion: 2
-        x: 957
-        y: 57
+        x: 100
+        y: 41
         width: 42
         height: 26
       alignment: 0
@@ -286,8 +286,8 @@ TextureImporter:
       name: Flying eye Lord_7
       rect:
         serializedVersion: 2
-        x: 1107
-        y: 56
+        x: 150
+        y: 38
         width: 42
         height: 27
       alignment: 0

@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4611767609987213426}
-  - component: {fileID: 8480689938183239709}
+  - component: {fileID: 3345496834220076063}
   - component: {fileID: 6085953204387630334}
   m_Layer: 6
   m_Name: Terrain Chunk (1)
@@ -106,7 +106,7 @@ Transform:
   - {fileID: 4115853208922783959}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8480689938183239709
+--- !u!114 &3345496834220076063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

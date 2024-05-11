@@ -47,6 +47,28 @@ public abstract class Weapon : Item
             return result;
         }
 
+        public static Stats operator -(Stats s1, Stats s2)
+        {
+            Stats result = new Stats();
+            result.name = s2.name ?? s1.name;
+            result.description = s2.description ?? s1.description;
+            result.projectilePrefab = s2.projectilePrefab ?? s1.projectilePrefab;
+            result.auraPrefab = s2.auraPrefab ?? s1.auraPrefab;
+            result.hitEffect = s2.hitEffect == null ? s1.hitEffect : s2.hitEffect;
+            result.spawnVariance = s2.spawnVariance;
+            result.lifespan = s1.lifespan - s2.lifespan;
+            result.damage = s1.damage - s2.damage;
+            result.damageVariance = s1.damageVariance - s2.damageVariance;
+            result.area = s1.area - s2.area;
+            result.speed = s1.speed - s2.speed;
+            result.cooldown = s1.cooldown - s2.cooldown;
+            result.number = s1.number - s2.number;
+            result.piercing = s1.piercing - s2.piercing;
+            result.projectileInterval = s1.projectileInterval - s2.projectileInterval;
+            result.knockback = s1.knockback - s2.knockback;
+            return result;
+        }
+
         // Get damage dealt.
         public float GetDamage()
         {
@@ -58,7 +80,7 @@ public abstract class Weapon : Item
 
     public WeaponData data;
 
-    protected float currentCooldown;
+    [SerializeField] protected float currentCooldown;
 
     protected PlayerMovement movement; // Reference to the player's movement...
 

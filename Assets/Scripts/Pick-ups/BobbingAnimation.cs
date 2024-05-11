@@ -12,7 +12,6 @@ public class BobbingAnimation : SaiMonoBehaviour
 
     protected override void Start()
     {
-        base.Start();
         this.pickUp = GetComponent<PickUp>();
     }
 

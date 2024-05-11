@@ -1,8 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class GameManager : SaiMonoBehaviour
 {
@@ -61,6 +63,9 @@ public class GameManager : SaiMonoBehaviour
     [SerializeField] public TextMeshProUGUI enemiesDeadText;
 
 
+    [SerializeField] protected TextMeshProUGUI damageFloatingText;
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -82,7 +87,9 @@ public class GameManager : SaiMonoBehaviour
     protected virtual void LoadPlayer()
     {
         this.playerInventory = PlayerCtrl.Instance.Model.GetComponent<PlayerInventory>();
+        if (playerInventory == null) Debug.LogError("PlayerInventory not found");
         this.playerStats = PlayerCtrl.Instance.Model.GetComponent<PlayerStats>();
+        
     }
 
     #region LoadComponents
@@ -105,6 +112,7 @@ public class GameManager : SaiMonoBehaviour
         this.LoadCoinText();
         this.LoadEnemiesDeadText();
         this.LoadreferenceCamera();
+        //this.LoadDamageFloatingText();
     }
 
     protected virtual void LoadCanvas()
@@ -136,11 +144,19 @@ public class GameManager : SaiMonoBehaviour
 
     protected virtual void LoadCoinText()
     {
-        if (this.coinText != null) return;
         if (this.canvas == null) return;
+        if (this.coinText != null) return;
         Transform coinDisplay = canvas.transform.Find("Coin Display");
         this.coinText = coinDisplay.transform.Find("Total Coin").GetComponent<TextMeshProUGUI>();
         Debug.LogWarning(transform.name + ": LoadCoinText", gameObject);
+    }
+
+    protected virtual void LoadDamageFloatingText()
+    {
+        if (this.canvas == null) return;
+        if (this.damageFloatingText != null) return;
+        this.coinText = damageFloatingText.transform.Find("Damage Floating Text").GetComponent<TextMeshProUGUI>();
+        Debug.LogWarning(transform.name + ": LoadDamageFloatingText", gameObject);
     }
 
     protected virtual void LoadreferenceCamera()
@@ -153,8 +169,8 @@ public class GameManager : SaiMonoBehaviour
 
     protected virtual void LoadEnemiesDeadText()
     {
-        if (this.enemiesDeadText != null) return;
         if (this.canvas == null) return;
+        if (this.enemiesDeadText != null) return;
         Transform enemiesDeadDisplay = canvas.transform.Find("Enemies Dead Display");
         this.enemiesDeadText = enemiesDeadDisplay.transform.Find("Total Enemies Dead").GetComponent<TextMeshProUGUI>();
         Debug.LogWarning(transform.name + ": LoadEnemiesDeadText", gameObject);
@@ -200,45 +216,49 @@ public class GameManager : SaiMonoBehaviour
 
     protected virtual void LoadChosenCharacterImage()
     {
-        if (this.chosenCharacterImage != null) return;
         if (this.canvas == null) return;
+        if (this.chosenCharacterImage != null) return;
         GameObject screens = canvas.transform.Find("Screens").gameObject;
         GameObject resultsScreen = screens.transform.Find("Results Screen").gameObject;
-        GameObject chosenCharacterHolder = resultsScreen.transform.Find("Chosen Character Holder").gameObject;
+        GameObject uiResults = resultsScreen.transform.Find("UI Results").gameObject;
+        GameObject chosenCharacterHolder = uiResults.transform.Find("Chosen Character Holder").gameObject;
         this.chosenCharacterImage = chosenCharacterHolder.transform.Find("Chosen Character Image").GetComponent<Image>();
         Debug.LogWarning(transform.name + ": LoadChosenCharacterImage", gameObject);
     }
 
     protected virtual void LoadChosenCharacterName()
     {
-        if (this.chosenCharacterName != null) return;
         if (this.canvas == null) return;
+        if (this.chosenCharacterName != null) return;
         GameObject screens = canvas.transform.Find("Screens").gameObject;
         GameObject resultsScreen = screens.transform.Find("Results Screen").gameObject;
-        GameObject chosenCharacterHolder = resultsScreen.transform.Find("Chosen Character Holder").gameObject;
+        GameObject uiResults = resultsScreen.transform.Find("UI Results").gameObject;
+        GameObject chosenCharacterHolder = uiResults.transform.Find("Chosen Character Holder").gameObject;
         this.chosenCharacterName = chosenCharacterHolder.transform.Find("Chosen Character Name").GetComponent<TextMeshProUGUI>();
         Debug.LogWarning(transform.name + ": LoadChosenCharacterName", gameObject);
     }
 
     protected virtual void LoadLevelReachedDisplay()
     {
-        if (this.levelReachedDisplay != null) return;
         if (this.canvas == null) return;
+        if (this.levelReachedDisplay != null) return;
         GameObject screens = canvas.transform.Find("Screens").gameObject;
         GameObject resultsScreen = screens.transform.Find("Results Screen").gameObject;
-        GameObject levelReachedHolder = resultsScreen.transform.Find("Level Reached Holder").gameObject;
+        GameObject uiResults = resultsScreen.transform.Find("UI Results").gameObject;
+        GameObject levelReachedHolder = uiResults.transform.Find("Level Reached Holder").gameObject;
         this.levelReachedDisplay = levelReachedHolder.transform.Find("Level Reached Display").GetComponent<TextMeshProUGUI>();
         Debug.LogWarning(transform.name + ": LoadLevelReachedDisplay", gameObject);
     }
 
     protected virtual void LoadListChosenWeaponsUI()
     {
+        if (this.canvas == null) return;
         if (this.chosenWeaponsUI.Count > 0) return;
 
-        if (this.canvas == null) return;
         Transform screens = canvas.transform.Find("Screens");
         Transform resultScreen = screens.Find("Results Screen");
-        Transform weaponAndPassiveItemChosen = resultScreen.transform.Find("Weapon and Passive Item Chosen");
+        Transform uiResults = resultsScreen.transform.Find("UI Results");
+        Transform weaponAndPassiveItemChosen = uiResults.transform.Find("Weapon and Passive Item Chosen");
         Transform slotsWeapon = weaponAndPassiveItemChosen.transform.Find("Slots Weapon");
 
         foreach (Transform slot in slotsWeapon)
@@ -255,12 +275,13 @@ public class GameManager : SaiMonoBehaviour
 
     protected virtual void LoadListChosenPassiveItemsUI()
     {
+        if(this.canvas == null) return;
         if (this.chosenPassiveItemsUI.Count > 0) return;
 
-        if(this.canvas == null) return;
         Transform screens = canvas.transform.Find("Screens");
         Transform resultScreen = screens.Find("Results Screen");
-        Transform weaponAndPassiveItemChosen = resultScreen.transform.Find("Weapon and Passive Item Chosen");
+        Transform uiResults = resultsScreen.transform.Find("UI Results");
+        Transform weaponAndPassiveItemChosen = uiResults.transform.Find("Weapon and Passive Item Chosen");
         Transform slotsWeapon = weaponAndPassiveItemChosen.transform.Find("Slots Passive Item");
 
         foreach (Transform slot in slotsWeapon)
@@ -277,12 +298,13 @@ public class GameManager : SaiMonoBehaviour
 
     protected virtual void LoadTimeSurvivedDisplay()
     {
+        if (this.canvas == null) return;
         if (this.timeSurvied != null) return;
 
-        if (this.canvas == null) return;
         Transform screens = canvas.transform.Find("Screens");
         Transform resultsScreen = screens.transform.Find("Results Screen");
-        Transform timeSurvivedHolder = resultsScreen.transform.Find("Time Survived Holder");
+        GameObject uiResults = resultsScreen.transform.Find("UI Results").gameObject;
+        Transform timeSurvivedHolder = uiResults.transform.Find("Time Survived Holder");
         this.timeSurvied = timeSurvivedHolder.transform.Find("Time Survived Display").GetComponent<TextMeshProUGUI>();
 
         Debug.LogWarning(transform.name + ": LoadTimeSurvivedDisplay", gameObject);
@@ -290,9 +312,9 @@ public class GameManager : SaiMonoBehaviour
 
     protected virtual void LoadStopwatchDisplay()
     {
+        if(this.canvas == null) return;
         if (this.stopwatchDisplay != null) return;
 
-        if(this.canvas == null) return;
         this.stopwatchDisplay = canvas.transform.Find("Stopwatch Display").GetComponent<TextMeshProUGUI>();
 
         Debug.LogWarning(transform.name + ": LoadStopwatchDisplay", gameObject);
@@ -302,7 +324,6 @@ public class GameManager : SaiMonoBehaviour
 
     protected override void Update()
     {
-        base.Update();
         this.ChangeScreen();
     }
 
@@ -322,7 +343,6 @@ public class GameManager : SaiMonoBehaviour
                 {
                     this.isGameOver = true;
                     Time.timeScale = 0f; //Stop the game entirely
-                    Debug.Log("Game is over");
                     this.DisplayGameOverScreen();
                 }                
                 break;
@@ -331,7 +351,6 @@ public class GameManager : SaiMonoBehaviour
                 {
                     this.choosingUpgrade = true;
                     Time.timeScale = 0f; //Pause the game for now
-                    Debug.Log("Upgrade shown");
                     this.levelUpScreen.SetActive(true);
                 }
                 break;
@@ -356,7 +375,6 @@ public class GameManager : SaiMonoBehaviour
         this.ChangeState(GameState.Pause);
         Time.timeScale = 0; //Stop the game
         this.pauseScreen.SetActive(true);
-        Debug.Log("Game is paused");
     }
 
     public virtual void ResumeGame()
@@ -365,7 +383,6 @@ public class GameManager : SaiMonoBehaviour
         this.ChangeState(this.previousState);
         Time.timeScale = 1; //Resume the game
         this.pauseScreen.SetActive(false);
-        Debug.Log("Game is resumed");
     }
 
     protected virtual void CheckForPauseAndResume()
@@ -507,11 +524,65 @@ public class GameManager : SaiMonoBehaviour
         instance.StartCoroutine(instance.GenerateFloatingTextCoroutine(text, target, duration, speed));
     }
 
-    IEnumerator GenerateFloatingTextCoroutine(string text, Transform target, float duration = 1f, float speed = 50f)
+    //IEnumerator GenerateFloatingTextCoroutine(string text, Transform target, float duration = 1f, float speed = 50f)
+    //{
+    //    //GameObject textObj = new GameObject("Damage Floating Text");
+    //    //RectTransform rectTransform = textObj.AddComponent<RectTransform>();
+    //    //TextMeshProUGUI textMesh = textObj.AddComponent<TextMeshProUGUI>();
+    //    //textMesh.text = text;
+    //    //textMesh.horizontalAlignment = HorizontalAlignmentOptions.Center;
+    //    //textMesh.verticalAlignment = VerticalAlignmentOptions.Middle;
+    //    //textMesh.fontSize = textFontsize;
+
+    //    //if (textFont) textMesh.font = textFont;
+    //    //rectTransform.position = referenceCamera.WorldToScreenPoint(target.position);
+    //    Transform damageFloatingText = this.SpawnDamgeFloatingText(target);
+    //    damageFloatingText.gameObject.SetActive(true);
+
+
+    //    //Destroy(textObj, duration);
+
+    //    //textObj.transform.SetParent(instance.canvas.transform);
+    //    //textObj.transform.SetSiblingIndex(0);
+
+    //    WaitForEndOfFrame w = new WaitForEndOfFrame();
+        
+    //    float t = 0;
+
+    //    // Wait for a frame and update the time.
+    //    yield return w;
+    //    t += Time.deltaTime;
+    //    //float yOffset = 0;
+    //    //Vector3 lastKnownPosition = target.position;
+    //    //while (t < duration)
+    //    //{
+    //    //    // If the RectTransform is missing for whatever reason, end this loop.
+    //    //    if (!rectTransform) break;
+
+    //    //    textMesh.color = new Color(textMesh.color.r, textMesh.color.g, textMesh.color.b, 1 - t / duration);
+
+    //    //    yOffset += speed * Time.deltaTime;
+    //    //    rectTransform.position = referenceCamera.WorldToScreenPoint(lastKnownPosition + new Vector3(0,yOffset));
+
+    //    //    // Wait for a frame and update the time.
+    //    //    yield return w;
+    //    //    t += Time.deltaTime;
+    //    //}
+
+    //}
+
+    private IEnumerator GenerateFloatingTextCoroutine(string text, Transform target, float duration = 1f, float speed = 50f)
     {
-        GameObject textObj = new GameObject("Damage Floating Text");
-        RectTransform rectTransform = textObj.AddComponent<RectTransform>();
-        TextMeshProUGUI textMesh = textObj.AddComponent<TextMeshProUGUI>();
+        GameObject textObj = DamageFloatingTextSpawner.Instance.Spawn("DamageFloatingText", referenceCamera.WorldToScreenPoint(target.position), Quaternion.identity).gameObject;
+        RectTransform rectTransform = textObj.GetComponent<RectTransform>();
+        TextMeshProUGUI textMesh = textObj.GetComponent<TextMeshProUGUI>();
+        
+        if (textMesh == null)
+        {
+            Debug.LogError("TextMeshProUGUI component not found on the prefab.");
+            yield break;
+        }
+
         textMesh.text = text;
         textMesh.horizontalAlignment = HorizontalAlignmentOptions.Center;
         textMesh.verticalAlignment = VerticalAlignmentOptions.Middle;
@@ -519,11 +590,8 @@ public class GameManager : SaiMonoBehaviour
 
         if (textFont) textMesh.font = textFont;
         rectTransform.position = referenceCamera.WorldToScreenPoint(target.position);
-
-        Destroy(textObj, duration);
-
-        textObj.transform.SetParent(instance.canvas.transform);
-        textObj.transform.SetSiblingIndex(0);
+        textObj.transform.position = rectTransform.position;
+        textObj.gameObject.SetActive(true);
 
         WaitForEndOfFrame w = new WaitForEndOfFrame();
         float t = 0;
@@ -537,11 +605,16 @@ public class GameManager : SaiMonoBehaviour
             textMesh.color = new Color(textMesh.color.r, textMesh.color.g, textMesh.color.b, 1 - t / duration);
 
             yOffset += speed * Time.deltaTime;
-            rectTransform.position = referenceCamera.WorldToScreenPoint(lastKnownPosition + new Vector3(0,yOffset));
+            rectTransform.position = referenceCamera.WorldToScreenPoint(lastKnownPosition + new Vector3(0, yOffset));
 
             // Wait for a frame and update the time.
             yield return w;
             t += Time.deltaTime;
+        }
+
+        if(t>= duration)
+        {
+            DamageFloatingTextSpawner.Instance.Despawn(textObj.transform);
         }
     }
 

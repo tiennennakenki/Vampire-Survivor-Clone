@@ -165,8 +165,6 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 0
   isPushed: 0
-  bobbingAnimation:
-    frequency: 2
-    direction: {x: 0, y: 0.3}
   experience: 2
   health: 0
+  coin: 0

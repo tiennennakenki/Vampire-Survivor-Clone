@@ -50,7 +50,6 @@ public class UICharacter : SaiMonoBehaviour
 
     protected override void Start()
     {
-        base.Start();
         CharacterCollector.OnCharacterBought += UpdateCharacterAvatar;
         this.characterAvatar.sprite = this.characterData.Icon;
         this.characterName.text = this.characterData.Name;

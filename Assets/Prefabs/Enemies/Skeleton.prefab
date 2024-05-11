@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1147918841287128742}
   - component: {fileID: 8141159053136128833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skeleton_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2676862871736234953}
   - component: {fileID: 2250356716806259929}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skeleton_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 4615089920654893314}
   - component: {fileID: 3402208020846904981}
   - component: {fileID: -3042807476840078041}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -401,7 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8158967585259269170}
   - component: {fileID: 2107297130093409654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skeleton_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7523419739234612375}
   - component: {fileID: 8465734071759134390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skeleton_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

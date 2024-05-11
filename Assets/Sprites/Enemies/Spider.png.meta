@@ -136,11 +136,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk_0
+      name: Spider_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 50
+        x: 1
+        y: 11
         width: 29
         height: 15
       alignment: 0
@@ -150,18 +150,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc5e0c15927333447a36062ffd4f9a71
-      internalID: 1116527361
+      spriteID: a84becd0dcbdb1548aadd28992c8324a
+      internalID: -1129799418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_1
+      name: Spider_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 50
+        x: 33
+        y: 11
         width: 29
         height: 14
       alignment: 0
@@ -171,18 +171,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83f2a6645be69ce448bbc7ef87d4a1dc
-      internalID: 397996241
+      spriteID: 6c40e566883866f40acc25485c734c37
+      internalID: -1498203565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_2
+      name: Spider_2
       rect:
         serializedVersion: 2
-        x: 67
-        y: 50
+        x: 65
+        y: 11
         width: 28
         height: 14
       alignment: 0
@@ -192,18 +192,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b00f2e5ad1f6fc4f91fdea6a1a48f38
-      internalID: -2003534042
+      spriteID: edf0bf3dc472dc646a1492ad8c959454
+      internalID: 1345785884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_3
+      name: Spider_3
       rect:
         serializedVersion: 2
-        x: 99
-        y: 50
+        x: 97
+        y: 11
         width: 31
         height: 15
       alignment: 0
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec260722de24ca34e9d63d80deec6b3d
-      internalID: 1911802784
+      spriteID: a4ee1073253ebb0429d960a740c60267
+      internalID: 1712230366
       vertices: []
       indices: 
       edges: []
@@ -230,10 +230,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Walk_0: 1116527361
-      Walk_1: 397996241
-      Walk_2: -2003534042
-      Walk_3: 1911802784
+      Spider_0: -1129799418
+      Spider_1: -1498203565
+      Spider_2: 1345785884
+      Spider_3: 1712230366
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
