@@ -58,7 +58,7 @@ public class WhipWeapon : ProjectileWeapon
            );
 
         //Play attack sound effect
-        SoundController.Instance.PlayAttackSoundEffect();
+        SoundManager.Instance.PlayAttackSoundEffect();
 
         prefab.weapon = this;
         prefab.owner = owner; // Set ourselves to be the owner.

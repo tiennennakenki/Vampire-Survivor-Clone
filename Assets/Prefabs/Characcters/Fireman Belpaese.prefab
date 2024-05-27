@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 5944537870344262566}
   - component: {fileID: 7872782484954670253}
   m_Layer: 7
-  m_Name: Fireman Belpaese_7
+  m_Name: Fireman Belpaese_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -513,12 +513,12 @@ SpriteRenderer:
   m_SortingLayerID: 173400951
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1260040911, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
+  m_Sprite: {fileID: 1698192599, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.671875, y: 0.84375}
+  m_Size: {x: 0.609375, y: 0.84375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 7460838329997199174}
   - component: {fileID: 7462364203827454652}
   m_Layer: 7
-  m_Name: Fireman Belpaese_9
+  m_Name: Fireman Belpaese_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -810,12 +810,12 @@ SpriteRenderer:
   m_SortingLayerID: 173400951
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -850492807, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
+  m_Sprite: {fileID: 35445708, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.671875, y: 0.875}
+  m_Size: {x: 0.609375, y: 0.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1776,7 +1776,7 @@ GameObject:
   - component: {fileID: 3994198626832757477}
   - component: {fileID: 688640704725732299}
   m_Layer: 7
-  m_Name: Fireman Belpaese_3
+  m_Name: Fireman Belpaese_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1838,12 +1838,12 @@ SpriteRenderer:
   m_SortingLayerID: 173400951
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1822778628, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
+  m_Sprite: {fileID: -519601136, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.671875, y: 0.828125}
+  m_Size: {x: 0.609375, y: 0.828125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2466,7 +2466,7 @@ GameObject:
   - component: {fileID: 683974035217891023}
   - component: {fileID: 8876486828014321839}
   m_Layer: 7
-  m_Name: Fireman Belpaese_5
+  m_Name: Fireman Belpaese_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2528,12 +2528,12 @@ SpriteRenderer:
   m_SortingLayerID: 173400951
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -974458389, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
+  m_Sprite: {fileID: -999192369, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.671875, y: 0.828125}
+  m_Size: {x: 0.609375, y: 0.84375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2586,7 +2586,7 @@ GameObject:
   - component: {fileID: 3235358762350269968}
   - component: {fileID: 401808356095615937}
   m_Layer: 7
-  m_Name: Fireman Belpaese_13
+  m_Name: Fireman Belpaese_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2648,12 +2648,12 @@ SpriteRenderer:
   m_SortingLayerID: 173400951
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 453025070, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
+  m_Sprite: {fileID: -789536307, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.65625, y: 0.796875}
+  m_Size: {x: 0.609375, y: 0.796875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2772,7 +2772,7 @@ GameObject:
   - component: {fileID: 216170511937967681}
   - component: {fileID: 3901556507359381394}
   m_Layer: 7
-  m_Name: Fireman Belpaese_11
+  m_Name: Fireman Belpaese_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2834,7 +2834,7 @@ SpriteRenderer:
   m_SortingLayerID: 173400951
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -789536307, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
+  m_Sprite: {fileID: 632130034, guid: ed258305d0b52b540bd74554f299dcc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

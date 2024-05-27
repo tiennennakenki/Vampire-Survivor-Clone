@@ -139,10 +139,10 @@ TextureImporter:
       name: Fireman Belpaese_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 132
-        width: 42
-        height: 52
+        x: 64
+        y: 68
+        width: 43
+        height: 53
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,8 +160,8 @@ TextureImporter:
       name: Fireman Belpaese_1
       rect:
         serializedVersion: 2
-        x: 159
-        y: 133
+        x: 147
+        y: 70
         width: 42
         height: 53
       alignment: 0
@@ -178,96 +178,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fireman Belpaese_3
-      rect:
-        serializedVersion: 2
-        x: 319
-        y: 135
-        width: 43
-        height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c6c158e39e9dc1b4aba5696bb2505024
-      internalID: 1822778628
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fireman Belpaese_5
-      rect:
-        serializedVersion: 2
-        x: 479
-        y: 136
-        width: 43
-        height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b39a964decb306d4cb07b2896a9748a7
-      internalID: -974458389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fireman Belpaese_7
-      rect:
-        serializedVersion: 2
-        x: 639
-        y: 136
-        width: 43
-        height: 54
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ebe704f3251130e49b16ecfd6727a6e4
-      internalID: 1260040911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Fireman Belpaese_9
-      rect:
-        serializedVersion: 2
-        x: 799
-        y: 135
-        width: 43
-        height: 56
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 326b2487f9e23594a9214dbe38360e5d
-      internalID: -850492807
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Fireman Belpaese_11
       rect:
         serializedVersion: 2
-        x: 960
-        y: 133
-        width: 42
+        x: 555
+        y: 67
+        width: 43
         height: 51
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -283,32 +199,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fireman Belpaese_13
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 132
-        width: 42
-        height: 51
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0fae4d6d90401d44ae183ae85a6ef58
-      internalID: 453025070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Fireman Belpaese_16
       rect:
         serializedVersion: 2
-        x: 4
-        y: 4
+        x: 66
+        y: 8
         width: 38
         height: 45
       alignment: 0
@@ -328,8 +223,8 @@ TextureImporter:
       name: Fireman Belpaese_17
       rect:
         serializedVersion: 2
-        x: 164
-        y: 3
+        x: 149
+        y: 8
         width: 38
         height: 47
       alignment: 0
@@ -349,8 +244,8 @@ TextureImporter:
       name: Fireman Belpaese_18
       rect:
         serializedVersion: 2
-        x: 324
-        y: 2
+        x: 218
+        y: 6
         width: 38
         height: 44
       alignment: 0
@@ -370,8 +265,8 @@ TextureImporter:
       name: Fireman Belpaese_19
       rect:
         serializedVersion: 2
-        x: 484
-        y: 0
+        x: 284
+        y: 5
         width: 38
         height: 47
       alignment: 0
@@ -391,8 +286,8 @@ TextureImporter:
       name: Fireman Belpaese_20
       rect:
         serializedVersion: 2
-        x: 644
-        y: 1
+        x: 341
+        y: 6
         width: 38
         height: 47
       alignment: 0
@@ -412,8 +307,8 @@ TextureImporter:
       name: Fireman Belpaese_21
       rect:
         serializedVersion: 2
-        x: 804
-        y: 2
+        x: 409
+        y: 9
         width: 38
         height: 47
       alignment: 0
@@ -433,8 +328,8 @@ TextureImporter:
       name: Fireman Belpaese_22
       rect:
         serializedVersion: 2
-        x: 964
-        y: 4
+        x: 488
+        y: 12
         width: 38
         height: 43
       alignment: 0
@@ -454,8 +349,8 @@ TextureImporter:
       name: Fireman Belpaese_23
       rect:
         serializedVersion: 2
-        x: 1124
-        y: 5
+        x: 558
+        y: 8
         width: 39
         height: 43
       alignment: 0
@@ -467,6 +362,111 @@ TextureImporter:
       bones: []
       spriteID: 6f563a0f04654174eae95c08f84d616e
       internalID: -1725455257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fireman Belpaese_2
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 71
+        width: 44
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0d1888f5f09bad42bc5e45471df51c6
+      internalID: -519601136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fireman Belpaese_4
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 73
+        width: 44
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760e114bae0d95944931c41e338c4163
+      internalID: -999192369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fireman Belpaese_6
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 73
+        width: 43
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0173e3ada1d01b04fa26d78fce671e1e
+      internalID: 1698192599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fireman Belpaese_8
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 74
+        width: 43
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5efd38b2bbb4b184498e6a8d100c058b
+      internalID: 35445708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fireman Belpaese_10
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 73
+        width: 44
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3428991c57dd8624b8e91c2f0961696f
+      internalID: 632130034
       vertices: []
       indices: 
       edges: []
@@ -484,28 +484,28 @@ TextureImporter:
     nameFileIdTable:
       Fireman Belpaese_0: 596451174
       Fireman Belpaese_1: -1214380547
-      Fireman Belpaese_10: 632130034
-      Fireman Belpaese_11: -789536307
-      Fireman Belpaese_12: -884760611
-      Fireman Belpaese_13: 453025070
-      Fireman Belpaese_14: -248050357
-      Fireman Belpaese_15: -1939198278
-      Fireman Belpaese_16: 1162628403
-      Fireman Belpaese_17: 1285936618
-      Fireman Belpaese_18: 1750911445
-      Fireman Belpaese_19: 307992143
-      Fireman Belpaese_2: -519601136
-      Fireman Belpaese_20: 2034954110
-      Fireman Belpaese_21: -2101766873
-      Fireman Belpaese_22: 1596778745
-      Fireman Belpaese_23: -1725455257
-      Fireman Belpaese_3: 1822778628
-      Fireman Belpaese_4: -999192369
-      Fireman Belpaese_5: -974458389
-      Fireman Belpaese_6: 1698192599
-      Fireman Belpaese_7: 1260040911
-      Fireman Belpaese_8: 35445708
-      Fireman Belpaese_9: -850492807
+      Fireman Belpaese_10: -519601136
+      Fireman Belpaese_11: 1822778628
+      Fireman Belpaese_12: -999192369
+      Fireman Belpaese_13: -974458389
+      Fireman Belpaese_14: 1698192599
+      Fireman Belpaese_15: 1260040911
+      Fireman Belpaese_16: 35445708
+      Fireman Belpaese_17: -850492807
+      Fireman Belpaese_18: 632130034
+      Fireman Belpaese_19: -789536307
+      Fireman Belpaese_2: -884760611
+      Fireman Belpaese_20: 453025070
+      Fireman Belpaese_21: -248050357
+      Fireman Belpaese_22: -1939198278
+      Fireman Belpaese_23: 1162628403
+      Fireman Belpaese_3: 1285936618
+      Fireman Belpaese_4: 1750911445
+      Fireman Belpaese_5: 307992143
+      Fireman Belpaese_6: 2034954110
+      Fireman Belpaese_7: -2101766873
+      Fireman Belpaese_8: 1596778745
+      Fireman Belpaese_9: -1725455257
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

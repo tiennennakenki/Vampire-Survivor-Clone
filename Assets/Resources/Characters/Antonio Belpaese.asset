@@ -16,8 +16,8 @@ MonoBehaviour:
   name: Antonio Belpaese
   description: 'He is the character that every player begins with. His starting weapon
     is the Whip. Antonio starts with +20 Max Health and +1 Armor. '
-  price: 0
-  isBought: 0
+  price: 200
+  isBought: 1
   startingWeapon: {fileID: 11400000, guid: 4e73d11b0975e0646b6f3e2a839da1b3, type: 2}
   stats:
     maxHealth: 120

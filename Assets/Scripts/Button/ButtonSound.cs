@@ -27,6 +27,6 @@ public class ButtonSound : SaiMonoBehaviour
 
     protected virtual void PlaySound()
     {
-        SoundController.Instance.PlayClickSoundEffect();
+        SoundManager.Instance.PlayClickSoundEffect();
     }
 }

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class MenuLevel : SaiMonoBehaviour
 {
+    private static MenuLevel instance;
+    public static MenuLevel Instance => instance;
     [SerializeField] protected List<Button> menuLevels = new List<Button>();
     public List<Button> MenuLevels => menuLevels;
 
@@ -14,7 +16,10 @@ public class MenuLevel : SaiMonoBehaviour
 
     {
         base.Awake();
-        this.LoadComponents();
+        if(instance == null)
+        {
+            instance = this;
+        }
         this.UnlockedLevel();
     }
 
@@ -38,7 +43,7 @@ public class MenuLevel : SaiMonoBehaviour
         Debug.LogWarning(transform.name + ": LoadLevel", gameObject);
     }
 
-    protected virtual void UnlockedLevel()
+    public virtual void UnlockedLevel()
     {
         int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
         for (int i = 0; i < menuLevels.Count; i++)
@@ -57,7 +62,6 @@ public class MenuLevel : SaiMonoBehaviour
     public void OpenLevel(int levelId)
     {
         string levelName = "Stage " + levelId;
-        //SceneManager.LoadScene(levelName);
         SceneController.Instance.LoadingScene(levelName);
     }
 }

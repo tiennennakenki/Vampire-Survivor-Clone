@@ -21,54 +21,69 @@ MonoBehaviour:
     boosts:
       maxHealth: 1
       recovery: 0
+      armor: 0
       moveSpeed: 0
       might: 0
+      area: 0.1
       speed: 0
-      magnet: 0
+      duration: 0
+      amount: 0
       cooldown: 0
-      area: 1
+      magnet: 0
   growth:
   - name: Level 2
     description: Base area up by 10%
     boosts:
       maxHealth: 1
       recovery: 0
+      armor: 0
       moveSpeed: 0
       might: 0
-      speed: 0
-      magnet: 0
-      cooldown: 0
       area: 0.1
+      speed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      magnet: 0
   - name: Level 3
     description: Base area up by 10%
     boosts:
       maxHealth: 1
       recovery: 0
+      armor: 0
       moveSpeed: 0
       might: 0
-      speed: 0
-      magnet: 0
-      cooldown: 0
       area: 0.1
+      speed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      magnet: 0
   - name: Level 4
     description: Base area up by 10%
     boosts:
       maxHealth: 1
       recovery: 0
+      armor: 0
       moveSpeed: 0
       might: 0
-      speed: 0
-      magnet: 0
-      cooldown: 0
       area: 0.1
+      speed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      magnet: 0
   - name: Level 5
     description: Base area up by 10%
     boosts:
       maxHealth: 1
       recovery: 0
+      armor: 0
       moveSpeed: 0
       might: 0
-      speed: 0
-      magnet: 0
-      cooldown: 0
       area: 0.1
+      speed: 0
+      duration: 0
+      amount: 0
+      cooldown: 0
+      magnet: 0

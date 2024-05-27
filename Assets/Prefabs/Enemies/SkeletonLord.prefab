@@ -214,6 +214,7 @@ MonoBehaviour:
   player: {fileID: 0}
   knockbackVelocity: {x: 0, y: 0}
   knockbackDuration: 0
+  spawnPointsClone: []
 --- !u!61 &6650171546869610808
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -229,7 +230,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -239,10 +240,10 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 129
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 129
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -280,6 +281,7 @@ MonoBehaviour:
   deathFadeTime: 0.6
   spriteRenderer: {fileID: 91819548744860459}
   enemyMovement: {fileID: 4894662739579338777}
+  isDead: 0
 --- !u!50 &-6640506114871189700
 Rigidbody2D:
   serializedVersion: 4

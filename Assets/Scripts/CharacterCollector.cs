@@ -268,13 +268,6 @@ public class CharacterCollector : SaiMonoBehaviour
                 return characters[Random.Range(0, characters.Count)];
             }
             #endif
-
-            //// If no character data is assigned, we randomly pick one.
-            //CharacterData[] characters = Resources.FindObjectsOfTypeAll<CharacterData>();
-            //if (characters.Length > 0)
-            //{
-            //    return characters[Random.Range(0, characters.Length)];
-            //}
         }
         Debug.LogWarning("null");
         return null;
@@ -292,8 +285,6 @@ public class CharacterCollector : SaiMonoBehaviour
 
         this.priceCharacter = this.characterData.Price;
         this.characterName = this.characterData.Name;
-        //Debug.Log("select character successfull");
-        //Debug.Log(this.characterName);
         
         this.UpdateCharacterAvatar(characterData);
     }
@@ -369,7 +360,7 @@ public class CharacterCollector : SaiMonoBehaviour
         this.failedPurchaseScreen.SetActive(false);
         this.successfullyPurchaseScreen.SetActive(true);
 
-        SoundController.Instance.PlayItemUnlockedSoundEffect();
+        SoundManager.Instance.PlayItemUnlockedSoundEffect();
     }
 
     protected virtual void FailedPurchase()
@@ -384,7 +375,7 @@ public class CharacterCollector : SaiMonoBehaviour
         this.successfullyPurchaseScreen.SetActive(false);
         this.failedPurchaseScreen.SetActive(true);
 
-        SoundController.Instance.PlayItemFailedSoundEffect();
+        SoundManager.Instance.PlayItemFailedSoundEffect();
     }
 
     protected virtual void SetBlackColor(Image image)

@@ -38,6 +38,7 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadModel();
         this.LoadCollector();
         this.LoadPlayerMovement();
+        this.LoadCameraCanvas();
     }
 
     protected virtual void LoadCollector()
@@ -66,6 +67,27 @@ public class PlayerCtrl : SaiMonoBehaviour
         if (this.canvas != null) return;
         this.canvas = gameObject.GetComponentInChildren<Canvas>();
         Debug.LogWarning(transform.name + ": LoadCanvas", gameObject);
+    }
+
+    protected virtual void LoadCameraCanvas()
+    {
+        if(this.canvas == null) return;
+
+        this.canvas.renderMode = RenderMode.ScreenSpaceCamera;
+
+        // Assuming you have a camera set somewhere else in your script or you need to get it
+        Camera mainCamera = Camera.main; // Replace this with your actual camera if different
+
+        if (mainCamera != null)
+        {
+            this.canvas.worldCamera = mainCamera;
+        }
+        else
+        {
+            Debug.LogWarning(transform.name + ": Main Camera not found", gameObject);
+        }
+
+        Debug.LogWarning(transform.name + ": LoadCameraCanvas", gameObject);
     }
 
     protected virtual void LoadModel()

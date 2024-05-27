@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Rat
   m_EditorClassIdentifier: 
   enemyName: 5
-  moveSpeed: 0.3
+  moveSpeed: 0.45
   maxHealth: 15
   damage: 10
   dropList:
-  - itemSO: {fileID: 11400000, guid: ed8cb9fbd2fc0dc42b4513230ac881da, type: 2}
-    dropRate: 70000
+  - itemSO: {fileID: 11400000, guid: bdf6df6790f72ca4086cff6bcbf3210a, type: 2}
+    dropRate: 100000
     minDropRate: 0
     maxDropRate: 0

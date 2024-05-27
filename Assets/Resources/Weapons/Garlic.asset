@@ -18,10 +18,10 @@ MonoBehaviour:
   - name: Soul Eater
     condition: 1
     consumes: -1
-    evolutionLevel: 2
+    evolutionLevel: 5
     catalysts:
     - itemType: {fileID: 11400000, guid: 843333c47b2f2314e994632d982ea0a8, type: 2}
-      level: 2
+      level: 3
     outcome:
       itemType: {fileID: 11400000, guid: f37f91d4dac71a6499d3d01a6b42440f, type: 2}
       level: 1
@@ -39,7 +39,7 @@ MonoBehaviour:
       width: 0
       height: 0
     lifespan: 2
-    damage: 500
+    damage: 5
     damageVariance: 2
     area: 1
     speed: 0

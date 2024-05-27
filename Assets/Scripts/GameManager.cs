@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class GameManager : SaiMonoBehaviour
 {
@@ -31,6 +29,8 @@ public class GameManager : SaiMonoBehaviour
     [SerializeField] protected TextMeshProUGUI chosenCharacterName;
     [SerializeField] protected TextMeshProUGUI levelReachedDisplay;
     [SerializeField] protected TextMeshProUGUI timeSurvied;
+    [SerializeField] protected TextMeshProUGUI totalCoin;
+    [SerializeField] protected TextMeshProUGUI totalEnemiesDead;
     [SerializeField] protected List<Image> chosenWeaponsUI = new List<Image>(6);
     [SerializeField] protected List<Image> chosenPassiveItemsUI = new List<Image>(6);
 
@@ -64,7 +64,6 @@ public class GameManager : SaiMonoBehaviour
 
 
     [SerializeField] protected TextMeshProUGUI damageFloatingText;
-
 
     protected override void Awake()
     {
@@ -106,6 +105,8 @@ public class GameManager : SaiMonoBehaviour
         this.LoadChosenCharacterName();
         this.LoadLevelReachedDisplay();
         this.LoadTimeSurvivedDisplay();
+        this.LoadTotalCoinDisplay();
+        this.LoadTotalEnemiesDeadDisplay();
         this.LoadListChosenWeaponsUI();
         this.LoadListChosenPassiveItemsUI();
         this.LoadStopwatchDisplay();
@@ -310,6 +311,34 @@ public class GameManager : SaiMonoBehaviour
         Debug.LogWarning(transform.name + ": LoadTimeSurvivedDisplay", gameObject);
     }
 
+    protected virtual void LoadTotalCoinDisplay()
+    {
+        if (this.canvas == null) return;
+        if (this.totalCoin != null) return;
+
+        Transform screens = canvas.transform.Find("Screens");
+        Transform resultsScreen = screens.transform.Find("Results Screen");
+        GameObject uiResults = resultsScreen.transform.Find("UI Results").gameObject;
+        Transform coinCollectedHolder = uiResults.transform.Find("Coin Collected Holder");
+        this.totalCoin = coinCollectedHolder.transform.Find("Coin Collected Display").GetComponent<TextMeshProUGUI>();
+
+        Debug.LogWarning(transform.name + ": LoadTotalCoinDisplay", gameObject);
+    }
+
+    protected virtual void LoadTotalEnemiesDeadDisplay()
+    {
+        if (this.canvas == null) return;
+        if (this.totalEnemiesDead != null) return;
+
+        Transform screens = canvas.transform.Find("Screens");
+        Transform resultsScreen = screens.transform.Find("Results Screen");
+        GameObject uiResults = resultsScreen.transform.Find("UI Results").gameObject;
+        Transform enemiesDeadHolder = uiResults.transform.Find("Enemies Dead Holder");
+        this.totalEnemiesDead = enemiesDeadHolder.transform.Find("Enemies Dead Display").GetComponent<TextMeshProUGUI>();
+
+        Debug.LogWarning(transform.name + ": LoadTotalEnemiesDeadDisplay", gameObject);
+    }
+
     protected virtual void LoadStopwatchDisplay()
     {
         if(this.canvas == null) return;
@@ -406,13 +435,18 @@ public class GameManager : SaiMonoBehaviour
         this.resultsScreen.SetActive(false);
         this.levelUpScreen.SetActive(false);
         this.treasureChestScreen.SetActive(false);
+        this.gameOverScreen.SetActive(false);
     }
 
     public virtual void GameOver()
     {
         this.ChangeState(GameState.GameOver);
         this.timeSurvied.text = this.stopwatchDisplay.text;
+        this.totalCoin.text = this.coinText.text;
+        this.totalEnemiesDead.text = this.enemiesDeadText.text;
         this.RecalculateTotalCoin();
+        MySaveGame.Instance.SaveDataToLeaderboard(this.chosenCharacterName.text, this.timeSurvied.text, 
+            this.levelReachedDisplay.text, this.totalCoin.text, this.totalEnemiesDead.text);
     }
 
     public virtual void DisplayResults()
@@ -484,11 +518,6 @@ public class GameManager : SaiMonoBehaviour
     {
         this.stopwatchTime += Time.deltaTime;
         this.UpdateStopwatchDisplay();
-
-        //if(this.stopwatchTime >= this.timeLimit)
-        //{
-        //    this.playerStats.SendMessage("Kill");
-        //}
     }
 
     protected virtual void UpdateStopwatchDisplay()
@@ -523,53 +552,6 @@ public class GameManager : SaiMonoBehaviour
 
         instance.StartCoroutine(instance.GenerateFloatingTextCoroutine(text, target, duration, speed));
     }
-
-    //IEnumerator GenerateFloatingTextCoroutine(string text, Transform target, float duration = 1f, float speed = 50f)
-    //{
-    //    //GameObject textObj = new GameObject("Damage Floating Text");
-    //    //RectTransform rectTransform = textObj.AddComponent<RectTransform>();
-    //    //TextMeshProUGUI textMesh = textObj.AddComponent<TextMeshProUGUI>();
-    //    //textMesh.text = text;
-    //    //textMesh.horizontalAlignment = HorizontalAlignmentOptions.Center;
-    //    //textMesh.verticalAlignment = VerticalAlignmentOptions.Middle;
-    //    //textMesh.fontSize = textFontsize;
-
-    //    //if (textFont) textMesh.font = textFont;
-    //    //rectTransform.position = referenceCamera.WorldToScreenPoint(target.position);
-    //    Transform damageFloatingText = this.SpawnDamgeFloatingText(target);
-    //    damageFloatingText.gameObject.SetActive(true);
-
-
-    //    //Destroy(textObj, duration);
-
-    //    //textObj.transform.SetParent(instance.canvas.transform);
-    //    //textObj.transform.SetSiblingIndex(0);
-
-    //    WaitForEndOfFrame w = new WaitForEndOfFrame();
-        
-    //    float t = 0;
-
-    //    // Wait for a frame and update the time.
-    //    yield return w;
-    //    t += Time.deltaTime;
-    //    //float yOffset = 0;
-    //    //Vector3 lastKnownPosition = target.position;
-    //    //while (t < duration)
-    //    //{
-    //    //    // If the RectTransform is missing for whatever reason, end this loop.
-    //    //    if (!rectTransform) break;
-
-    //    //    textMesh.color = new Color(textMesh.color.r, textMesh.color.g, textMesh.color.b, 1 - t / duration);
-
-    //    //    yOffset += speed * Time.deltaTime;
-    //    //    rectTransform.position = referenceCamera.WorldToScreenPoint(lastKnownPosition + new Vector3(0,yOffset));
-
-    //    //    // Wait for a frame and update the time.
-    //    //    yield return w;
-    //    //    t += Time.deltaTime;
-    //    //}
-
-    //}
 
     private IEnumerator GenerateFloatingTextCoroutine(string text, Transform target, float duration = 1f, float speed = 50f)
     {
@@ -622,6 +604,7 @@ public class GameManager : SaiMonoBehaviour
     {
         float totalCoin = PlayerPrefs.GetFloat("TotalCoin");
         PlayerPrefs.SetFloat("TotalCoin", totalCoin + this.coin);
+        PlayerPrefs.Save();
     }
 
     public virtual void IncreaseCoin(float amount)

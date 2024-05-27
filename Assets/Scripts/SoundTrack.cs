@@ -2,11 +2,11 @@ public class SoundTrack : SaiMonoBehaviour
 {
     protected override void Start()
     {
-        SoundController.Instance.PlaySoundTrackEffect();
+        SoundManager.Instance.PlaySoundTrackEffect();
     }
 
     public virtual void StopSoundTrack()
     {
-        SoundController.Instance.StopSoundTrackEffect();
+        SoundManager.Instance.StopSoundTrackEffect();
     }
 }

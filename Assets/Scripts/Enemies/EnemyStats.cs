@@ -16,7 +16,7 @@ public class EnemyStats : SaiMonoBehaviour
     [Header("Damage Feedback")]
     public Color damageColor = new Color(1, 0, 0, 1); //what the color of the damage flash should be
     public float damageFlashDuration = 0.2f; //How long the flash should last
-    public float deathFadeTime = 0.6f; //How much time it takes for enemy to fade
+    public float deathFadeTime = 1f; //How much time it takes for enemy to fade
     protected Color originalColor;
     [SerializeField] protected SpriteRenderer spriteRenderer;
     [SerializeField] protected EnemyMovement enemyMovement;
@@ -83,7 +83,7 @@ public class EnemyStats : SaiMonoBehaviour
         if(this.isDead) return;
         this.currentHealth -= damage;
         StartCoroutine(DamageFlash());
-        SoundController.Instance.PlayEnemyHurtSoundEffect();
+        SoundManager.Instance.PlayEnemyHurtSoundEffect();
 
         if(damage > 0)
         {

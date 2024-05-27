@@ -727,7 +727,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1651629646}
-  - component: {fileID: 1651629645}
   - component: {fileID: 1651629647}
   - component: {fileID: 1651629648}
   - component: {fileID: 1651629649}
@@ -738,35 +737,15 @@ GameObject:
   - component: {fileID: 1651629654}
   - component: {fileID: 1651629655}
   - component: {fileID: 1651629656}
+  - component: {fileID: 1651629657}
+  - component: {fileID: 1651629658}
   m_Layer: 0
-  m_Name: Sound Controller
+  m_Name: Sound Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1651629645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651629644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3d8fcd9c4353d448bf0233f1d5453fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clickSoundEffect: {fileID: 1651629647}
-  attackSoundEffect: {fileID: 1651629648}
-  lightningRingSoundEffect: {fileID: 1651629649}
-  collectSoundEffect: {fileID: 1651629650}
-  enemyHurtSoundEffect: {fileID: 1651629651}
-  characterHurtSoundEffect: {fileID: 1651629652}
-  itemUnlockedSoundEffect: {fileID: 1651629653}
-  itemFailedSoundEffect: {fileID: 1651629654}
-  soundTrackEffect: {fileID: 1651629655}
-  startSoundEffect: {fileID: 1651629656}
 --- !u!4 &1651629646
 Transform:
   m_ObjectHideFlags: 0
@@ -1742,6 +1721,47 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1651629657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651629644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd0e486d216ce54fa90e2756da359ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSoundEffect: {fileID: 1651629647}
+  attackSoundEffect: {fileID: 1651629648}
+  lightningRingSoundEffect: {fileID: 1651629649}
+  collectSoundEffect: {fileID: 1651629650}
+  enemyHurtSoundEffect: {fileID: 1651629651}
+  characterHurtSoundEffect: {fileID: 1651629652}
+  itemUnlockedSoundEffect: {fileID: 1651629653}
+  itemFailedSoundEffect: {fileID: 1651629654}
+  soundTrackEffect: {fileID: 1651629655}
+  startSoundEffect: {fileID: 1651629656}
+  sFXStatus: 0
+--- !u!114 &1651629658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651629644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4bf2041060ee7040abccd393ace766f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leaderboard:
+    listTop: []
+  musicStatus: 0
+  fxStatus: 0
+  musicVolume: 1
+  fxVolume: 1
 --- !u!1 &1668207721
 GameObject:
   m_ObjectHideFlags: 0

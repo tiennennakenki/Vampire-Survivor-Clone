@@ -2,10 +2,10 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class SoundController : SaiMonoBehaviour
+public class SoundManager : SaiMonoBehaviour
 {
-    private static SoundController instance;
-    public static SoundController Instance => instance;
+    private static SoundManager instance;
+    public static SoundManager Instance => instance;
 
     [SerializeField] protected AudioSource clickSoundEffect;
     [SerializeField] protected AudioSource attackSoundEffect;
@@ -17,6 +17,8 @@ public class SoundController : SaiMonoBehaviour
     [SerializeField] protected AudioSource itemFailedSoundEffect;
     [SerializeField] protected AudioSource soundTrackEffect;
     [SerializeField] protected AudioSource startSoundEffect;
+
+    [SerializeField] protected bool sFXStatus;
 
     protected override void Awake()
     {
@@ -261,5 +263,74 @@ public class SoundController : SaiMonoBehaviour
     public virtual void PlayItemFailedSoundEffect()
     {
         this.itemFailedSoundEffect.Play();
+    }
+
+    public virtual void MusicStatus(bool status)
+    {
+        if(this.soundTrackEffect.mute == !status) return;
+        this.soundTrackEffect.mute = !status;
+
+        if (this.soundTrackEffect.mute) this.soundTrackEffect.Stop();
+        else this.soundTrackEffect.Play();
+
+        MySaveGame.Instance.SettingMusicStatus(status);
+    }
+    public virtual void FXStatus(bool status)
+    {
+        if (this.clickSoundEffect.mute == !status) return;
+        if (this.startSoundEffect.mute == !status) return;
+        if (this.lightningRingSoundEffect.mute == !status) return;
+        if (this.collectSoundEffect.mute == !status) return;
+        if (this.enemyHurtSoundEffect.mute == !status) return;
+        if (this.characterHurtSoundEffect.mute == !status) return;
+        if (this.itemUnlockedSoundEffect.mute == !status) return;
+        if (this.itemFailedSoundEffect.mute == !status) return;
+        if (this.attackSoundEffect.mute == !status) return;
+
+        this.clickSoundEffect.mute = !status;
+        this.startSoundEffect.mute = !status;
+        this.lightningRingSoundEffect.mute = !status;
+        this.collectSoundEffect.mute = !status;
+        this.enemyHurtSoundEffect.mute = !status;
+        this.characterHurtSoundEffect.mute = !status;
+        this.itemUnlockedSoundEffect.mute = !status;
+        this.itemFailedSoundEffect.mute = !status;
+        this.attackSoundEffect.mute = !status;
+
+        if (this.clickSoundEffect.mute) this.clickSoundEffect.Stop();
+        if (this.startSoundEffect.mute) this.startSoundEffect.Stop();
+        if (this.lightningRingSoundEffect.mute) this.lightningRingSoundEffect.Stop();
+        if (this.collectSoundEffect.mute) this.collectSoundEffect.Stop();
+        if (this.enemyHurtSoundEffect.mute) this.enemyHurtSoundEffect.Stop();
+        if (this.characterHurtSoundEffect.mute) this.characterHurtSoundEffect.Stop();
+        if (this.itemUnlockedSoundEffect.mute) this.itemUnlockedSoundEffect.Stop();
+        if (this.itemFailedSoundEffect.mute) this.itemFailedSoundEffect.Stop();
+        if (this.attackSoundEffect.mute) this.attackSoundEffect.Stop();
+        //else this.clickSoundEffect.Play();
+
+        MySaveGame.Instance.SettingFXStatus(status);
+    }
+
+
+    public virtual void MusicVolume(float volume)
+    {
+        this.soundTrackEffect.volume = volume;
+
+        MySaveGame.Instance.SettingMusicVolume(volume);
+    }
+
+    public virtual void FXVolume(float volume)
+    {
+        this.clickSoundEffect.volume = volume;
+        this.startSoundEffect.volume = volume;
+        this.lightningRingSoundEffect.volume = volume;
+        this.collectSoundEffect.volume = volume;
+        this.enemyHurtSoundEffect.volume = volume;
+        this.characterHurtSoundEffect.volume = volume;
+        this.itemUnlockedSoundEffect.volume = volume;
+        this.itemFailedSoundEffect.volume = volume;
+        this.attackSoundEffect.volume = volume;
+
+        MySaveGame.Instance.SettingFXVolume(volume);
     }
 }

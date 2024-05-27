@@ -9,12 +9,12 @@ public class PlayerMovement : SaiMonoBehaviour
     [SerializeField] public Vector3 direction;
 
     [SerializeField] protected Animation animate;
-    [SerializeField] protected bool isMoving = false; // Biến để theo dõi trạng thái di chuyển
+    [SerializeField] protected bool isMoving = false; 
     [SerializeField] protected float previousHorizontal = 0f;
     [SerializeField] protected float previousVertical = 0f;
     public Vector2 lastMovedVector;
     [SerializeField] protected bool isFacingRight = true;
-    [SerializeField] protected float moveSpeed;
+    [SerializeField] public float moveSpeed;
 
 
     //Reference
@@ -25,7 +25,9 @@ public class PlayerMovement : SaiMonoBehaviour
     {
         base.Awake();
         direction = new Vector3();
-        this.lastMovedVector = new Vector2(1, 0f); //If we start the game and player don't move then the lastMovedVector default is right
+
+        //If we start the game and player don't move then the lastMovedVector default is right
+        this.lastMovedVector = new Vector2(1, 0f); 
     }
 
     protected override void Start()
@@ -33,7 +35,7 @@ public class PlayerMovement : SaiMonoBehaviour
         moveSpeed = playerCtrl.Model.characterData.stats.moveSpeed;
     }
 
-
+    #region Loadcomponents
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -70,6 +72,7 @@ public class PlayerMovement : SaiMonoBehaviour
         this.playerStats = this.playerCtrl.Model;
         Debug.LogWarning(transform.name + ": LoadPlayerStats", gameObject);
     }
+    #endregion
 
     protected override void Update()
     {
@@ -78,14 +81,14 @@ public class PlayerMovement : SaiMonoBehaviour
 
     protected virtual void Moving()
     {
-        if (GameManager.Instance.isGameOver) return;
+        if (GameManager.Instance.isGameOver) return; //Check if the game has stopped
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
 
-        // Kiểm tra nếu người chơi đang di chuyển
+        //Check if the player is moving
         if (direction.x != 0 || direction.y != 0)
         {
-            // Kiểm tra xem hướng mới có khác với hướng trước đó hay không
+            //Check if the new direction is different from the previous direction
             if (direction.x != previousHorizontal || direction.y != previousVertical)
             {
                 if(isFacingRight && direction.x < 0 || !isFacingRight && direction.x >0)
@@ -96,7 +99,8 @@ public class PlayerMovement : SaiMonoBehaviour
                     scale.x = playerCtrl.AnimationPlayer.transform.localScale.x * -1;
                     playerCtrl.AnimationPlayer.transform.localScale = scale;
                 }
-                // Chuyển đổi animation tại đây
+
+                //Switch animations
                 animate.horizontal = Mathf.Abs(direction.x);
                 animate.vertical = Mathf.Abs(direction.y);
                 lastMovedVector = new Vector2(direction.x, direction.y);
@@ -109,18 +113,15 @@ public class PlayerMovement : SaiMonoBehaviour
             isMoving = false;
         }
 
-        // Lưu trữ hướng hiện tại để so sánh ở frame tiếp theo
+        //Save the current direction for comparison in the next frame
         previousHorizontal = direction.x;
         previousVertical = direction.y;
 
+        //Moving
         transform.parent.Translate(direction * this.moveSpeed * Time.deltaTime);
-        //lastMovedVector = new Vector2(previousHorizontal, previousVertical);
-
-        //direction *= moveSpeed;
-        //rpg2d.velocity = direction;
         
 
-        // Set giá trị của biến isMoving trong script Animate
+        //Set the value of the isMoving variable in the Animate script
         animate.isMoving = isMoving;
     }
 }

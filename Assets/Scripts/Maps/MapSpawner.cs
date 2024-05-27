@@ -101,7 +101,6 @@ public class MapSpawner : SaiMonoBehaviour
         this.playerLastPosition = this.player.transform.position;
 
         string directionName = this.GetDirectionName(moveDir);
-        //this.CheckAndSpawnChunk(directionName);
 
         if (!hasSpawnedChunkThisFrame)
         {

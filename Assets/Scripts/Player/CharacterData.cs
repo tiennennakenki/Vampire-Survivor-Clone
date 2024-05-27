@@ -76,7 +76,7 @@ public class CharacterData : ScriptableObject
         moveSpeed = 1,
         might = 1,
         amount = 0,
-        area = 1,
+        area = 0,
         speed = 1,
         duration = 1,
         cooldown = 1,

@@ -46,7 +46,7 @@ public class LightningRingWeapon : ProjectileWeapon
             weapon.gameObject.SetActive(true);
             StartCoroutine(DeSpawnObj(weapon));
             //Instantiate(currentStats.hitEffect, target.transform.position, Quaternion.identity);
-            SoundController.Instance.PlayLightningRingSoundEffect();
+            SoundManager.Instance.PlayLightningRingSoundEffect();
         }
 
         // If we have more than 1 attack count.

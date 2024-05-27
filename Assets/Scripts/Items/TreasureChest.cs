@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TreasureChest : SaiMonoBehaviour
@@ -10,12 +11,31 @@ public class TreasureChest : SaiMonoBehaviour
     [SerializeField] protected TextMeshProUGUI coinText;
     [SerializeField] protected Canvas canvas;
     [SerializeField] protected Button openBtn;
+    [SerializeField] protected Button closeBtn;
     [SerializeField] protected Image iconWeapon;
+    [SerializeField] protected bool isOpened = false;
 
-    protected override void Start()
+    //protected override void Start()
+    //{
+    //    coin = Random.Range(5, 200);
+    //    this.LoadComponents();
+    //}
+
+    protected override void Awake()
+    {
+        this.LoadComponents();
+        this.ResetCoin();
+    }
+
+    protected override void OnEnable()
+    {
+        this.ResetCoin();
+        this.isOpened = false;
+    }
+
+    protected virtual void ResetCoin()
     {
         coin = Random.Range(5, 200);
-        this.LoadComponents();
     }
 
     #region LoadComponents 
@@ -25,6 +45,7 @@ public class TreasureChest : SaiMonoBehaviour
         this.LoadCanvas();
         this.LoadCoinText();
         this.LoadOpenBtn();
+        this.LoadCloseBtn();
         this.LoadIconWeapon();
     }
 
@@ -48,15 +69,14 @@ public class TreasureChest : SaiMonoBehaviour
 
     protected virtual void LoadCoinText()
     {
-        if (this.coinText != null) return;
-
         if (canvas == null) return;
+        if (this.coinText != null) return;
 
         Transform screen = canvas.transform.Find("Screens");
 
         Transform treasureChestScreen = screen.Find("Treasure Chest Screen");
-
-        Transform coin = treasureChestScreen.Find("Coin");
+        Transform takeCoinScreen = treasureChestScreen.Find("Take Coin Screen");
+        Transform coin = takeCoinScreen.Find("Coin");
         this.coinText = coin.Find("Coin Text").GetComponent<TextMeshProUGUI>();
 
         Debug.LogWarning(transform.name + " : LoadCoinText", gameObject);
@@ -65,8 +85,8 @@ public class TreasureChest : SaiMonoBehaviour
 
     protected virtual void LoadOpenBtn()
     {
-        if (this.openBtn != null) return;
         if (canvas == null) return;
+        if (this.openBtn != null) return;
 
         Transform screen = canvas.transform.Find("Screens");
         Transform treasureChestScreen = screen.Find("Treasure Chest Screen");
@@ -74,15 +94,29 @@ public class TreasureChest : SaiMonoBehaviour
 
         Debug.LogWarning(transform.name + " : LoadOpenBtn", gameObject);
     }
-
-    protected virtual void LoadIconWeapon()
+    protected virtual void LoadCloseBtn()
     {
-        if (this.iconWeapon != null) return;
         if (canvas == null) return;
+        if (this.closeBtn != null) return;
 
         Transform screen = canvas.transform.Find("Screens");
         Transform treasureChestScreen = screen.Find("Treasure Chest Screen");
-        this.iconWeapon = treasureChestScreen.Find("Icon Weapon").GetComponent<Image>();
+        Transform takeWeaponScreen = treasureChestScreen.Find("Take Weapon Screen");
+        this.closeBtn = takeWeaponScreen.Find("Close Btn").GetComponent<Button>();
+
+        Debug.LogWarning(transform.name + " : LoadCloseBtn", gameObject);
+    }
+
+    protected virtual void LoadIconWeapon()
+    {
+        if (canvas == null) return;
+        if (this.iconWeapon != null) return;
+
+        Transform screen = canvas.transform.Find("Screens");
+        Transform treasureChestScreen = screen.Find("Treasure Chest Screen");
+        Transform takeWeaponScreen = treasureChestScreen.Find("Take Weapon Screen");
+        Transform icon = takeWeaponScreen.Find("Icon");
+        this.iconWeapon = icon.Find("Icon Weapon").GetComponent<Image>();
 
         Debug.LogWarning(transform.name + " : LoadIconWeapon", gameObject);
     }
@@ -96,15 +130,18 @@ public class TreasureChest : SaiMonoBehaviour
         {
             bool randomBool = Random.Range(0, 2) == 0;
 
-
             OpenTreasureChest(p, randomBool);
-            openBtn.onClick.AddListener(() => this.UpdateCoin());
+
+            if (!this.isOpened) return;
+            this.openBtn.onClick.AddListener(() => this.UpdateCoin());
+            this.closeBtn.onClick.AddListener(() => this.DespawnTreasureChest());
         }
     }
 
     public void OpenTreasureChest(PlayerInventory inventory, bool isHigherTier)
     {
         GameManager.Instance.OpenTreasureChest();
+        this.isOpened = true;
 
         if (this.EvolutionWeapon(inventory)) return;
         this.LevelUpWeapon(inventory);
@@ -126,7 +163,11 @@ public class TreasureChest : SaiMonoBehaviour
                 if (e.condition == ItemData.Evolution.Condition.treasureChest)
                 {
                     bool attempt = w.AttemptEvolution(e, 0);
-                    if (attempt) return true; // If evolution suceeds, stop.
+                    if (attempt) 
+                    {
+                        iconWeapon.sprite = w.data.icon;
+                        return true; // If evolution suceeds, stop.
+                    }
                 }
             }
         }
@@ -136,7 +177,7 @@ public class TreasureChest : SaiMonoBehaviour
 
     protected virtual void LevelUpWeapon(PlayerInventory inventory)
     {
-        int slots = 0;
+        //int slots = 0;
         List<Weapon> validWeapons = new List<Weapon>();
 
         foreach (PlayerInventory.Slot s in inventory.weaponSlots)
@@ -148,7 +189,7 @@ public class TreasureChest : SaiMonoBehaviour
             if (nextLevel.Equals(default(Weapon.Stats))) continue;
 
             validWeapons.Add(w);
-            slots++;
+            //slots++;
         }
 
         if (validWeapons.Count > 0)
@@ -168,12 +209,15 @@ public class TreasureChest : SaiMonoBehaviour
             float coinClone = Random.Range(1, coin);
             coinClone = (float)System.Math.Round(coinClone, 2);
 
-            //StartCoroutine(UpdateCoin(coinClone));
-
             this.coinText.text = coinClone.ToString();
             GameManager.Instance.IncreaseCoin(coinClone);
         }
+    }
 
-        Destroy(gameObject);
+    public virtual void DespawnTreasureChest()
+    {
+        if (!this.isOpened) return;
+        ItemsDropSpawner.Instance.Despawn(this.gameObject.transform);
+        this.isOpened = false;
     }
 }

@@ -278,14 +278,13 @@ public class PlayerStats : SaiMonoBehaviour
                 isInvincible = true;
 
                 // If there is a damage effect assigned, play it.
-                //if (damageEffect) Destroy(Instantiate(damageEffect, transform.position, Quaternion.identity), 5f);
                 if (damageEffect)
                 {
                     this.SpawnAndDespawnEffect(damageEffect.transform);
                 }
 
                 //Play character hurt sound effect
-                SoundController.Instance.PlayCharacterHurtSoundEffect();
+                SoundManager.Instance.PlayCharacterHurtSoundEffect();
 
                 if (CurrentHealth <= 0)
                 {

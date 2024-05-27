@@ -12,19 +12,6 @@ public class PickUp : SaiMonoBehaviour
     float initialOffset;
     [SerializeField] bool isPushed = false;
 
-    // To represent the bobbing animation of the object.
-    //[System.Serializable]
-    //public struct BobbingAnimation
-    //{
-    //    public float frequency;
-    //    public Vector2 direction;
-    //}
-    //public BobbingAnimation bobbingAnimation = new BobbingAnimation
-    //{
-    //    frequency = 2f,
-    //    direction = new Vector2(0, 0.3f)
-    //};
-
     [Header("Bonuses")]
     public int experience;
     public int health;
@@ -38,14 +25,17 @@ public class PickUp : SaiMonoBehaviour
     protected override void OnEnable()
     {
         initialPosition = transform.position;
-        //initialOffset = Random.Range(0, bobbingAnimation.frequency);
     }
 
     protected override void Update()
     {
+        this.MoveItemToPlayer();
+    }
+
+    protected virtual void MoveItemToPlayer()
+    {
         if (!target)
         {
-            //transform.position = initialPosition + bobbingAnimation.direction * Mathf.Sin(Time.time * bobbingAnimation.frequency);
             transform.position = initialPosition;
         }
         else
@@ -56,12 +46,12 @@ public class PickUp : SaiMonoBehaviour
                 Rigidbody2D rb2D = this.GetComponent<Rigidbody2D>();
                 if (!this.isPushed)
                 {
-                    rb2D.AddForce(-distance.normalized * 20);
+                    rb2D.AddForce(-distance.normalized * 200);
                 }
-                if (distance.sqrMagnitude >= 1.5)
+                if (distance.sqrMagnitude >= 1.5f)
                 {
                     this.isPushed = true;
-                    rb2D.AddForce(distance.normalized * 100);
+                    rb2D.AddForce(distance.normalized * 200);
                 }
             }
             else
@@ -85,7 +75,6 @@ public class PickUp : SaiMonoBehaviour
             this.lifespan = lifespan;
         }
 
-        //Destroy(gameObject, Mathf.Max(0.01f, this.lifespan));
         return true;
     }
 
@@ -94,7 +83,7 @@ public class PickUp : SaiMonoBehaviour
         if (collision.CompareTag("Player"))
         {
             if(this.target == null) return;
-            SoundController.Instance.PlayCollectSoundEffect();
+            SoundManager.Instance.PlayCollectSoundEffect();
 
             if (experience != 0) target.IncreaseExperience(experience);
             if (health != 0) target.RestoreHealth(health);

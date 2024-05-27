@@ -51,10 +51,6 @@ public class PlayerSelection : SaiMonoBehaviour
                 return;
             }
         }
-
-        //GameObject player = Instantiate(playerPrefabs[this.characterName], transform.position, Quaternion.identity);
-        //cameraController.Player = player.transform;
-        //player.SetActive(true);
     }
 
     protected virtual void LoadPlayerPrefabs()

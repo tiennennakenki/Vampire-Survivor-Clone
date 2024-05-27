@@ -17,11 +17,11 @@ MonoBehaviour:
   maxHealth: 200
   damage: 20
   dropList:
-  - itemSO: {fileID: 11400000, guid: ed8cb9fbd2fc0dc42b4513230ac881da, type: 2}
+  - itemSO: {fileID: 11400000, guid: c9ae064df24b99d4483b82f60885cac7, type: 2}
     dropRate: 70000
     minDropRate: 0
     maxDropRate: 0
-  - itemSO: {fileID: 11400000, guid: 4f229fd2dc8e7ef43b56af237902b258, type: 2}
+  - itemSO: {fileID: 11400000, guid: bdf6df6790f72ca4086cff6bcbf3210a, type: 2}
     dropRate: 100000
     minDropRate: 0
     maxDropRate: 0

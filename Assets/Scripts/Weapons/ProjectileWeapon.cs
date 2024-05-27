@@ -59,7 +59,7 @@ public class ProjectileWeapon : Weapon
         prefab.transform.gameObject.SetActive(true);
 
         //Play attack sound effect
-        SoundController.Instance.PlayAttackSoundEffect();
+        SoundManager.Instance.PlayAttackSoundEffect();
 
         prefab.weapon = this;
         prefab.owner = owner;
