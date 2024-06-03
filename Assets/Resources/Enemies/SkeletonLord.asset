@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonLord
   m_EditorClassIdentifier: 
   enemyName: 20
-  moveSpeed: 0.39
+  moveSpeed: 1
   maxHealth: 10000
   damage: 20
   dropList:

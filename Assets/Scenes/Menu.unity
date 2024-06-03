@@ -21427,7 +21427,7 @@ MonoBehaviour:
   timeSurvivedTop3: {fileID: 1067832557}
   levelTextTop3: {fileID: 696096956}
   totalCoinTextTop3: {fileID: 201769705}
-  totalEnemiesDeadTop3: {fileID: 302362633}
+  totalEnemiesDeadTop3: {fileID: 98755135}
 --- !u!1 &2009460808
 GameObject:
   m_ObjectHideFlags: 0

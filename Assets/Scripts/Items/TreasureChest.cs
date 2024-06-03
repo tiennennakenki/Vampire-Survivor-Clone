@@ -15,12 +15,6 @@ public class TreasureChest : SaiMonoBehaviour
     [SerializeField] protected Image iconWeapon;
     [SerializeField] protected bool isOpened = false;
 
-    //protected override void Start()
-    //{
-    //    coin = Random.Range(5, 200);
-    //    this.LoadComponents();
-    //}
-
     protected override void Awake()
     {
         this.LoadComponents();
@@ -177,7 +171,6 @@ public class TreasureChest : SaiMonoBehaviour
 
     protected virtual void LevelUpWeapon(PlayerInventory inventory)
     {
-        //int slots = 0;
         List<Weapon> validWeapons = new List<Weapon>();
 
         foreach (PlayerInventory.Slot s in inventory.weaponSlots)
@@ -189,14 +182,23 @@ public class TreasureChest : SaiMonoBehaviour
             if (nextLevel.Equals(default(Weapon.Stats))) continue;
 
             validWeapons.Add(w);
-            //slots++;
         }
 
         if (validWeapons.Count > 0)
         {
             Weapon weapon = validWeapons[Random.Range(0, validWeapons.Count)];
-            weapon.DoLevelUp();
-            iconWeapon.sprite = weapon.data.icon;
+            if (weapon.DoLevelUp())
+            {
+                iconWeapon.sprite = weapon.data.icon;
+            }
+        }
+
+        foreach (PlayerInventory.Slot s in inventory.weaponSlots)
+        {
+            Weapon w = s.item as Weapon;
+            if (w == null) continue;
+
+            s.level.text = w.GetStats().level.ToString();
         }
 
         return;

@@ -28,6 +28,7 @@ MonoBehaviour:
       y: -0.2
       width: 0.3
       height: 0.4
+    level: 1
     lifespan: 20
     damage: 15
     damageVariance: 4
@@ -51,6 +52,7 @@ MonoBehaviour:
       y: 0
       width: 0
       height: 0
+    level: 2
     lifespan: 0
     damage: 10
     damageVariance: 0
@@ -73,6 +75,7 @@ MonoBehaviour:
       y: 0
       width: 0
       height: 0
+    level: 3
     lifespan: 0
     damage: 10
     damageVariance: 0
@@ -95,6 +98,7 @@ MonoBehaviour:
       y: 0
       width: 0
       height: 0
+    level: 4
     lifespan: 0
     damage: 10
     damageVariance: 0
@@ -117,6 +121,7 @@ MonoBehaviour:
       y: 0
       width: 0
       height: 0
+    level: 5
     lifespan: 0
     damage: 10
     damageVariance: 0
@@ -139,6 +144,7 @@ MonoBehaviour:
       y: 0
       width: 0
       height: 0
+    level: 6
     lifespan: 0
     damage: 10
     damageVariance: 0
@@ -161,6 +167,7 @@ MonoBehaviour:
       y: 0
       width: 0
       height: 0
+    level: 7
     lifespan: 0
     damage: 10
     damageVariance: 0
@@ -183,6 +190,7 @@ MonoBehaviour:
       y: 0
       width: 0
       height: 0
+    level: 8
     lifespan: 0
     damage: 10
     damageVariance: 0

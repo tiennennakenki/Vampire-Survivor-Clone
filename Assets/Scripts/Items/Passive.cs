@@ -13,6 +13,7 @@ public class Passive : Item
     public struct Modifier
     {
         public string name, description;
+        public int level;
         public CharacterData.Stats boosts;
     }
 
@@ -43,6 +44,7 @@ public class Passive : Item
 
         // Otherwise, add stats of the next level to our weapon.
         currentBoosts += data.GetLevelData(++currentLevel).boosts;
+
         return true;
     }
 

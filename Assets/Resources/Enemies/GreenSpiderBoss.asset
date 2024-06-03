@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GreenSpiderBoss
   m_EditorClassIdentifier: 
   enemyName: 12
-  moveSpeed: 0.24
+  moveSpeed: 1
   maxHealth: 500
   damage: 10
   dropList:

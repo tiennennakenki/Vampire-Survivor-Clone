@@ -86,41 +86,6 @@ public class Projectile : WeaponEffect
         }
     }
 
-    //protected virtual void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    EnemyStats es = other.GetComponent<EnemyStats>();
-    //    BreakableProps p = other.GetComponent<BreakableProps>();
-
-    //    if (es)
-    //    {
-    //        Vector3 source = damageSource == DamageSource.owner && owner ? owner.transform.position : transform.position;
-    //        es.TakeDamage(GetDamage(), source);
-
-    //        Weapon.Stats stats = weapon != null ? weapon.GetStats() : new Weapon.Stats(); // Kiểm tra null cho weapon
-    //        piercing--;
-    //        if (stats.hitEffect)
-    //        {
-    //            Destroy(Instantiate(stats.hitEffect, transform.position, Quaternion.identity), 5f);
-    //        }
-    //    }
-    //    else if (p)
-    //    {
-    //        p.TakeDamage(GetDamage());
-    //        piercing--;
-
-    //        Weapon.Stats stats = weapon != null ? weapon.GetStats() : new Weapon.Stats(); // Kiểm tra null cho weapon
-    //        if (stats.hitEffect)
-    //        {
-    //            Destroy(Instantiate(stats.hitEffect, transform.position, Quaternion.identity), 5f);
-    //        }
-    //    }
-
-    //    if (piercing <= 0)
-    //    {
-    //        WeaponSpawner.Instance.Despawn(this.transform);
-    //    }
-    //}
-
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         EnemyStats es = other.GetComponent<EnemyStats>();

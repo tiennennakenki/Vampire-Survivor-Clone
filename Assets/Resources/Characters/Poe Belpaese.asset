@@ -22,7 +22,7 @@ MonoBehaviour:
     maxHealth: 70
     recovery: 0
     armor: 0
-    moveSpeed: 2
+    moveSpeed: 4
     might: 1
     area: 0
     speed: 1

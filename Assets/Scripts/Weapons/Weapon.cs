@@ -19,6 +19,7 @@ public abstract class Weapon : Item
         public Rect spawnVariance;
 
         [Header("Values")]
+        public int level;
         public float lifespan; // If 0, it will last forever.
         public float damage, damageVariance, area, speed, cooldown, projectileInterval, knockback;
         public int number, piercing, maxInstances;
@@ -28,6 +29,7 @@ public abstract class Weapon : Item
         public static Stats operator +(Stats s1, Stats s2)
         {
             Stats result = new Stats();
+            result.level = s2.level;
             result.name = s2.name ?? s1.name;
             result.description = s2.description ?? s1.description;
             result.projectilePrefab = s2.projectilePrefab ?? s1.projectilePrefab;
@@ -50,6 +52,7 @@ public abstract class Weapon : Item
         public static Stats operator -(Stats s1, Stats s2)
         {
             Stats result = new Stats();
+            result.level = s1.level;
             result.name = s2.name ?? s1.name;
             result.description = s2.description ?? s1.description;
             result.projectilePrefab = s2.projectilePrefab ?? s1.projectilePrefab;
@@ -94,7 +97,7 @@ public abstract class Weapon : Item
         this.data = data;
         currentStats = data.baseStats;
         movement = FindObjectOfType<PlayerMovement>();
-        //currentCooldown = currentStats.cooldown;
+        currentCooldown = currentStats.cooldown;
         ActivateCooldown();
     }
 
@@ -138,7 +141,7 @@ public abstract class Weapon : Item
         if (CanAttack())
         {
             ActivateCooldown();
-            //currentCooldown += currentStats.cooldown;
+            currentCooldown += currentStats.cooldown;
             return true;
         }
         return false;

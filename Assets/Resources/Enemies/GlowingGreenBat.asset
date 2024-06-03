@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlowingGreenBat
   m_EditorClassIdentifier: 
   enemyName: 10
-  moveSpeed: 0.42
+  moveSpeed: 1
   maxHealth: 50
   damage: 10
   dropList:

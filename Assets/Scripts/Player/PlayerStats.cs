@@ -72,7 +72,7 @@ public class PlayerStats : SaiMonoBehaviour
     protected override void Awake()
     {
         base.Awake();
-        this.characterData = CharacterCollector.Instance.GetData();
+        //this.characterData = CharacterCollector.Instance.GetData();
 
         if (CharacterCollector.Instance)
             CharacterCollector.Instance.DestroySingleton();

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GiantSkeletonBoss
   m_EditorClassIdentifier: 
   enemyName: 17
-  moveSpeed: 0.3
+  moveSpeed: 0.7
   maxHealth: 150
   damage: 30
   dropList:

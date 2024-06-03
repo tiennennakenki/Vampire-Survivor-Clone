@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: 20
   moveSpeed: 0.8
-  maxHealth: 10000
+  maxHealth: 500
   damage: 100
   dropList:
   - itemSO: {fileID: 11400000, guid: 24a06ed4d1ad9514f833dd7e802b50c2, type: 2}

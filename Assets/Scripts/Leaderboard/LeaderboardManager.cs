@@ -336,7 +336,7 @@ public class LeaderboardManager : SaiMonoBehaviour
         Transform screen = this.canvas.transform.Find("Screen");
         Transform leaderboardScreen = screen.Find("Leaderboard Screen");
         Transform leaderboard = leaderboardScreen.Find("Leaderboard");
-        Transform top3 = leaderboard.Find("Top 1");
+        Transform top3 = leaderboard.Find("Top 3");
         this.totalEnemiesDeadTop3 = top3.Find("Total Enemies Dead Text").GetComponent<TextMeshProUGUI>();
 
         Debug.Log(transform.name + ":LoadTotalEnemiesDeadTextTop3" + gameObject);

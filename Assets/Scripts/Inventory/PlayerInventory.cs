@@ -11,6 +11,7 @@ public class PlayerInventory : SaiMonoBehaviour
     {
         public Item item;
         public Image image;
+        public TextMeshProUGUI level;
 
         public void Assign(Item assignedItem)
         {
@@ -20,14 +21,17 @@ public class PlayerInventory : SaiMonoBehaviour
                 Weapon w = item as Weapon;
                 image.enabled = true;
                 image.sprite = w.data.icon;
+
+                level.text = w.data.baseStats.level.ToString();
             }
             else
             {
                 Passive p = item as Passive;
                 image.enabled = true;
                 image.sprite = p.data.icon;
+
+                level.text = p.data.baseStats.level.ToString();
             }
-            //Debug.Log(string.Format("Assigned {0} to player.", item.name));
         }
 
         public void Clear()
@@ -93,25 +97,13 @@ public class PlayerInventory : SaiMonoBehaviour
 
     protected virtual void LoadWeaponSlots()
     {
-        if (this.canvas == null)
-        {
-            Debug.LogError("Canvas not found");
-            return;
-        }
+        if (this.canvas == null) return;
 
         Transform inventorySlots = canvas.transform.Find("Inventory Slots");
-        if (inventorySlots == null)
-        {
-            Debug.LogError("Inventory Slots not found");
-            return;
-        }
+        if (inventorySlots == null) return;
 
         Transform weaponSlotsUI = inventorySlots.Find("Weapon Slots");
-        if (weaponSlotsUI == null)
-        {
-            Debug.LogError("Weapon Slots not found");
-            return;
-        }
+        if (weaponSlotsUI == null) return;
 
         for (int i = 0; i < weaponSlots.Count; i++)
         {
@@ -119,35 +111,27 @@ public class PlayerInventory : SaiMonoBehaviour
             if (i < weaponSlots.Count && weaponSlots[i] != null && weaponSlots[i].image == null)
             {
                 Image weaponSlotImage = weaponSlotsUI.GetChild(i).GetComponent<Image>();
-                if (weaponSlotImage != null)
-                {
-                    weaponSlots[i].image = weaponSlotImage;
-                }
+                if (weaponSlotImage == null) continue;
+
+                weaponSlots[i].image = weaponSlotImage;
+                TextMeshProUGUI weaponSlotLevel = weaponSlotImage.transform.Find("Level Weapon")?.GetComponent<TextMeshProUGUI>();
+                if (weaponSlotLevel == null) continue;
+                weaponSlots[i].level = weaponSlotLevel;
             }
         }
+
+        Debug.LogWarning(transform.name + ": LoadWeaponSlots" , gameObject);
     }
 
     protected virtual void LoadPassiveItemSlots()
     {
-        if (this.canvas == null)
-        {
-            Debug.LogError("Canvas not found");
-            return;
-        }
+        if (this.canvas == null) return;
 
         Transform inventorySlots = canvas.transform.Find("Inventory Slots");
-        if (inventorySlots == null)
-        {
-            Debug.LogError("Inventory Slots not found");
-            return;
-        }
+        if (inventorySlots == null) return;
 
         Transform passiveItemSlotsUI = inventorySlots.Find("Passive Item Slots");
-        if (passiveItemSlotsUI == null)
-        {
-            Debug.LogError("Weapon Slots not found");
-            return;
-        }
+        if (passiveItemSlotsUI == null) return;
 
         for (int i = 0; i < passiveSlots.Count; i++)
         {
@@ -155,12 +139,15 @@ public class PlayerInventory : SaiMonoBehaviour
             if (i < passiveSlots.Count && passiveSlots[i] != null && passiveSlots[i].image == null)
             {
                 Image PassiveItemSlotImage = passiveItemSlotsUI.GetChild(i).GetComponent<Image>();
-                if (PassiveItemSlotImage != null)
-                {
-                    passiveSlots[i].image = PassiveItemSlotImage;
-                }
+                if (PassiveItemSlotImage == null) return;
+                passiveSlots[i].image = PassiveItemSlotImage;
+                TextMeshProUGUI passiveItemSlotLevel = PassiveItemSlotImage.transform.Find("Level Passive Item")?.GetComponent<TextMeshProUGUI>();
+                if (passiveItemSlotLevel == null) continue;
+                passiveSlots[i].level = passiveItemSlotLevel;
             }
         }
+
+        Debug.LogWarning(transform.name + ": LoadPassiveItemSlots", gameObject);
     }
 
     protected virtual void LoadUpgradeUIOptions()
@@ -408,6 +395,9 @@ public class PlayerInventory : SaiMonoBehaviour
                 ));
                 return;
             }
+
+            weaponSlots[slotIndex].level.text = weapon.GetStats().level.ToString();
+
         }
 
         if (GameManager.Instance != null && GameManager.Instance.choosingUpgrade)
@@ -429,6 +419,8 @@ public class PlayerInventory : SaiMonoBehaviour
                 ));
                 return;
             }
+
+            passiveSlots[slotIndex].level.text = p.data.GetLevelData(p.currentLevel).level.ToString();
         }
 
         if (GameManager.Instance != null && GameManager.Instance.choosingUpgrade)

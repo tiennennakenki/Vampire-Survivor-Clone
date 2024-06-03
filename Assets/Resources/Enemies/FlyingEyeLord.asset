@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FlyingEyeLord
   m_EditorClassIdentifier: 
   enemyName: 19
-  moveSpeed: 0.3
+  moveSpeed: 1.2
   maxHealth: 500
   damage: 20
   dropList:

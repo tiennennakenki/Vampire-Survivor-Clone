@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlowingRedBatBoss
   m_EditorClassIdentifier: 
   enemyName: 9
-  moveSpeed: 0.42
+  moveSpeed: 1
   maxHealth: 270
   damage: 10
   dropList:

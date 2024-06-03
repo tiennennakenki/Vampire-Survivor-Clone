@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedBat
   m_EditorClassIdentifier: 
   enemyName: 4
-  moveSpeed: 0.42
+  moveSpeed: 1
   maxHealth: 5
   damage: 5
   dropList:

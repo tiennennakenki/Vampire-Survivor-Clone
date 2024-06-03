@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerMovement : SaiMonoBehaviour
 {
-    //public const float DEFAULT_MOVESPEED = 2f;
 
     [SerializeField] protected PlayerCtrl playerCtrl;
     public PlayerCtrl PlayerCtrl => playerCtrl;

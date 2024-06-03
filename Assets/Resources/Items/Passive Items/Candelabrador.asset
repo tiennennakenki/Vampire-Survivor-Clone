@@ -18,6 +18,7 @@ MonoBehaviour:
   baseStats:
     name: Candelabrador
     description: Augments area of attacks by 10%.
+    level: 1
     boosts:
       maxHealth: 1
       recovery: 0
@@ -33,6 +34,7 @@ MonoBehaviour:
   growth:
   - name: Level 2
     description: Base area up by 10%
+    level: 2
     boosts:
       maxHealth: 1
       recovery: 0
@@ -47,6 +49,7 @@ MonoBehaviour:
       magnet: 0
   - name: Level 3
     description: Base area up by 10%
+    level: 3
     boosts:
       maxHealth: 1
       recovery: 0
@@ -61,6 +64,7 @@ MonoBehaviour:
       magnet: 0
   - name: Level 4
     description: Base area up by 10%
+    level: 4
     boosts:
       maxHealth: 1
       recovery: 0
@@ -75,6 +79,7 @@ MonoBehaviour:
       magnet: 0
   - name: Level 5
     description: Base area up by 10%
+    level: 5
     boosts:
       maxHealth: 1
       recovery: 0

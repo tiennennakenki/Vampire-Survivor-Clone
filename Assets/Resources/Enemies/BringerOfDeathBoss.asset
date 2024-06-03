@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BringerOfDeathBoss
   m_EditorClassIdentifier: 
   enemyName: 16
-  moveSpeed: 0.48
+  moveSpeed: 1
   maxHealth: 500
   damage: 30
   dropList:

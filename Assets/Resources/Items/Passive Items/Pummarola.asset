@@ -28,6 +28,7 @@ MonoBehaviour:
   baseStats:
     name: Pummarola
     description: Character recovers 0.2 HP per second.
+    level: 1
     boosts:
       maxHealth: 1
       recovery: 0.2
@@ -43,6 +44,7 @@ MonoBehaviour:
   growth:
   - name: Level 2
     description: Health recovery increases by 0.2 HP per second.
+    level: 2
     boosts:
       maxHealth: 1
       recovery: 0.2
@@ -57,6 +59,7 @@ MonoBehaviour:
       magnet: 0
   - name: Level 3
     description: Health recovery increases by 0.2 HP per second.
+    level: 3
     boosts:
       maxHealth: 1
       recovery: 0.2
@@ -71,6 +74,7 @@ MonoBehaviour:
       magnet: 0
   - name: Level 4
     description: Health recovery increases by 0.2 HP per second.
+    level: 4
     boosts:
       maxHealth: 1
       recovery: 0.2
@@ -85,6 +89,7 @@ MonoBehaviour:
       magnet: 0
   - name: Level 5
     description: Health recovery increases by 0.2 HP per second.
+    level: 5
     boosts:
       maxHealth: 1
       recovery: 0.2
