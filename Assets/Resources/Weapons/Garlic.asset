@@ -21,7 +21,7 @@ MonoBehaviour:
     evolutionLevel: 3
     catalysts:
     - itemType: {fileID: 11400000, guid: 843333c47b2f2314e994632d982ea0a8, type: 2}
-      level: 1
+      level: 2
     outcome:
       itemType: {fileID: 11400000, guid: f37f91d4dac71a6499d3d01a6b42440f, type: 2}
       level: 1
